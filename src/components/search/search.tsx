@@ -1,35 +1,24 @@
-'use client';
-import { HttpService } from '@/src/services';
-import { addIndicesToElements } from '@/src/utils/addIndicesToElements';
-import { Input } from '@mantine/core';
-import { debounce } from 'lodash';
+import { TextInput } from '@mantine/core';
+import { useDebouncedValue } from '@mantine/hooks';
+import { IconSearch } from '@tabler/icons-react';
+import { useState } from 'react';
 
-const Search = ({
-  setElements,
-  route,
-}: {
-  setElements: any;
-  route: string;
-}) => {
-  const debouncedSearch = debounce(async (value) => {
-    const http = new HttpService();
-    const response: any = await http.service().get(`${route}?search=${value}`);
-    setElements(addIndicesToElements(response.data.result));
-  }, 500);
-
-  const handleChange = (e: any) => {
-    const { value } = e.target;
-    debouncedSearch(value); // Call the debounced function
-  };
+export function SearchBar() {
+  const [value, setValue] = useState('');
+  const [debounced] = useDebouncedValue(value, 200);
 
   return (
-    <Input
-      placeholder="Input component"
-      onChange={handleChange}
-      size="md"
-      className="absolute right-20"
-    />
+    <>
+      <TextInput
+        classNames={{
+          input: 'bg-secondary',
+          root: 'bg-secondary ',
+          wrapper: 'border-secondary border-none	',
+        }}
+        leftSection={<IconSearch></IconSearch>}
+        placeholder="Enter value to see debounce"
+        onChange={(event) => setValue(event.currentTarget.value)}
+      />
+    </>
   );
-};
-
-export default Search;
+}
