@@ -5,15 +5,14 @@ import {
   AppShell,
   AppShellMain,
   Burger,
+  Button,
   Container,
   Group,
   Image,
-  UnstyledButton,
-  em,
 } from '@mantine/core';
-import { useDisclosure, useMediaQuery } from '@mantine/hooks';
+import { useDisclosure } from '@mantine/hooks';
+import { IconHeart } from '@tabler/icons-react';
 import React from 'react';
-import classes from './MobileNavbar.module.css';
 
 export default function DashboardLayout({
   children,
@@ -21,14 +20,13 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   const [opened, { toggle }] = useDisclosure();
-  const isMobile = useMediaQuery(`(max-width: ${em(750)})`);
 
   const { user: currentUser } = useCurrentUser();
 
   return (
     <AppShell
       className="text-textPrimary"
-      header={{ height: !isMobile ? 120 : 60 }}
+      header={{ height: 120 }}
       navbar={{
         width: 300,
         breakpoint: 'sm',
@@ -44,35 +42,35 @@ export default function DashboardLayout({
         >
           Default Container
         </Container>
-        <Group className="bg-primary  ">
-          <div className="flex justify-start items-center lg:justify-around gap-2 ">
-            <Burger
-              opened={opened}
-              onClick={toggle}
-              hiddenFrom="sm"
-              size="sm"
-            />
-            <Image radius="md" h={30} w="auto" src={'toolsmandu-light.png'} />
-
-            <SearchBar></SearchBar>
-            <Group ml="xl" gap={0} visibleFrom="sm">
-              <UnstyledButton className={classes.control}>
-                Support
-              </UnstyledButton>
-            </Group>
-          </div>
-        </Group>
+        <div className=" bg-primary flex justify-around items-center lg:justify-around gap-2 h-full">
+          <Burger
+            opened={opened}
+            onClick={toggle}
+            hiddenFrom="sm"
+            size="md"
+            color="white"
+          />
+          <Image radius="md" h={30} w="auto" src={'toolsmandu-light.png'} />{' '}
+          <SearchBar></SearchBar>
+          <Group ml="xl" gap={0} visibleFrom="sm">
+            <Button>
+              <IconHeart></IconHeart>
+            </Button>
+          </Group>
+        </div>
         <Container className="bg-darkPrimary" fluid visibleFrom="sm">
           Categories
         </Container>
       </AppShell.Header>
       <AppShell.Navbar py="md" px={4}>
-        <UnstyledButton className={classes.control}>Home</UnstyledButton>
-        <UnstyledButton className={classes.control}>Blog</UnstyledButton>
-        <UnstyledButton className={classes.control}>Contacts</UnstyledButton>
-        <UnstyledButton className={classes.control}>Support</UnstyledButton>
+        <Button>Hello</Button>
+        <Button>Hello</Button>
+        <Button>Hello</Button>
+        <Button>Hello</Button>
       </AppShell.Navbar>
-      <AppShellMain>{children}</AppShellMain>
+      <AppShellMain>
+        <div className="sm:mt-8 ">{children}</div>
+      </AppShellMain>
       <AppShell.Footer p="md">Footer</AppShell.Footer>
     </AppShell>
   );
