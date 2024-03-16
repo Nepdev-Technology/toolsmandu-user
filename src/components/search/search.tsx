@@ -1,35 +1,29 @@
-'use client';
-import { HttpService } from '@/src/services';
-import { addIndicesToElements } from '@/src/utils/addIndicesToElements';
-import { Input } from '@mantine/core';
-import { debounce } from 'lodash';
+import { Button, Popover } from '@mantine/core';
+import { IconSearch } from '@tabler/icons-react';
+import SearchInput from './searchInput';
 
-const Search = ({
-  setElements,
-  route,
-}: {
-  setElements: any;
-  route: string;
-}) => {
-  const debouncedSearch = debounce(async (value) => {
-    const http = new HttpService();
-    const response: any = await http.service().get(`${route}?search=${value}`);
-    setElements(addIndicesToElements(response.data.result));
-  }, 500);
-
-  const handleChange = (e: any) => {
-    const { value } = e.target;
-    debouncedSearch(value); // Call the debounced function
-  };
-
+export function SearchBar() {
   return (
-    <Input
-      placeholder="Input component"
-      onChange={handleChange}
-      size="md"
-      className="absolute right-20"
-    />
+    <div>
+      {' '}
+      <div className="md:w-[35vw]">
+        {' '}
+        <SearchInput visibleFrom="sm"></SearchInput>
+      </div>
+      <Popover position="bottom" withArrow shadow="md">
+        <Popover.Target>
+          <Button hiddenFrom="sm">
+            <IconSearch></IconSearch>
+          </Button>
+        </Popover.Target>
+        <Popover.Dropdown
+          style={{
+            width: '100vw',
+          }}
+        >
+          <SearchInput></SearchInput>
+        </Popover.Dropdown>
+      </Popover>
+    </div>
   );
-};
-
-export default Search;
+}

@@ -14,6 +14,19 @@ const config: Config = {
       lg: '1200px',
       xl: '1536px',
     },
+    extend: {
+      colors: {
+        primary: '#012651',
+        secondary: '#1e3a8a',
+        darkPrimary: '#011d3e',
+        lightBlue: '#1c4dd4',
+        textPrimary: '#ffffff',
+        textSecondary: '#FACC15',
+      },
+    },
+    fontFamily: {
+      display: 'Oswald, ui-serif', // Adds a new `font-display` class
+    },
   },
   plugins: [],
 };

@@ -42,7 +42,7 @@ export default function DashboardLayout({
       <AppShellNavbar p="md">
         <Navbar currentUser={currentUser} />
       </AppShellNavbar>
-      <AppShellMain>{children}</AppShellMain>
+      <AppShellMain>{}</AppShellMain>
     </AppShell>
   );
 }
