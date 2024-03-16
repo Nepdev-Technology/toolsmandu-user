@@ -3,6 +3,7 @@ import { SearchBar } from '@/src/components/search/search';
 import { useCurrentUser } from '@/src/hooks/auth/useCurrentUser';
 import {
   AppShell,
+  AppShellHeader,
   AppShellMain,
   Burger,
   Button,
@@ -10,7 +11,7 @@ import {
   Group,
   Image,
 } from '@mantine/core';
-import { useDisclosure } from '@mantine/hooks';
+import { useDisclosure, useHeadroom } from '@mantine/hooks';
 import { IconHeart } from '@tabler/icons-react';
 import React from 'react';
 
@@ -20,21 +21,33 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   const [opened, { toggle }] = useDisclosure();
+  const pinned = useHeadroom({ fixedAt: 120 });
+  // const headerPinned = useHeadroom({ fixedAt: 100vh });
 
   const { user: currentUser } = useCurrentUser();
 
   return (
     <AppShell
-      className="text-textPrimary"
-      header={{ height: 120 }}
+      withBorder={false}
+      className="text-textPrimary bg-primary font-display "
+      header={{
+        height: { xs: 60, sm: 80, md: 120 },
+        collapsed: !pinned,
+        offset: false,
+      }}
       navbar={{
         width: 300,
         breakpoint: 'sm',
         collapsed: { desktop: true, mobile: !opened },
       }}
-      padding="xl"
+      footer={{
+        height: { xh: 30, sm: 40, md: 60 },
+      }}
+      px={{ xs: 10, sm: 25, md: 80 }}
+      py={{ xs: 65, sm: 85, md: 125 }}
     >
-      <AppShell.Header>
+      <AppShellHeader className="shadow-lg bg-secondary md:bg-primary ">
+        {' '}
         <Container
           className="bg-gradient-to-r from-darkPrimary to-blue-600"
           fluid
@@ -42,7 +55,7 @@ export default function DashboardLayout({
         >
           Default Container
         </Container>
-        <div className=" bg-primary flex justify-around items-center lg:justify-around gap-2 h-full">
+        <div className=" flex justify-around items-center lg:justify-around gap-2 h-16">
           <Burger
             opened={opened}
             onClick={toggle}
@@ -61,17 +74,15 @@ export default function DashboardLayout({
         <Container className="bg-darkPrimary" fluid visibleFrom="sm">
           Categories
         </Container>
-      </AppShell.Header>
+      </AppShellHeader>
       <AppShell.Navbar py="md" px={4}>
         <Button>Hello</Button>
         <Button>Hello</Button>
         <Button>Hello</Button>
         <Button>Hello</Button>
       </AppShell.Navbar>
-      <AppShellMain>
-        <div className="sm:mt-8 ">{children}</div>
-      </AppShellMain>
-      <AppShell.Footer p="md">Footer</AppShell.Footer>
+      <AppShellMain>{children} </AppShellMain>
+      {/* <AppShellFooter>Footer</AppShellFooter> */}
     </AppShell>
   );
 }

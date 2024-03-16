@@ -24,6 +24,9 @@ const config: Config = {
         textSecondary: '#FACC15',
       },
     },
+    fontFamily: {
+      display: 'Oswald, ui-serif', // Adds a new `font-display` class
+    },
   },
   plugins: [],
 };
