@@ -1,4 +1,6 @@
 'use client';
+import DropDownMenu from '@/src/components/heading/DropDownMenu';
+import TrustHeader from '@/src/components/heading/TrustHeader';
 import { SearchBar } from '@/src/components/search/search';
 import { useCurrentUser } from '@/src/hooks/auth/useCurrentUser';
 import {
@@ -7,7 +9,6 @@ import {
   AppShellMain,
   Burger,
   Button,
-  Container,
   Group,
   Image,
 } from '@mantine/core';
@@ -48,13 +49,7 @@ export default function DashboardLayout({
     >
       <AppShellHeader className="shadow-lg bg-secondary md:bg-primary ">
         {' '}
-        <Container
-          className="bg-gradient-to-r from-darkPrimary to-blue-600"
-          fluid
-          visibleFrom="sm"
-        >
-          Default Container
-        </Container>
+        <TrustHeader></TrustHeader>
         <div className=" flex justify-around items-center lg:justify-around gap-2 h-16">
           <Burger
             opened={opened}
@@ -71,9 +66,7 @@ export default function DashboardLayout({
             </Button>
           </Group>
         </div>
-        <Container className="bg-darkPrimary" fluid visibleFrom="sm">
-          Categories
-        </Container>
+        <DropDownMenu></DropDownMenu>
       </AppShellHeader>
       <AppShell.Navbar py="md" px={4}>
         <Button>Hello</Button>
