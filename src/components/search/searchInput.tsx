@@ -10,9 +10,9 @@ const SearchInput = ({ visibleFrom }: { visibleFrom?: string }) => {
   return (
     <TextInput
       classNames={{
-        input: 'bg-secondary',
+        input: 'bg-secondary border-1 border-black text-white',
         root: 'bg-secondary ',
-        wrapper: 'border-secondary border-none',
+        wrapper: ' ',
       }}
       style={{
         width: '100%',
@@ -20,7 +20,7 @@ const SearchInput = ({ visibleFrom }: { visibleFrom?: string }) => {
       visibleFrom={visibleFrom}
       // className="sm:hidden"
       leftSection={<IconSearch></IconSearch>}
-      placeholder="Enter value to see debounce"
+      placeholder="Search..."
       onChange={(event) => setValue(event.currentTarget.value)}
     />
   );

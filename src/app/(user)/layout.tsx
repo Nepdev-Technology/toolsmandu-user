@@ -32,7 +32,7 @@ export default function DashboardLayout({
       withBorder={false}
       className="text-textPrimary bg-primary font-display "
       header={{
-        height: { xs: 60, sm: 80, md: 120 },
+        height: { xs: 60, sm: 80, md: 132 },
         collapsed: !pinned,
         offset: false,
       }}
@@ -51,13 +51,15 @@ export default function DashboardLayout({
         {' '}
         <TrustHeader></TrustHeader>
         <div className=" flex justify-around items-center lg:justify-around gap-2 h-16 bg-secondary">
-          <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="md" />
-          <Image
-            radius="md"
-            h={30}
-            w="auto"
-            src={'toolsmandu-light.png'}
-          />{' '}
+          <Burger
+            color="primary.0"
+            opened={opened}
+            onClick={toggle}
+            hiddenFrom="sm"
+            size="md"
+            className="text-primary "
+          />
+          <Image radius="md" h={30} w="auto" src={'toolsmandu-light.png'} />{' '}
           <SearchBar></SearchBar>
           <Group ml="xl" gap={0} visibleFrom="sm">
             <Button>
@@ -68,12 +70,15 @@ export default function DashboardLayout({
         <DropDownMenu></DropDownMenu>
       </AppShellHeader>
       <AppShell.Navbar py="md" px={4}>
+        <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="md" />
         <Button>Hello</Button>
         <Button>Hello</Button>
         <Button>Hello</Button>
         <Button>Hello</Button>
       </AppShell.Navbar>
-      <AppShellMain>{children} </AppShellMain>
+      <AppShellMain>
+        <div className="mt-4">{children}</div>
+      </AppShellMain>
       {/* <AppShellFooter>Footer</AppShellFooter> */}
     </AppShell>
   );

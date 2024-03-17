@@ -1,8 +1,8 @@
 .card {
   /* height: rem(440px); */
-  min-height: 40vh;
+  min-height: 50vh;
   height: auto;
-  max-height: 50vh;
+  max-height: 60vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

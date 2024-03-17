@@ -10,7 +10,7 @@ const UserCategoryHeader = ({ title }: IUserCategoryHeader) => {
         my="md"
         labelPosition="center"
         label={
-          <div className="bg-tertiary px-2 py-1 rounded-md">
+          <div className="bg-primary px-2 py-1 rounded-md">
             <Title order={3} className="  text-textSecondary">
               {title}
             </Title>
