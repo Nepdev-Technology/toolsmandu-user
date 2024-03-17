@@ -50,15 +50,14 @@ export default function DashboardLayout({
       <AppShellHeader className="shadow-lg bg-secondary md:bg-primary ">
         {' '}
         <TrustHeader></TrustHeader>
-        <div className=" flex justify-around items-center lg:justify-around gap-2 h-16">
-          <Burger
-            opened={opened}
-            onClick={toggle}
-            hiddenFrom="sm"
-            size="md"
-            color="white"
-          />
-          <Image radius="md" h={30} w="auto" src={'toolsmandu-light.png'} />{' '}
+        <div className=" flex justify-around items-center lg:justify-around gap-2 h-16 bg-secondary">
+          <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="md" />
+          <Image
+            radius="md"
+            h={30}
+            w="auto"
+            src={'toolsmandu-light.png'}
+          />{' '}
           <SearchBar></SearchBar>
           <Group ml="xl" gap={0} visibleFrom="sm">
             <Button>

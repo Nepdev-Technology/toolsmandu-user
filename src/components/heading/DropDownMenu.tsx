@@ -10,7 +10,7 @@ import {
 
 const DropDownMenu = () => {
   return (
-    <Container className="bg-darkPrimary" fluid visibleFrom="sm">
+    <Container className="bg-tertiary" fluid visibleFrom="sm">
       <Flex justify={'center'} align={'center'}>
         <Menu shadow="md" width={200}>
           <Menu.Target>
