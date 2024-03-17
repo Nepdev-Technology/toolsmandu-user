@@ -6,7 +6,7 @@ const ProductCard = () => {
       shadow="sm"
       radius="md"
       pb={{ sm: 2, md: 4, lg: 4 }}
-      className="bg-darkPrimary w-[11rem] md:w-48 transition-transform duration-500 transform-gpu hover:-translate-y-1.5"
+      className="bg-tertiary w-[11rem] md:w-48 transition-transform duration-500 transform-gpu hover:-translate-y-1.5"
     >
       <Card.Section>
         <AspectRatio ratio={240 / 347} mx="auto">

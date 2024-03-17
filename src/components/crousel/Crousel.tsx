@@ -75,7 +75,7 @@ export function CustomCrousel() {
 
   return (
     <Carousel
-      slideSize={{ base: '100%', sm: '50%', md: '33.333333%' }}
+      slideSize={{ base: '100%', sm: '100%', md: '100%' }}
       slideGap={{ base: 0, sm: 'md' }}
       align="start"
       slidesToScroll={1}

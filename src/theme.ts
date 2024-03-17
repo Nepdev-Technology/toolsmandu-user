@@ -12,4 +12,7 @@ export const theme = createTheme({
     lg: '1200px',
     xl: '1536px',
   },
+  colors: {
+    primary: ['#EDF2F4', '', '', '', '', '', '', '', '', '', ''],
+  },
 });
