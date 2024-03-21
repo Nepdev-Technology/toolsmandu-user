@@ -1,9 +1,9 @@
 import { Divider, Title } from '@mantine/core';
 
-interface IUserCategoryHeader {
+interface IProductCategoryHeader {
   title: string;
 }
-const UserCategoryHeader = ({ title }: IUserCategoryHeader) => {
+const ProductCategoryHeader = ({ title }: IProductCategoryHeader) => {
   return (
     <div>
       <Divider
@@ -21,4 +21,4 @@ const UserCategoryHeader = ({ title }: IUserCategoryHeader) => {
   );
 };
 
-export default UserCategoryHeader;
+export default ProductCategoryHeader;

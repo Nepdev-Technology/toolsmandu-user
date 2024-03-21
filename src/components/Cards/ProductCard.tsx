@@ -11,7 +11,8 @@ const ProductCard = () => {
       <Card.Section>
         <AspectRatio ratio={240 / 347} mx="auto">
           <img
-            src="https://www.mtcgame.com/api/img-loader?url=https%3A%2F%2Fcdn5.mtcgame.com%2FImages%2FCategory%2Fffc8329d-c998-4b52-b241-5efd92c1c3f6.jpg&w=240&q=75"
+            // src="https://www.mtcgame.com/api/img-loader?url=https%3A%2F%2Fcdn5.mtcgame.com%2FImages%2FCategory%2Fffc8329d-c998-4b52-b241-5efd92c1c3f6.jpg&w=240&q=75"
+            src="https://www.mtcgame.com/api/img-loader?url=https%3A%2F%2Fcdn5.mtcgame.com%2FImages%2FCategory%2Fecd4a24c-b96b-444b-bb60-8d4ff838d779.jpg&w=240&q=75"
             alt="Panda"
           />
         </AspectRatio>
