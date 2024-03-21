@@ -1,7 +1,7 @@
 import { AspectRatio, Card, Flex, Text } from '@mantine/core';
 
 interface ICardProps {
-  key: string;
+  key: string | number;
   name: string;
   imageUrl: string;
   imageAlt: string;
