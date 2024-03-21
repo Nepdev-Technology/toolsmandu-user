@@ -4,7 +4,7 @@ import { IconClock24, IconClockBolt, IconWorldStar } from '@tabler/icons-react';
 const TrustHeader = () => {
   return (
     <Container
-      className="bg-gradient-to-r from-secondary to-primary py-1"
+      className="bg-gradient-to-r from-secondary  to-quaternary py-1"
       fluid
       visibleFrom="sm"
       px={{ xs: 10, sm: 25, md: 80 }}
