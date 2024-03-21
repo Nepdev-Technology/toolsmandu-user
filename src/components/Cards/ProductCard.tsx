@@ -1,6 +1,7 @@
 import { AspectRatio, Card, Flex, Text } from '@mantine/core';
 
 interface ICardProps {
+  key: string;
   name: string;
   imageUrl: string;
   imageAlt: string;
@@ -12,6 +13,7 @@ interface ICardProps {
   metaKeywords: string;
 }
 const ProductCard = ({
+  key,
   name,
   imageUrl,
   imageAlt,
@@ -24,6 +26,7 @@ const ProductCard = ({
 }: ICardProps) => {
   return (
     <Card
+      key={key}
       shadow="sm"
       radius="lg"
       pb={{ sm: 2, md: 4, lg: 4 }}

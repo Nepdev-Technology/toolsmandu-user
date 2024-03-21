@@ -152,11 +152,12 @@ const ProductScrollArea = () => {
             <ProductCategoryHeader
               title={category.title}
             ></ProductCategoryHeader>
-            <ScrollArea scrollbars="x" type="never">
+            <ScrollArea scrollbars="x" type="never" key={category.title}>
               <Box className="flex gap-3 overflow-hidden ">
-                {category.products.map((item) => {
+                {category.products.map((item, index) => {
                   return (
                     <ProductCard
+                      key={index + item.name}
                       name={item.name}
                       imageUrl={item.imageUrl}
                       imageAlt={item.imageAlt}
