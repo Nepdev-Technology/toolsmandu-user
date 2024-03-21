@@ -29,6 +29,8 @@ const config: Config = {
         senary: 'D90429',
         textPrimary: '#ffffff',
         textSecondary: '#000000',
+        textSP: '#ffbe0b',
+        textMRP: '#ffbe0b',
       },
     },
     fontFamily: {

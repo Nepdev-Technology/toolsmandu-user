@@ -4,10 +4,6 @@ const ProductView = () => {
   return (
     <section>
       <ProductScrollArea></ProductScrollArea>
-      <ProductScrollArea></ProductScrollArea>
-      <ProductScrollArea></ProductScrollArea>
-      <ProductScrollArea></ProductScrollArea>
-      <ProductScrollArea></ProductScrollArea>
     </section>
   );
 };
