@@ -46,7 +46,6 @@ export function CustomCrousel() {
   const getData = async () => {
     const http = new HttpService();
     const response: any = await http.service().get(apiRoutes.crousel.crousel);
-    console.log(response.data.data);
     setCrouselData(response?.data?.data);
   };
 

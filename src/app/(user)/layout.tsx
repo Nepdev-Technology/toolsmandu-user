@@ -43,7 +43,7 @@ export default function DashboardLayout({
       footer={{
         height: { xh: 30, sm: 40, md: 60 },
       }}
-      px={{ xs: 10, sm: 25, md: 80 }}
+      // px={{ xs: 10, sm: 25, md: 80 }}
       py={{ xs: 65, sm: 85, md: 135 }}
     >
       <AppShellHeader className="shadow-lg bg-secondary md:bg-primary  box-border	">
