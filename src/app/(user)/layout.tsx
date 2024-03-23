@@ -9,11 +9,10 @@ import {
   AppShellMain,
   Burger,
   Button,
-  Group,
   Image,
 } from '@mantine/core';
 import { useDisclosure, useHeadroom } from '@mantine/hooks';
-import { IconHeart } from '@tabler/icons-react';
+import Link from 'next/link';
 import React from 'react';
 
 export default function DashboardLayout({
@@ -32,7 +31,7 @@ export default function DashboardLayout({
       withBorder={false}
       className="text-textPrimary bg-primary font-display "
       header={{
-        height: { xs: 60, sm: 80, md: 132 },
+        height: { xs: 60, sm: 80, md: 133 },
         collapsed: !pinned,
         offset: false,
       }}
@@ -45,12 +44,12 @@ export default function DashboardLayout({
         height: { xh: 30, sm: 40, md: 60 },
       }}
       px={{ xs: 10, sm: 25, md: 80 }}
-      py={{ xs: 65, sm: 85, md: 125 }}
+      py={{ xs: 65, sm: 85, md: 135 }}
     >
-      <AppShellHeader className="shadow-lg bg-secondary md:bg-primary ">
+      <AppShellHeader className="shadow-lg bg-secondary md:bg-primary  box-border	">
         {' '}
         <TrustHeader></TrustHeader>
-        <div className=" flex justify-around items-center lg:justify-around gap-2 h-16 bg-secondary">
+        <div className=" flex justify-around items-center lg:justify-around gap-2 h-16 bg-secondary box-border	">
           <Burger
             color="primary.0"
             opened={opened}
@@ -58,14 +57,23 @@ export default function DashboardLayout({
             hiddenFrom="sm"
             size="md"
             className="text-primary "
+            aria-label="Toggle navigation"
           />
-          <Image radius="md" h={30} w="auto" src={'toolsmandu-light.png'} />{' '}
+          <Link href={'/'}>
+            <Image
+              radius="md"
+              h={30}
+              w="auto"
+              src={'toolsmandu-light.png'}
+              alt="Toolsmandu Logo"
+            />
+          </Link>
           <SearchBar></SearchBar>
-          <Group ml="xl" gap={0} visibleFrom="sm">
+          {/* <Group ml="xl" gap={0} visibleFrom="sm">
             <Button>
               <IconHeart></IconHeart>
             </Button>
-          </Group>
+          </Group> */}
         </div>
         <DropDownMenu></DropDownMenu>
       </AppShellHeader>
@@ -76,9 +84,7 @@ export default function DashboardLayout({
         <Button>Hello</Button>
         <Button>Hello</Button>
       </AppShell.Navbar>
-      <AppShellMain>
-        <div className="mt-4">{children}</div>
-      </AppShellMain>
+      <AppShellMain>{children}</AppShellMain>
       {/* <AppShellFooter>Footer</AppShellFooter> */}
     </AppShell>
   );

@@ -2,11 +2,13 @@ import { Divider, Title } from '@mantine/core';
 
 interface IProductCategoryHeader {
   title: string;
+  id: string | number;
 }
-const ProductCategoryHeader = ({ title }: IProductCategoryHeader) => {
+const ProductCategoryHeader = ({ title, id }: IProductCategoryHeader) => {
   return (
     <div>
       <Divider
+        key={id}
         my="md"
         labelPosition="center"
         label={
