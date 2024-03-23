@@ -59,7 +59,7 @@ const CheckoutForm = ({ variations, dynamicVariables }: ICheckoutFormProps) => {
               <Badge size="md" circle>
                 2
               </Badge>
-              <Text fw={500}>Fill details</Text>
+              <Text fw={500}>Fill up details</Text>
             </div>
             <Divider></Divider>
           </CardSection>
