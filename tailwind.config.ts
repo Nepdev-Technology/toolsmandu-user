@@ -31,10 +31,14 @@ const config: Config = {
         textSecondary: '#000000',
         textSP: '#ffbe0b',
         textMRP: '#ffbe0b',
+        iconPrimary: '#22C55E',
+        iconSecondary: '#60A5FA',
+        textHeader: '#FACC15',
+        iconTertiary: '#6366F1',
       },
     },
     fontFamily: {
-      display: 'Oswald, ui-serif', // Adds a new `font-display` class
+      display: 'Poppins', // Adds a new `font-display` class
     },
   },
   plugins: [],

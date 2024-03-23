@@ -9,6 +9,7 @@ const apiRoutes = {
     searchSuppliers: `/supplier/find/`,
   },
   products: {
+    base: '/product',
     featured: '/category/featured/all',
   },
   crousel: {

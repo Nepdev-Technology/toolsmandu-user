@@ -5,7 +5,7 @@ import '@mantine/core/styles.css';
 
 export default function Home() {
   return (
-    <section>
+    <section className="px-3 md:px-6 lg:px-10 ">
       {' '}
       <CustomCrousel></CustomCrousel>
       <ProductView></ProductView>
