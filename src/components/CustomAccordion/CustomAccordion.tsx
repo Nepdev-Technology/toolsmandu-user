@@ -1,10 +1,10 @@
+import { FAQItem } from '@/src/types/interfaces/ProductInterface';
 import {
   Accordion,
   AccordionControl,
   AccordionItem,
   AccordionPanel,
 } from '@mantine/core';
-import { FAQItem } from '../ProductArea/ScrollArea/ScrollArea';
 
 export default function CustomAccordion({ faqs }: { faqs: FAQItem[] }) {
   const items = faqs.map((item) => (
