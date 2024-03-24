@@ -1,6 +1,6 @@
 import { Divider, Grid, GridCol, Group, Skeleton } from '@mantine/core';
 
-const Loading = async ({ params }: { params: { id: string } }) => {
+const Loading = () => {
   return (
     <section className="relative bottom-1 text-textSecondary">
       <div className=" pr-3 md:pr-6 lg:pr-10  xs:pl-5 sm:pl-10 md:pl-24  ">
