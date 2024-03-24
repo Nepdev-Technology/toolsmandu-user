@@ -49,12 +49,19 @@ export interface ProductVariation {
   maximumRetailPrice: number;
   costPrice: number;
 }
+export enum InputTypes {
+  TEXT = 'text', // eslint-disable-line no-unused-vars
+  NUMBER = 'number', // eslint-disable-line no-unused-vars
+  PASSWORD = 'password', // eslint-disable-line no-unused-vars
+  EMAIL = 'email', // eslint-disable-line no-unused-vars
+}
+
 export interface DynamicVariable {
   id: number;
   title: string;
   label: string;
   hintText: string;
-  type: string;
+  type: InputTypes;
   required: boolean;
 }
 

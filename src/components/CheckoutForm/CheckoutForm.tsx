@@ -10,10 +10,10 @@ import {
   CardSection,
   Divider,
   Flex,
-  SimpleGrid,
   Text,
 } from '@mantine/core';
 import { useState } from 'react';
+import CustomForm from '../CustomForm/CustomForm';
 
 interface ICheckoutFormProps {
   variations: ProductVariation[];
@@ -53,34 +53,11 @@ const CheckoutForm = ({ variations, dynamicVariables }: ICheckoutFormProps) => {
         </CardSection>
       </Card>
       {selectedOption ? (
-        <Card shadow="sm" px={10} py={10} radius="md" withBorder>
-          <CardSection px={10} py={10}>
-            <div className="flex gap-2 items-center">
-              <Badge size="md" circle>
-                2
-              </Badge>
-              <Text fw={500}>Fill up details</Text>
-            </div>
-            <Divider></Divider>
-          </CardSection>
-        </Card>
+        <CustomForm
+          selectedOption={selectedOption}
+          fields={dynamicVariables}
+        ></CustomForm>
       ) : null}
-      <Card shadow="sm" radius="md" withBorder>
-        <CardSection px={10} py={10}>
-          <div className="flex gap-2 items-center">
-            <Badge size="md" circle>
-              3
-            </Badge>
-            <Text fw={500}>Review pictures</Text>
-          </div>
-          <Divider></Divider>
-          <SimpleGrid cols={3} className="mt-2">
-            <Button>Khalti</Button>
-            <Button>Esewa</Button>
-            <Button>Ime pay</Button>
-          </SimpleGrid>
-        </CardSection>
-      </Card>
     </div>
   );
 };

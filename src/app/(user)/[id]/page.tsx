@@ -38,7 +38,7 @@ const page = async ({ params }: { params: { id: string } }) => {
         ></Image>
       </div>
       <div className=" pr-3 md:pr-6 lg:pr-10  xs:pl-5 sm:pl-10 md:pl-24  ">
-        <div className="grid md:grid-cols-3 md:grid-rows-3 gap-1 grid-auto-rows-auto md:pt-[20vh] sm:pt-[10vh] xs:pt-[7vh] ">
+        <div className="grid md:grid-cols-3 md:grid-rows-3 gap-1 grid-auto-rows-auto md:pt-[20vh] sm:pt-[10vh] xs:pt-[7vh] gap-y-4 ">
           <div className=" col-span-2">
             <Grid align={'center'} justify="start">
               <GridCol span={4}>
