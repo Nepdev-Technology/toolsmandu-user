@@ -3,6 +3,11 @@ import {
   ProductVariation,
 } from '@/src/types/interfaces/ProductInterface';
 import {
+  EsewaPaymentProcessor,
+  Order,
+  Store,
+} from '@/src/utils/Payment/Payment';
+import {
   Badge,
   Button,
   Card,
@@ -32,8 +37,10 @@ const CustomForm = ({
   const form = useForm({
     initialValues: { ...result },
   });
-  const handleFormSubmit = (values: any) => {
-    console.log(values, selectedOption);
+  const handleFormSubmit = async (values: any) => {
+    const store = new Store(new EsewaPaymentProcessor());
+    const order: Order = { orderId: 'dflkaj', price: 100, productId: 8 };
+    store.purchaseItem(order);
   };
   return (
     <form onSubmit={form.onSubmit(handleFormSubmit)}>
@@ -74,8 +81,8 @@ const CustomForm = ({
           </div>
           <Divider></Divider>
           <SimpleGrid cols={3} className="mt-2">
-            <Button type="submit">Khalti</Button>
-            <Button>Esewa</Button>
+            {/* <Button type="submit">Khalti</Button> */}
+            <Button type="submit">Esewa</Button>
           </SimpleGrid>
         </CardSection>
       </Card>
