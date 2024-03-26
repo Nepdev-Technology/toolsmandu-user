@@ -62,17 +62,21 @@ export function CustomCrousel() {
     ));
 
   return (
-    <Carousel
-      slideSize={{ base: '100%', sm: '100%', md: '100%' }}
-      slideGap={{ base: 0, sm: 'md' }}
-      align="start"
-      slidesToScroll={1}
-      controlsOffset="md"
-      controlSize={27}
-      withIndicators
-      loop
-    >
-      {slides}
-    </Carousel>
+    <>
+      {crouselData && (
+        <Carousel
+          slideSize={{ base: '100%', sm: '100%', md: '100%' }}
+          slideGap={{ base: 0, sm: 'md' }}
+          align="start"
+          slidesToScroll={1}
+          controlsOffset="md"
+          controlSize={27}
+          withIndicators
+          loop
+        >
+          {slides}
+        </Carousel>
+      )}
+    </>
   );
 }

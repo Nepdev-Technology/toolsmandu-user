@@ -3,6 +3,8 @@ import { Divider, Skeleton } from '@mantine/core';
 const Loading = () => {
   return (
     <>
+      <Skeleton height={300} width={'100%'} className="mt-2" radius={'md'} />
+
       {[1, 2, 3].map((item) => {
         return (
           <div className="w-full mt-3 md:mt-10" key={item}>

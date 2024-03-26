@@ -45,7 +45,15 @@ class HttpService {
 
       return (await response.json()) as T;
     } catch (error) {
-      return this.normalizeError(error);
+      if (error instanceof TypeError && error.message === 'Failed to fetch') {
+        // Redirect to the maintenance page internally
+        window.location.href = '/maintainance';
+        // Return a promise that never resolves (just to keep the function signature)
+        return new Promise(() => {});
+      } else {
+        // Handle other errors by normalizing
+        return this.normalizeError(error);
+      }
     }
   }
 
