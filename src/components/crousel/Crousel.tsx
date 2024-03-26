@@ -3,18 +3,20 @@ import apiRoutes from '@/src/config/api.config';
 import { HttpService } from '@/src/services';
 import { Carousel } from '@mantine/carousel';
 import { Button, Paper, Text, Title } from '@mantine/core';
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import classes from './Demo.module.css';
 interface SlideData {
   image: string;
   title: string;
-  category: string;
+  link: string;
+  description: string;
   metaTitle: string;
   metaDescription: string;
   metaKeywords: string;
 }
 
-function Card({ image, title, category }: SlideData) {
+function Card({ image, title, link, description }: SlideData) {
   return (
     <Paper
       shadow="md"
@@ -26,16 +28,19 @@ function Card({ image, title, category }: SlideData) {
       className={classes.card}
     >
       <div>
-        <Text className={classes.category} size="xs">
-          {category}
-        </Text>
         <Title order={3} className={classes.title}>
           {title}
         </Title>
+        <Text className={classes.category} size="xs">
+          {description}
+        </Text>
       </div>
-      <Button variant="white" color="dark">
-        Read article
-      </Button>
+      <Link href={link}>
+        {' '}
+        <Button variant="white" color="dark">
+          Order Now
+        </Button>
+      </Link>
     </Paper>
   );
 }
