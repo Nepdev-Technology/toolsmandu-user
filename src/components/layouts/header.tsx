@@ -41,7 +41,7 @@ const Header: React.FC<HeaderProps> = ({
       <div className="flex justify-center items-center gap-5">
         {' '}
         <div className="hidden md:block md:font-semibold lg:block lg:font-semibold">
-          {currentUser && currentUser.email}
+          {/* {currentUser && currentUser.email} */}
         </div>
         <button
           onClick={() => {
