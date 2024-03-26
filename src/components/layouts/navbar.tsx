@@ -15,7 +15,7 @@ const Navbar = ({ currentUser }: { currentUser: User | null }) => {
 
   return (
     <>
-      {currentUser && currentUser.name}
+      {/* {currentUser && currentUser.name} */}
       {sidebarConfig.map((item) => (
         <NavLink
           key={item.label}
