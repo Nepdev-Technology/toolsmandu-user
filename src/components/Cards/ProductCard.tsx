@@ -7,6 +7,7 @@ interface ICardProps {
   imageAlt: string;
   maximumRetailPrice: number;
   sellingPrice: number;
+  offerTitle: string;
   label: string;
   metaTitle: string;
   metaDescription: string;
@@ -23,6 +24,7 @@ const ProductCard = ({
   metaTitle,
   metaDescription,
   metaKeywords,
+  offerTitle,
 }: ICardProps) => {
   return (
     <Card
@@ -38,13 +40,15 @@ const ProductCard = ({
             src={process.env.NEXT_PUBLIC_IMAGE_URL + imageUrl}
             alt={imageAlt}
           />
-          <div className="absolute top-0 right-0">
-            <div className="w-32 h-6 absolute top-4 -left-8">
-              <div className="h-full w-full bg-red-500 text-white text-center   transform rotate-[-45deg]">
-                {label}
+          {offerTitle && (
+            <div className="absolute top-0 right-0">
+              <div className="w-32 h-6 absolute top-4 -left-8">
+                <div className="h-full w-full bg-red-500 text-white text-center   transform rotate-[-45deg]">
+                  {offerTitle}
+                </div>
               </div>
             </div>
-          </div>
+          )}
         </AspectRatio>
       </Card.Section>
       <Card.Section h={80}>

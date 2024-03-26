@@ -22,6 +22,7 @@ export interface Product {
   metaDescription: string;
   metaKeywords: string;
   image: string;
+  offerTitle: string;
   featured: boolean;
   featuredInNavbar: boolean;
   backgorundImage: string; // Note: There's a typo in the key name "backgorundImage", should be "backgroundImage"

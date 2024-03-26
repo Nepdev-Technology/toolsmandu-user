@@ -58,6 +58,7 @@ const ProductScrollArea = () => {
                             id={product.id}
                             name={product.name}
                             imageUrl={product.image}
+                            offerTitle={product.offerTitle}
                             imageAlt="PUBG"
                             maximumRetailPrice={product.maximumRetailPrice}
                             sellingPrice={product.sellingPrice}
