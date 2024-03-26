@@ -22,7 +22,7 @@ export const useCurrentUser = () => {
 
   const refetchUser = async (userId: string) => {
     try {
-      const userInfo: any = await authService.getMe(userId);
+      const userInfo: any = await authService.getMe();
       const currentUser = Cookies.get('currentUser');
 
       if (userInfo && currentUser) {
