@@ -15,6 +15,9 @@ const apiRoutes = {
   crousel: {
     crousel: '/crousel',
   },
+  orders: {
+    base: '/order',
+  },
 };
 
 export default apiRoutes;

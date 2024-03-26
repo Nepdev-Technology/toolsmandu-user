@@ -38,7 +38,7 @@ const config: Config = {
       },
     },
     fontFamily: {
-      display: 'Poppins', // Adds a new `font-display` class
+      display: 'Roboto', // Adds a new `font-display` class
     },
   },
   plugins: [],

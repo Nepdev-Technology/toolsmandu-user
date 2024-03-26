@@ -1,5 +1,5 @@
-import Cookies from 'js-cookie';
 import { EHttpMethod } from '../types/index';
+import { getAuthorizationHeader } from '../utils/getAuthorizationHeaders';
 
 class HttpService {
   private baseURL: string;
@@ -10,8 +10,7 @@ class HttpService {
 
   // Get authorization token for requests
   private getAuthorization(): Record<string, string> {
-    const accessToken = Cookies.get('AccessToken') || '';
-    return accessToken ? { Authorization: `Bearer ${accessToken}` } : {};
+    return getAuthorizationHeader();
   }
 
   // Initialize service configuration

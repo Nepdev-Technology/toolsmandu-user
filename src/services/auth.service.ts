@@ -1,3 +1,4 @@
+import Cookies from 'js-cookie';
 import { HttpService } from '.';
 import apiRoutes from '../config/api.config';
 
@@ -8,51 +9,75 @@ export class AuthService {
       email: username,
       password,
     });
-    if (response.status !== 200) {
-      return null;
+    if (!response.success) {
+      throw new Error(`Login:${response.message}`);
     }
-    const jwtToken = response.data.access_token;
+    const jwtToken = response.data.accessToken;
+    const refreshToken = response.data.refreshToken;
+
     // eslint-disable-next-line
     const [header, payload, signature] = jwtToken.split('.');
     const decodedPayload = JSON.parse(atob(payload));
-    const name = decodedPayload.name;
-    const email = decodedPayload.email;
+    const id = decodedPayload.sub;
     const roles = decodedPayload.roles;
-    const id = decodedPayload.id;
     const expiredAt = decodedPayload.exp;
 
     return {
-      name,
-      email,
-      roles,
       id,
+      roles,
       expiredAt,
       accessToken: jwtToken,
+      refreshToken,
     };
   };
 
-  getMe = (_userId: string) => {
-    // return this.instance
-    //   .get(`/users/${userId}`, {
-    //     headers: getAuthorizationHeader(),
-    //   })
-    //   .then((res) => {
-    //     return res.data;
-    //   });
-    return;
+  getMe = () => {
+    const accessToken = Cookies.get('currentUser'); // Get the JWT token from the cookie
+
+    if (!accessToken) {
+      // Access token not found in cookies
+      throw new Error('Access token not found in cookie');
+    }
+
+    // Your JWT token parsing logic
+    const [header, payload, signature] = accessToken.split('.');
+    const decodedPayload = JSON.parse(atob(payload));
+    const id = decodedPayload.sub;
+    const roles = decodedPayload.roles;
+    const expiredAt = decodedPayload.exp;
+
+    if (expiredAt && Date.now() >= expiredAt * 1000) {
+      // Token has expired
+      throw new Error('Access token has expired');
+    }
+
+    // Return user data
+    return {
+      id,
+      roles,
+      expiredAt,
+    };
   };
 
-  // uploadAvatar = (userId: string, newAvatar: File) => {
-  //   const formData = new FormData();
-  //   formData.append('file', newAvatar);
-  //   return this.instance
-  //     .post(`/users/${userId}/upload`, formData, {
-  //       headers: getAuthorizationHeader(),
-  //     })
-  //     .then((res) => {
-  //       return {
-  //         newAvatar: res.data.data.url,
-  //       };
-  //     });
-  // };
+  checkLoggedIn = () => {
+    const accessToken = Cookies.get('currentUser'); // Get the JWT token from the cookie
+
+    if (!accessToken) {
+      // Access token not found in cookies
+      return false;
+    }
+
+    // Your JWT token parsing logic
+    const [, payload] = accessToken.split('.');
+    const decodedPayload = JSON.parse(atob(payload));
+    const expiredAt = decodedPayload.exp;
+
+    if (!expiredAt || Date.now() >= expiredAt * 1000) {
+      // Token has expired
+      return false;
+    }
+
+    // Token is valid and not expired
+    return true;
+  };
 }

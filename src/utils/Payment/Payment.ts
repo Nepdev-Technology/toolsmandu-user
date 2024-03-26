@@ -5,6 +5,11 @@ export interface Order {
   productId: number;
   price: number;
 }
+export enum PAYMENT_GATEWAYS {
+  ESEWA = 'ESEWA',
+  KHALTI = 'KHALTI',
+  IME_PAY = 'IMEPAY',
+}
 
 interface PaymentProcessor {
   pay(amount: number, orderId: string, productId: number): void;

@@ -1,23 +1,27 @@
+import apiRoutes from '@/src/config/api.config';
+import { HttpService } from '@/src/services';
 import {
   DynamicVariable,
   ProductVariation,
 } from '@/src/types/interfaces/ProductInterface';
-import {
-  EsewaPaymentProcessor,
-  Order,
-  Store,
-} from '@/src/utils/Payment/Payment';
+import { checkLoggedIn } from '@/src/utils/checkLoggedIn';
+import { PAYMENT_GATEWAYS } from '@/src/utils/Payment/Payment';
+
 import {
   Badge,
   Button,
   Card,
   CardSection,
   Divider,
+  Flex,
   SimpleGrid,
   Text,
   TextInput,
 } from '@mantine/core';
 import { useForm } from '@mantine/form';
+import { IconCashBanknote } from '@tabler/icons-react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 interface ICustomFormProps {
   fields: DynamicVariable[];
@@ -37,10 +41,32 @@ const CustomForm = ({
   const form = useForm({
     initialValues: { ...result },
   });
+  const isLoggedIn = checkLoggedIn();
+  const pathName = usePathname();
   const handleFormSubmit = async (values: any) => {
-    const store = new Store(new EsewaPaymentProcessor());
-    const order: Order = { orderId: 'dflkaj', price: 100, productId: 8 };
-    store.purchaseItem(order);
+    const http = new HttpService();
+    const result = Object.keys(values).map((key) => {
+      return {
+        variableId: +key,
+        variable: 'dummy-data',
+        userInput: values[key],
+      };
+    });
+    const orderPayload = {
+      productId: selectedOption.product,
+      productVariationId: selectedOption.id,
+      couponCode: '',
+      paymentMethod: PAYMENT_GATEWAYS.ESEWA,
+      variables: result,
+    };
+    const response: any = await http
+      .service()
+      .push(`${apiRoutes.orders.base}`, orderPayload);
+    // const data = response.data;
+
+    // const store = new Store(new EsewaPaymentProcessor());
+    // const order: Order = { orderId: 'dflkaj', price: 100, productId: 8 };
+    // store.purchaseItem(order);
   };
   return (
     <form onSubmit={form.onSubmit(handleFormSubmit)}>
@@ -81,8 +107,37 @@ const CustomForm = ({
           </div>
           <Divider></Divider>
           <SimpleGrid cols={3} className="mt-2">
-            {/* <Button type="submit">Khalti</Button> */}
-            <Button type="submit">Esewa</Button>
+            {isLoggedIn ? (
+              <div>
+                {/* <Button type="submit">Khalti</Button> */}
+                <Button type="submit" size="md">
+                  <IconCashBanknote></IconCashBanknote>
+                  Esewa
+                  <Flex
+                    className="mx-2"
+                    gap={1}
+                    align={'center'}
+                    direction={'column'}
+                  >
+                    <Text className="text-textSP font-display   text-sm font-bold ">
+                      Rs{selectedOption.sellingPrice}
+                    </Text>
+                    <Text
+                      className="text-textMRP font-display  text-xs  "
+                      td="line-through"
+                    >
+                      {selectedOption.maximumRetailPrice}
+                    </Text>
+                  </Flex>
+                </Button>
+              </div>
+            ) : (
+              <div>
+                <Link href={`/login?next=${pathName}`}>
+                  <Button type="button">Login to Proceed</Button>
+                </Link>
+              </div>
+            )}
           </SimpleGrid>
         </CardSection>
       </Card>
