@@ -1,31 +1,24 @@
 import apiRoutes from '@/src/config/api.config';
 import { HttpService } from '@/src/services';
 import { Button, Card, CardSection, Divider, Title } from '@mantine/core';
+import { IconAlertCircle, IconCheck } from '@tabler/icons-react';
 import Link from 'next/link';
 
-const getOrdersData = async (id: string) => {
-  const http = new HttpService();
-  const response: any = await http
-    .service()
-    .get(`${apiRoutes.orders.base}/${id}`, {
-      next: {
-        cache: 'no-store',
-      },
-    });
-  const data = response.data;
-  return data;
-};
 const verifyOrder = async (id: string, data: string) => {
   const http = new HttpService();
+  console.log(
+    `${apiRoutes.payement.esewa}?data=${data}&orderId=${id}`,
+    'this is url to be requrested'
+  );
   const response: any = await http
     .service()
-    .get(`${apiRoutes.payement.esewa}/${data}/${id}`, {
+    .get(`${apiRoutes.payement.esewa}?data=${data}&orderId=${id}`, {
       next: {
         cache: 'no-store',
       },
     });
   console.log(response, 'at res component');
-  return response.data;
+  return response;
 };
 const page = async ({
   params,
@@ -35,8 +28,7 @@ const page = async ({
   searchParams: { data: string };
 }) => {
   const response = await verifyOrder(params.orderId, searchParams.data);
-  console.log(response, 'at server res');
-  // const productData: Product = await getOrdersData(params.orderId);
+
   return (
     <div className="flex justify-center items-center mt-10">
       <Card shadow="lg" px={40} py={30} withBorder>
@@ -45,18 +37,18 @@ const page = async ({
         </CardSection>
         <Divider></Divider>
         <CardSection>
-          {/* {response.success ? (
+          {response?.success ? (
             <div className="flex flex-col items-center justify-center">
               {' '}
               <IconCheck size={200} color="green" />
-              <Title order={2}>SUCCESS</Title>
+              <Title order={2}>{response.message}</Title>
             </div>
           ) : (
             <div className="flex flex-col items-center justify-center">
               <IconAlertCircle size={200} color="red" />
-              <Title order={2}>FAILURE</Title>
+              <Title order={2}>{response.message}</Title>
             </div>
-          )} */}
+          )}
         </CardSection>
         <div className="flex justify-center gap-3 mt-4">
           <Link href={`/${params.id}`}>

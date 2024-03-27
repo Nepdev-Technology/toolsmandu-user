@@ -5,6 +5,7 @@ import {
   ProductVariation,
 } from '@/src/types/interfaces/ProductInterface';
 import { checkLoggedIn } from '@/src/utils/checkLoggedIn';
+import { showErrorNotification } from '@/src/utils/notificationUtils';
 import {
   EsewaPaymentProcessor,
   Order,
@@ -64,18 +65,25 @@ const CustomForm = ({
       paymentMethod: PAYMENT_GATEWAYS.ESEWA,
       variables: result,
     };
-    const response: any = await http
-      .service()
-      .push(`${apiRoutes.orders.base}`, orderPayload);
-    const { orderId, totalAmount } = response.data;
+    try {
+      const response: any = await http
+        .service()
+        .push(`${apiRoutes.orders.base}`, orderPayload);
 
-    const store = new Store(new EsewaPaymentProcessor());
-    const order: Order = {
-      orderId: orderId,
-      price: totalAmount,
-      productId: selectedOption.product,
-    };
-    store.purchaseItem(order);
+      if (response.success) {
+        const { orderId, totalAmount } = response.data;
+
+        const store = new Store(new EsewaPaymentProcessor());
+        const order: Order = {
+          orderId: orderId,
+          price: totalAmount,
+          productId: selectedOption.product,
+        };
+        store.purchaseItem(order);
+      }
+    } catch (error) {
+      showErrorNotification('Something went wrong');
+    }
   };
   return (
     <form onSubmit={form.onSubmit(handleFormSubmit)}>
