@@ -31,10 +31,10 @@ function Card({ image, title, link, description }: SlideData) {
         <Title order={3} className={classes.title}>
           {title}
         </Title>
-        <Text className={classes.category} size="xs">
-          {description}
-        </Text>
       </div>
+      <Text className={classes.category} size="xs">
+        {description}
+      </Text>
       <Link href={link}>
         {' '}
         <Button variant="white" color="dark">
