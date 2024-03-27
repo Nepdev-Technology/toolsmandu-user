@@ -44,7 +44,7 @@ export interface FAQItem {
 }
 export interface ProductVariation {
   id: number;
-  product: Product;
+  product: number;
   name: string;
   sellingPrice: number;
   maximumRetailPrice: number;

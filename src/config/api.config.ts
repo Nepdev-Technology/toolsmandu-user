@@ -18,6 +18,9 @@ const apiRoutes = {
   orders: {
     base: '/order',
   },
+  payement: {
+    esewa: '/checkout/esewa/verify',
+  },
 };
 
 export default apiRoutes;

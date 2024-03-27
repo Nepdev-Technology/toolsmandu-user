@@ -24,6 +24,10 @@ export default function RootLayout({
       <head>
         <ColorSchemeScript />
         <link rel="shortcut icon" href="/toolsmandu-favicon-1.png" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+          rel="stylesheet"
+        />
         <meta
           name="viewport"
           content="minimum-scale=1, initial-scale=1, width=device-width, user-scalable=no"

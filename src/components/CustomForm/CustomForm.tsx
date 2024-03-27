@@ -5,7 +5,12 @@ import {
   ProductVariation,
 } from '@/src/types/interfaces/ProductInterface';
 import { checkLoggedIn } from '@/src/utils/checkLoggedIn';
-import { PAYMENT_GATEWAYS } from '@/src/utils/Payment/Payment';
+import {
+  EsewaPaymentProcessor,
+  Order,
+  PAYMENT_GATEWAYS,
+  Store,
+} from '@/src/utils/Payment/Payment';
 
 import {
   Badge,
@@ -62,11 +67,15 @@ const CustomForm = ({
     const response: any = await http
       .service()
       .push(`${apiRoutes.orders.base}`, orderPayload);
-    // const data = response.data;
+    const { orderId, totalAmount } = response.data;
 
-    // const store = new Store(new EsewaPaymentProcessor());
-    // const order: Order = { orderId: 'dflkaj', price: 100, productId: 8 };
-    // store.purchaseItem(order);
+    const store = new Store(new EsewaPaymentProcessor());
+    const order: Order = {
+      orderId: orderId,
+      price: totalAmount,
+      productId: selectedOption.product,
+    };
+    store.purchaseItem(order);
   };
   return (
     <form onSubmit={form.onSubmit(handleFormSubmit)}>
