@@ -10,16 +10,19 @@ export function SearchBar() {
         {' '}
         <SearchInput visibleFrom="sm"></SearchInput>
       </div>
-      <Popover position="bottom" withArrow shadow="md">
+      <Popover position="bottom">
         <Popover.Target>
           <Button hiddenFrom="sm" aria-label="SearchButton ">
             <IconSearch></IconSearch>
           </Button>
         </Popover.Target>
         <Popover.Dropdown
+          className="bg-primary border-none"
           style={{
             width: '100vw',
+            backgroundColor: '#012651',
           }}
+          variant="transparent"
         >
           <SearchInput></SearchInput>
         </Popover.Dropdown>

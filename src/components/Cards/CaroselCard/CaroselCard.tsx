@@ -27,15 +27,16 @@ export default function CarouselCard({
       }}
       className={classes.card}
     >
-      <div>
+      <div className="pl-10">
         <Title order={3} className={classes.title}>
           {title}
         </Title>
+        <Text className={classes.category} size="xs">
+          {description}
+        </Text>
       </div>
-      <Text className={classes.category} size="xs">
-        {description}
-      </Text>
-      <Link href={link}>
+
+      <Link href={link} className="pl-10">
         {' '}
         <Button variant="white" color="dark">
           Order Now

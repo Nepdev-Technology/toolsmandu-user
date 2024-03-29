@@ -1,4 +1,4 @@
-import { TextInput } from '@mantine/core';
+import { Button, TextInput } from '@mantine/core';
 import { getHotkeyHandler } from '@mantine/hooks';
 import { IconSearch } from '@tabler/icons-react';
 import Link from 'next/link';
@@ -12,10 +12,9 @@ const SearchInput = ({ visibleFrom }: { visibleFrom?: string }) => {
   return (
     <>
       <TextInput
+        variant="unstyled"
         classNames={{
-          input: 'bg-secondary border-1 border-black text-white',
-          root: 'bg-secondary ',
-          wrapper: ' ',
+          input: 'bg-quaternary text-white px-2',
         }}
         style={{
           width: '100%',
@@ -23,6 +22,7 @@ const SearchInput = ({ visibleFrom }: { visibleFrom?: string }) => {
         visibleFrom={visibleFrom}
         // className="sm:hidden"
         // leftSection={<IconSearch></IconSearch>}
+        radius="md"
         placeholder="Search..."
         onChange={(event) => setValue(event.currentTarget.value)}
         onKeyDown={getHotkeyHandler([
@@ -40,7 +40,10 @@ const SearchInput = ({ visibleFrom }: { visibleFrom?: string }) => {
               query: { query: value },
             }}
           >
-            <IconSearch></IconSearch>
+            <Button>
+              {' '}
+              <IconSearch></IconSearch>
+            </Button>
           </Link>
         }
       />

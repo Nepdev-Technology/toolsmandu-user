@@ -1,9 +1,5 @@
 import apiRoutes from '@/src/config/api.config';
 import { HttpService } from '@/src/services';
-import {
-  DynamicVariable,
-  ProductVariation,
-} from '@/src/types/interfaces/ProductInterface';
 import { checkLoggedIn } from '@/src/utils/checkLoggedIn';
 import { showErrorNotification } from '@/src/utils/notificationUtils';
 import {
@@ -12,37 +8,25 @@ import {
   PAYMENT_GATEWAYS,
   Store,
 } from '@/src/utils/Payment/Payment';
-
 import {
   Badge,
   Button,
   Card,
   CardSection,
-  Group,
   Image,
   Text,
   TextInput,
 } from '@mantine/core';
 import { useForm } from '@mantine/form';
-import { IconCheck } from '@tabler/icons-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useState } from 'react';
+import { ICustomFormProps } from './CustomForm';
 
-interface ICustomFormProps {
-  fields: DynamicVariable[];
-  initialValues?: any;
-  selectedOption: ProductVariation;
-}
-
-const CustomForm = ({
+export const CustomForm = ({
   fields,
   initialValues,
   selectedOption,
 }: ICustomFormProps) => {
-  const [selectedPaymentOption, setSelectedPaymentOption] =
-    useState<PAYMENT_GATEWAYS>(PAYMENT_GATEWAYS.ESEWA);
-
   const result: any = {};
   for (const item of fields) {
     result[item.id] = '';
@@ -76,15 +60,13 @@ const CustomForm = ({
       if (response.success) {
         const { orderId, totalAmount } = response.data;
 
+        const store = new Store(new EsewaPaymentProcessor());
         const order: Order = {
           orderId: orderId,
           price: totalAmount,
           productId: selectedOption.product,
         };
-        if (selectedPaymentOption == PAYMENT_GATEWAYS.ESEWA) {
-          const store = new Store(new EsewaPaymentProcessor());
-          store.purchaseItem(order);
-        }
+        store.purchaseItem(order);
       }
     } catch (error) {
       showErrorNotification('Something went wrong');
@@ -138,86 +120,36 @@ const CustomForm = ({
             <Text fw={500}>Select a payment provider</Text>
           </div>
           {isLoggedIn ? (
-            <div className="flex gap-4 ">
+            <div>
               <Button
-                onClick={() => setSelectedPaymentOption(PAYMENT_GATEWAYS.ESEWA)}
+                type="submit"
                 size="md"
-                variant="outline"
-                rightSection={
-                  selectedPaymentOption == PAYMENT_GATEWAYS.ESEWA ? (
-                    <IconCheck></IconCheck>
-                  ) : null
-                }
-                color={
-                  selectedPaymentOption == PAYMENT_GATEWAYS.ESEWA
-                    ? 'yellow'
-                    : 'gray'
-                }
-                justify="space-around"
+                fullWidth
+                className="flex justify-between"
               >
-                <Group>
-                  <Image
-                    radius="md"
-                    h={20}
-                    w="auto"
-                    src={'esewa_logo.png'}
-                    alt="Esewa Logo"
-                  />
-                  <div>
-                    {' '}
-                    <Text className="text-textSP font-display   text-sm font-bold ">
-                      Rs
-                      {selectedOption.sellingPrice}
-                    </Text>
-                    <Text
-                      className="text-textMRP font-display  text-xs  "
-                      td="line-through"
-                    >
-                      {selectedOption.maximumRetailPrice}
-                    </Text>
-                  </div>
-                </Group>
-              </Button>
-              <Button
-                onClick={() =>
-                  setSelectedPaymentOption(PAYMENT_GATEWAYS.KHALTI)
-                }
-                size="md"
-                variant="outline"
-                rightSection={
-                  selectedPaymentOption == PAYMENT_GATEWAYS.KHALTI ? (
-                    <IconCheck></IconCheck>
-                  ) : null
-                }
-                color={
-                  selectedPaymentOption == PAYMENT_GATEWAYS.KHALTI
-                    ? 'yellow'
-                    : 'gray'
-                }
-                justify="space-around"
-              >
-                <Group>
-                  <Image
-                    radius="md"
-                    h={20}
-                    w="auto"
-                    src={'khalti-seeklogo.svg'}
-                    alt="Khalti Logo"
-                  />
-                  <div>
-                    {' '}
-                    <Text className="text-textSP font-display   text-sm font-bold ">
-                      Rs
-                      {selectedOption.sellingPrice}
-                    </Text>
-                    <Text
-                      className="text-textMRP font-display  text-xs  "
-                      td="line-through"
-                    >
-                      {selectedOption.maximumRetailPrice}
-                    </Text>
-                  </div>
-                </Group>
+                <div>
+                  <Group justify="space-between">
+                    <Image
+                      radius="md"
+                      h={20}
+                      w="auto"
+                      src={'esewa_logo.png'}
+                      alt="Toolsmandu Logo"
+                    />
+                    <div>
+                      {' '}
+                      <Text className="text-textSP font-display   text-sm font-bold ">
+                        Rs{selectedOption.sellingPrice}
+                      </Text>
+                      <Text
+                        className="text-textMRP font-display  text-xs  "
+                        td="line-through"
+                      >
+                        {selectedOption.maximumRetailPrice}
+                      </Text>
+                    </div>
+                  </Group>
+                </div>
               </Button>
             </div>
           ) : (
@@ -227,11 +159,8 @@ const CustomForm = ({
               </Link>
             </div>
           )}
-          <Button type="submit">Pay</Button>
         </CardSection>
       </Card>
     </form>
   );
 };
-
-export default CustomForm;

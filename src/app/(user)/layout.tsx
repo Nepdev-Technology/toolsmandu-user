@@ -3,8 +3,16 @@ import DropDownMenu from '@/src/components/heading/DropDownMenu';
 import TrustHeader from '@/src/components/heading/TrustHeader';
 import { SearchBar } from '@/src/components/search/search';
 import { useCurrentUser } from '@/src/hooks/auth/useCurrentUser';
-import { AppShell, AppShellMain, Burger, Button, Image } from '@mantine/core';
-import { useDisclosure, useHeadroom } from '@mantine/hooks';
+import {
+  AppShell,
+  AppShellMain,
+  Burger,
+  Button,
+  Group,
+  Image,
+} from '@mantine/core';
+import { useDisclosure } from '@mantine/hooks';
+import { IconUser } from '@tabler/icons-react';
 import Link from 'next/link';
 import React from 'react';
 
@@ -14,8 +22,6 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   const [opened, { toggle }] = useDisclosure();
-  const pinned = useHeadroom({ fixedAt: 120 });
-  // const headerPinned = useHeadroom({ fixedAt: 100vh });
 
   const { user: currentUser } = useCurrentUser();
 
@@ -32,7 +38,7 @@ export default function DashboardLayout({
       <header className="  box-border	mb-2">
         {' '}
         <TrustHeader></TrustHeader>
-        <div className=" flex justify-around items-center lg:justify-around gap-2 h-16 bg-primary box-border	">
+        <div className=" flex justify-around items-center lg:justify-around gap-2 h-16 bg-senary box-border	">
           <Burger
             color="primary.0"
             opened={opened}
@@ -52,11 +58,11 @@ export default function DashboardLayout({
             />
           </Link>
           <SearchBar></SearchBar>
-          {/* <Group ml="xl" gap={0} visibleFrom="sm">
-            <Button>
-              <IconHeart></IconHeart>
+          <Group ml="xl" gap={0} visibleFrom="sm">
+            <Button className="bg-quaternary">
+              <IconUser></IconUser>
             </Button>
-          </Group> */}
+          </Group>
         </div>
         <DropDownMenu></DropDownMenu>
       </header>

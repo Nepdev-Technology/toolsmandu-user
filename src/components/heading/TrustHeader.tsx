@@ -7,7 +7,7 @@ const TrustHeader = () => {
       className="bg-gradient-to-r from-primary to-secondary py-1"
       fluid
       visibleFrom="sm"
-      px={{ xs: 20, sm: 50, md: 200 }}
+      px={{ xs: 20, sm: 50, md: 170 }}
     >
       <Group>
         <span className="flex justify-center items-center text-sm">

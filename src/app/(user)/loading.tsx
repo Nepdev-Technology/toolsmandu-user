@@ -1,9 +1,15 @@
-import { Divider, Skeleton } from '@mantine/core';
+import WrapperSkeleton from '@/src/components/Skeleton/WrapperSkeleton';
+import { Divider } from '@mantine/core';
 
 const Loading = () => {
   return (
-    <>
-      <Skeleton height={300} width={'100%'} className="mt-2" radius={'md'} />
+    <section className="px-3 sm:px-[4rem] md:px-[10rem] ">
+      <WrapperSkeleton
+        height={300}
+        width={'100%'}
+        className="mt-2"
+        radius={'md'}
+      />
 
       {[1, 2, 3].map((item) => {
         return (
@@ -14,7 +20,7 @@ const Loading = () => {
               labelPosition="center"
               label={
                 <div className=" px-[10rem] py-1 rounded-md">
-                  <Skeleton
+                  <WrapperSkeleton
                     height={40}
                     width={200}
                     radius={'md'}
@@ -24,13 +30,12 @@ const Loading = () => {
               }
             />
 
-            {/* Skeleton for product cards */}
             <div className="flex gap-3 overflow-hidden">
               {/* Product Card Skeletons */}
               {[1, 2, 3, 4, 5, 6, 7, 8].map((index) => (
                 <div key={index}>
-                  <Skeleton height={300} width={200} radius={'md'} />
-                  <Skeleton
+                  <WrapperSkeleton height={300} width={200} radius={'md'} />
+                  <WrapperSkeleton
                     height={50}
                     width={200}
                     radius="md"
@@ -42,7 +47,7 @@ const Loading = () => {
           </div>
         );
       })}
-    </>
+    </section>
   );
 };
 

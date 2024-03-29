@@ -64,13 +64,13 @@ const ProductCard = ({
           </Text>
           <Flex gap={10} align={'center'}>
             <Text className="text-textSP font-display   text-lg font-bold ">
-              Rs{sellingPrice}
+              Rs&nbsp;{sellingPrice}
             </Text>
             <Text
-              className="text-textMRP font-display  text-xs  "
+              className="text-textMRP font-display  text-sm  "
               td="line-through"
             >
-              {maximumRetailPrice}
+              Rs&nbsp;{maximumRetailPrice}
             </Text>
           </Flex>
         </Flex>

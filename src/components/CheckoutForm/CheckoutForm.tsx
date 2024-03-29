@@ -3,15 +3,8 @@ import {
   DynamicVariable,
   ProductVariation,
 } from '@/src/types/interfaces/ProductInterface';
-import {
-  Badge,
-  Button,
-  Card,
-  CardSection,
-  Divider,
-  Flex,
-  Text,
-} from '@mantine/core';
+import { Badge, Button, Card, CardSection, Flex, Text } from '@mantine/core';
+import { IconCheck } from '@tabler/icons-react';
 import { useState } from 'react';
 import CustomForm from '../CustomForm/CustomForm';
 
@@ -22,17 +15,21 @@ interface ICheckoutFormProps {
 
 const CheckoutForm = ({ variations, dynamicVariables }: ICheckoutFormProps) => {
   const [selectedOption, setSelectedOption] = useState<ProductVariation>();
+
   return (
-    <div className="flex flex-col gap-2">
-      <Card shadow="sm" px={'lg'} py={'sm'} radius="md" withBorder>
-        <CardSection px={10} py={10}>
-          <div className="flex gap-2 items-center">
+    <div className="flex flex-col gap-4">
+      <Card shadow="sm" px={'lg'} py={'sm'} radius="md" className="bg-tertiary">
+        <CardSection
+          px={10}
+          py={10}
+          className="flex flex-col gap-3 justify-around"
+        >
+          <div className="flex gap-4 items-center text-textPrimary">
             <Badge size="md" circle>
               1
             </Badge>
             <Text fw={500}>Select Item</Text>
           </div>
-          <Divider></Divider>
           <Flex wrap="wrap" gap={10} className="mt-2">
             {variations.map((variations) => {
               return (
@@ -40,6 +37,11 @@ const CheckoutForm = ({ variations, dynamicVariables }: ICheckoutFormProps) => {
                   key={variations.id}
                   onClick={() => setSelectedOption(variations)}
                   variant="outline"
+                  rightSection={
+                    selectedOption?.id == variations.id ? (
+                      <IconCheck></IconCheck>
+                    ) : null
+                  }
                   color={
                     selectedOption?.id == variations.id ? 'yellow' : 'gray'
                   }

@@ -42,7 +42,7 @@ const page = async ({ params }: { params: { id: string } }) => {
         <section className="relative bottom-1 text-textPrimary">
           <div className="absolute z-0 ">
             <Image
-              className="md:h-[25vh] xs:h-[10vh]  sm:h-[15vh] w-[100vw] bg-blend-darken brightness-50 blur-md drop-shadow-2xl backdrop-brightness-25          "
+              className="md:h-[25vh] xs:h-[10vh]  sm:h-[15vh] w-[100vw] bg-blend-darken brightness-50 blur-sm drop-shadow-2xl backdrop-brightness-25          "
               src={
                 process.env.NEXT_PUBLIC_IMAGE_URL + productData.backgorundImage
               }
@@ -50,8 +50,8 @@ const page = async ({ params }: { params: { id: string } }) => {
             ></Image>
           </div>
           <div className=" pr-3 md:pr-6 lg:pr-10  xs:pl-5 sm:pl-10 md:pl-24  ">
-            <div className="grid md:grid-cols-3 md:grid-rows-3 gap-1 grid-auto-rows-auto md:pt-[20vh] sm:pt-[10vh] xs:pt-[7vh] gap-y-4 ">
-              <div className=" col-span-2">
+            <div className="grid gap-4 md:grid-cols-10 md:grid-rows-3  grid-auto-rows-auto md:pt-[20vh] sm:pt-[10vh] xs:pt-[7vh] gap-y-4 ">
+              <div className=" col-span-6">
                 <Grid align={'center'} justify="start">
                   <GridCol span={4}>
                     <AspectRatio
@@ -99,13 +99,13 @@ const page = async ({ params }: { params: { id: string } }) => {
                   </GridCol>
                 </Grid>
               </div>
-              <div className=" row-span-2  ">
+              <div className=" row-span-2 col-span-4  mt-16">
                 <CheckoutForm
                   variations={productData.variations}
                   dynamicVariables={productData.dynamicVariables}
                 ></CheckoutForm>
               </div>
-              <div className="col-span-2 ">
+              <div className="col-span-6 ">
                 <article className="text-textPrimary">
                   {productData.summary}
                 </article>

@@ -1,4 +1,5 @@
-import { Divider, Grid, GridCol, Group, Skeleton } from '@mantine/core';
+import WrapperSkeleton from '@/src/components/Skeleton/WrapperSkeleton';
+import { Divider, Grid, GridCol, Group } from '@mantine/core';
 
 const Loading = () => {
   return (
@@ -8,26 +9,26 @@ const Loading = () => {
           <div className=" col-span-2">
             <Grid align={'center'} justify="space-around">
               <GridCol span={4}>
-                <Skeleton width={130} height={230}></Skeleton>
+                <WrapperSkeleton width={130} height={230} />
               </GridCol>
               <GridCol span={7}>
                 <div>
                   <h1 className="sm:text-2xl xs:text-xl  md:text-3xl  font-bold ">
                     {' '}
-                    <Skeleton
+                    <WrapperSkeleton
                       width={200}
                       height={50}
                       className="xs:ml-2 sm:ml-4"
-                    ></Skeleton>
+                    />
                   </h1>
                   <Divider my="lg" />
                   <Group>
                     <span className="flex items-center gap-2">
-                      <Skeleton height={25} circle mb="xl" />
-                      <Skeleton height={25} circle mb="xl" />
-                      <Skeleton height={25} circle mb="xl" />
-                      <Skeleton height={25} circle mb="xl" />
-                      <Skeleton height={25} circle mb="xl" />
+                      <WrapperSkeleton height={25} circle mb="xl" />
+                      <WrapperSkeleton height={25} circle mb="xl" />
+                      <WrapperSkeleton height={25} circle mb="xl" />
+                      <WrapperSkeleton height={25} circle mb="xl" />
+                      <WrapperSkeleton height={25} circle mb="xl" />
                     </span>
                   </Group>
                 </div>
@@ -35,17 +36,17 @@ const Loading = () => {
             </Grid>
           </div>
           <div className=" row-span-2  flex flex-col gap-2">
-            <Skeleton height={80} />
-            <Skeleton height={80} />
-            <Skeleton height={80} />
+            <WrapperSkeleton height={80} />
+            <WrapperSkeleton height={80} />
+            <WrapperSkeleton height={80} />
           </div>
           <div className="col-span-2 ">
-            <Skeleton height={200} radius="xl" className="mb-2" />
+            <WrapperSkeleton height={200} radius="xl" className="mb-2" />
             {[1, 2, 3].map((item) => {
               return (
                 <div className=" flex flex-col gap-2" key={item}>
-                  <Skeleton height={20} />
-                  <Skeleton height={50} />
+                  <WrapperSkeleton height={20} />
+                  <WrapperSkeleton height={50} />
                 </div>
               );
             })}

@@ -1,5 +1,5 @@
 import ProductCard from '@/src/components/Cards/ProductCard';
-import HomePageCarousel from '@/src/components/carousel/HomePageCarousel';
+import HomePageCarousel from '@/src/components/Carousel/HomePageCarousel';
 import ProductCategoryHeader from '@/src/components/heading/ProductCategoryHeader';
 import apiRoutes from '@/src/config/api.config';
 import { HttpService } from '@/src/services';
