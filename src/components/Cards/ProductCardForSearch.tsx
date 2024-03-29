@@ -13,7 +13,7 @@ interface ICardProps {
   metaDescription: string;
   metaKeywords: string;
 }
-const ProductCard = ({
+const ProductCardForSearch = ({
   id,
   name,
   imageUrl,
@@ -31,9 +31,8 @@ const ProductCard = ({
       key={id}
       shadow="sm"
       radius="lg"
-      pb={{ sm: 2, md: 4, lg: 4 }}
       py={0}
-      className="bg-tertiary w-[11rem] md:w-48 transition-transform duration-500 transform-gpu hover:-translate-y-1.5"
+      className="bg-tertiary w-[11rem] md:w-48 "
     >
       <CardSection>
         <AspectRatio ratio={240 / 347} mx="auto">
@@ -79,7 +78,7 @@ const ProductCard = ({
   );
 };
 
-export default ProductCard;
+export default ProductCardForSearch;
 
 //Dimensions: 240 x 347
 // GCD: 1

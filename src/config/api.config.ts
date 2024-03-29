@@ -11,6 +11,7 @@ const apiRoutes = {
   products: {
     base: '/product',
     featured: '/category/featured/all',
+    search: '/product/products/search',
   },
   crousel: {
     crousel: '/crousel',

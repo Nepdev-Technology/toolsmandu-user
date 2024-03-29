@@ -46,9 +46,9 @@ export default function Login() {
   };
 
   return (
-    <div className="w-screen mt-20 flex items-center justify-center text-textSecondary">
+    <div className="w-screen mt-20 flex items-center justify-center text-textPrimary">
       <div className="h-fit flex flex-col gap-2">
-        <Title order={2} className="text-textSecondary">
+        <Title order={2} className="text-textPrimary">
           Login
         </Title>
         <form onSubmit={form.onSubmit(onSubmit)}>

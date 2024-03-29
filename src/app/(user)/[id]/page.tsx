@@ -39,7 +39,7 @@ const page = async ({ params }: { params: { id: string } }) => {
   return (
     <>
       {productData && (
-        <section className="relative bottom-1 text-textSecondary">
+        <section className="relative bottom-1 text-textPrimary">
           <div className="absolute z-0 ">
             <Image
               className="md:h-[25vh] xs:h-[10vh]  sm:h-[15vh] w-[100vw] bg-blend-darken brightness-50 blur-md drop-shadow-2xl backdrop-brightness-25          "
@@ -68,7 +68,7 @@ const page = async ({ params }: { params: { id: string } }) => {
                   </GridCol>
                   <GridCol span={8}>
                     <div>
-                      <h1 className="sm:text-2xl xs:text-xl  md:text-3xl  font-bold text-textSecondary">
+                      <h1 className="sm:text-2xl xs:text-xl  md:text-3xl  font-bold text-textPrimary">
                         {' '}
                         {productData.name}
                       </h1>
@@ -92,7 +92,7 @@ const page = async ({ params }: { params: { id: string } }) => {
                         <Divider orientation="vertical" />
                         <span className="flex items-center ">
                           <IconLock className="text-iconTertiary"></IconLock>
-                          <span className="text-textSecondary">Key</span>
+                          <span className="text-textPrimary">Key</span>
                         </span>
                       </Group>
                     </div>
@@ -106,7 +106,7 @@ const page = async ({ params }: { params: { id: string } }) => {
                 ></CheckoutForm>
               </div>
               <div className="col-span-2 ">
-                <article className="text-textSecondary">
+                <article className="text-textPrimary">
                   {productData.summary}
                 </article>
                 <CustomAccordion faqs={productData.faqs}></CustomAccordion>

@@ -29,10 +29,10 @@ export default function DashboardLayout({
         collapsed: { desktop: true, mobile: !opened },
       }}
     >
-      <header className="shadow-lg bg-secondary md:bg-primary  box-border	mb-2">
+      <header className="  box-border	mb-2">
         {' '}
         <TrustHeader></TrustHeader>
-        <div className=" flex justify-around items-center lg:justify-around gap-2 h-16 bg-secondary box-border	">
+        <div className=" flex justify-around items-center lg:justify-around gap-2 h-16 bg-primary box-border	">
           <Burger
             color="primary.0"
             opened={opened}

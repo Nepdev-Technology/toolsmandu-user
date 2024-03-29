@@ -7,7 +7,6 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import ProductCard from '../../Cards/ProductCard';
 import ProductCategoryHeader from '../../heading/ProductCategoryHeader';
-import Loading from './loading';
 
 const ProductScrollArea = () => {
   const [featuredCategory, setFeaturedCategory] = useState<
@@ -43,13 +42,13 @@ const ProductScrollArea = () => {
 
   return (
     <div className=" md:ml-10">
-      {featuredCategory ? (
+      {featuredCategory &&
         featuredCategory.map((category) => {
           return (
             <div key={category.id}>
               <ProductCategoryHeader id={category.id} title={category.name} />
               <ScrollArea scrollbars="x" type="never" key={category.id}>
-                <Box className="flex gap-3 overflow-hidden ">
+                <Box className="flex gap-3 overflow-hidden py-0 ">
                   {category.products.map((product) => {
                     return (
                       <div key={product.id}>
@@ -75,10 +74,7 @@ const ProductScrollArea = () => {
               </ScrollArea>
             </div>
           );
-        })
-      ) : (
-        <Loading />
-      )}
+        })}
     </div>
   );
 };

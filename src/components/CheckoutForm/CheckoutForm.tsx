@@ -33,7 +33,7 @@ const CheckoutForm = ({ variations, dynamicVariables }: ICheckoutFormProps) => {
             <Text fw={500}>Select Item</Text>
           </div>
           <Divider></Divider>
-          <Flex wrap="wrap" gap={2} className="mt-2">
+          <Flex wrap="wrap" gap={10} className="mt-2">
             {variations.map((variations) => {
               return (
                 <Button

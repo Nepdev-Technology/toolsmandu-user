@@ -5,20 +5,20 @@ import { IconAlertCircle, IconCheck } from '@tabler/icons-react';
 import Link from 'next/link';
 
 const verifyOrder = async (id: string, data: string) => {
-  const http = new HttpService();
-  console.log(
-    `${apiRoutes.payement.esewa}?data=${data}&orderId=${id}`,
-    'this is url to be requrested'
-  );
-  const response: any = await http
-    .service()
-    .get(`${apiRoutes.payement.esewa}?data=${data}&orderId=${id}`, {
-      next: {
-        cache: 'no-store',
-      },
-    });
-  console.log(response, 'at res component');
-  return response;
+  try {
+    const http = new HttpService();
+    const response: any = await http
+      .service()
+      .get(`${apiRoutes.payement.esewa}?data=${data}&orderId=${id}`, {
+        next: {
+          cache: 'no-store',
+        },
+      });
+    console.log(response, 'at res component');
+    return response;
+  } catch (error) {
+    console.log(error);
+  }
 };
 const page = async ({
   params,

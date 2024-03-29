@@ -13,7 +13,7 @@ const ProductCategoryHeader = ({ title, id }: IProductCategoryHeader) => {
         labelPosition="center"
         label={
           <div className="bg-primary px-2 py-1 rounded-md">
-            <Title order={3} className="  text-textSecondary">
+            <Title order={3} className="  text-textPrimary">
               {title}
             </Title>
           </div>

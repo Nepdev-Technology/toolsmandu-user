@@ -2,7 +2,7 @@ import { Divider, Grid, GridCol, Group, Skeleton } from '@mantine/core';
 
 const Loading = () => {
   return (
-    <section className="relative bottom-1 text-textSecondary">
+    <section className="relative bottom-1 bg-primary">
       <div className=" pr-3 md:pr-6 lg:pr-10  xs:pl-5 sm:pl-10 md:pl-24  ">
         <div className="grid md:grid-cols-3 md:grid-rows-3 gap-1 grid-auto-rows-auto md:pt-[20vh] sm:pt-[10vh] xs:pt-[7vh] ">
           <div className=" col-span-2">
@@ -12,7 +12,7 @@ const Loading = () => {
               </GridCol>
               <GridCol span={7}>
                 <div>
-                  <h1 className="sm:text-2xl xs:text-xl  md:text-3xl  font-bold text-textSecondary">
+                  <h1 className="sm:text-2xl xs:text-xl  md:text-3xl  font-bold ">
                     {' '}
                     <Skeleton
                       width={200}
