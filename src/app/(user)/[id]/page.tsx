@@ -107,7 +107,9 @@ const page = async ({ params }: { params: { id: string } }) => {
               </div>
               <div className="col-span-6 ">
                 <article className="text-textPrimary">
-                  {productData.summary}
+                  <div
+                    dangerouslySetInnerHTML={{ __html: productData.summary }}
+                  />
                 </article>
                 <CustomAccordion faqs={productData.faqs}></CustomAccordion>
               </div>
