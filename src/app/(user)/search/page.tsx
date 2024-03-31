@@ -29,9 +29,9 @@ const page = async ({ searchParams }: { searchParams: { query: string } }) => {
   const productData: Product[] = await getTableData(searchParams.query);
   return (
     <>
-      {productData && (
+      {productData && productData.length >= 1 ? (
         <section className="relative bottom-1 text-textPrimary">
-          <Box className="flex gap-3 flex-wrap  ">
+          <Box className="flex gap-4 flex-wrap mt-2 justify-center">
             {[
               ...productData,
               ...productData,
@@ -62,6 +62,12 @@ const page = async ({ searchParams }: { searchParams: { query: string } }) => {
                 </div>
               );
             })}
+          </Box>
+        </section>
+      ) : (
+        <section className="relative bottom-1 text-textPrimary">
+          <Box className="flex gap-4 flex-wrap mt-2 mx-10">
+            No Products Found
           </Box>
         </section>
       )}

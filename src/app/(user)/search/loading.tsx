@@ -1,17 +1,25 @@
 import WrapperSkeleton from '@/src/components/Skeleton/WrapperSkeleton';
-export default function Loading() {
+import { Box } from '@mantine/core';
+
+const Loading = () => {
   return (
-    <>
-      {[1, 2, 3, 4, 5].map((item) => {
-        return (
-          <div key={item}>
-            <WrapperSkeleton height={50} circle mb="xl" />
-            <WrapperSkeleton height={8} radius="xl" />
-            <WrapperSkeleton height={8} mt={6} radius="xl" />
-            <WrapperSkeleton height={8} mt={6} width="70%" radius="xl" />
+    <section className="relative bottom-1 text-textPrimary">
+      <Box className="flex gap-4 flex-wrap mt-2 mx-10">
+        {/* Product Card Skeletons */}
+        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((index) => (
+          <div key={index}>
+            <WrapperSkeleton height={300} width={200} radius={'md'} />
+            <WrapperSkeleton
+              height={50}
+              width={200}
+              radius="md"
+              className="mt-3"
+            />
           </div>
-        );
-      })}
-    </>
+        ))}
+      </Box>
+    </section>
   );
-}
+};
+
+export default Loading;

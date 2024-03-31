@@ -1,6 +1,7 @@
 'use client';
 import DropDownMenu from '@/src/components/heading/DropDownMenu';
 import TrustHeader from '@/src/components/heading/TrustHeader';
+import Footer from '@/src/components/layouts/footer';
 import { SearchBar } from '@/src/components/search/search';
 import { useCurrentUser } from '@/src/hooks/auth/useCurrentUser';
 import {
@@ -8,6 +9,7 @@ import {
   AppShellMain,
   Burger,
   Button,
+  Divider,
   Group,
   Image,
 } from '@mantine/core';
@@ -74,7 +76,10 @@ export default function DashboardLayout({
         <Button>Hello</Button>
       </AppShell.Navbar>
       <AppShellMain> {children}</AppShellMain>
-      <footer>Footer</footer>
+      <div className="mt-[4rem]">
+        <Divider></Divider>
+        <Footer></Footer>
+      </div>
     </AppShell>
   );
 }

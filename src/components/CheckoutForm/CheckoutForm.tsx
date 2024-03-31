@@ -17,7 +17,7 @@ const CheckoutForm = ({ variations, dynamicVariables }: ICheckoutFormProps) => {
   const [selectedOption, setSelectedOption] = useState<ProductVariation>();
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-4 justify-between">
       <Card shadow="sm" px={'lg'} py={'sm'} radius="md" className="bg-tertiary">
         <CardSection
           px={10}
@@ -43,7 +43,7 @@ const CheckoutForm = ({ variations, dynamicVariables }: ICheckoutFormProps) => {
                     ) : null
                   }
                   color={
-                    selectedOption?.id == variations.id ? 'yellow' : 'gray'
+                    selectedOption?.id == variations.id ? 'yellow' : 'white'
                   }
                   size="md"
                 >

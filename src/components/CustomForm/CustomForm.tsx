@@ -151,7 +151,7 @@ const CustomForm = ({
                 color={
                   selectedPaymentOption == PAYMENT_GATEWAYS.ESEWA
                     ? 'yellow'
-                    : 'gray'
+                    : 'white'
                 }
                 justify="space-around"
               >
@@ -165,12 +165,12 @@ const CustomForm = ({
                   />
                   <div>
                     {' '}
-                    <Text className="text-textSP font-display   text-sm font-bold ">
+                    <Text className="text-textPrimary font-display   text-sm font-bold ">
                       Rs
                       {selectedOption.sellingPrice}
                     </Text>
                     <Text
-                      className="text-textMRP font-display  text-xs  "
+                      className="text-textPrimary font-display  text-xs  "
                       td="line-through"
                     >
                       {selectedOption.maximumRetailPrice}
@@ -206,12 +206,12 @@ const CustomForm = ({
                   />
                   <div>
                     {' '}
-                    <Text className="text-textSP font-display   text-sm font-bold ">
+                    <Text className="text-textPrimary font-display   text-sm font-bold ">
                       Rs
                       {selectedOption.sellingPrice}
                     </Text>
                     <Text
-                      className="text-textMRP font-display  text-xs  "
+                      className="text-textPrimary font-display  text-xs  "
                       td="line-through"
                     >
                       {selectedOption.maximumRetailPrice}

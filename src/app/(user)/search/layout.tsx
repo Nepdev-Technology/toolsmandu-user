@@ -14,15 +14,15 @@ export default function DashboardLayout({
   const [opened, { toggle }] = useDisclosure();
 
   return (
-    <section className="mx-24 grid grid-cols-10 gap-2">
-      <div className="col-span-0 sm:col-span-2 md:col-span-2 hidden sm:block">
+    <section className="xs:px-[auto] sm:px-[2rem] md:px-[5rem] lg:px-[10rem]  grid grid-cols-10 gap-2">
+      <div className="col-span-0 sm:col-span-2 md:col-span-2 hidden sm:block gap-10">
         <SidebarFilter></SidebarFilter>
         <Drawer opened={opened} onClose={toggle} title="Filter">
           <CategoryFilter></CategoryFilter>
         </Drawer>
       </div>
 
-      <section className="col-span-10 sm:col-span-8 md:col-span-8">
+      <section className="col-span-10 sm:col-span-10 md:col-span-8 justify-center ">
         <Button
           variant="transparent"
           onClick={toggle}

@@ -51,7 +51,7 @@ export default async function Home() {
   const featuredCategory: FeaturedCategory[] = await getProducts();
 
   return (
-    <section className="px-3 sm:px-[4rem] md:px-[10rem] ">
+    <section className="px-3 xs:px-[auto] sm:px-[2rem] md:px-[5rem] lg:px-[10rem]  ">
       <HomePageCarousel></HomePageCarousel>
       <div className=" md:ml-10">
         {featuredCategory &&
