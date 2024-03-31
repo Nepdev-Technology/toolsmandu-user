@@ -1,5 +1,7 @@
 import CheckoutForm from '@/src/components/CheckoutForm/CheckoutForm';
 import CustomAccordion from '@/src/components/CustomAccordion/CustomAccordion';
+import QandA from '@/src/components/QandA/QandA';
+import Review from '@/src/components/Review.tsx/page';
 import apiRoutes from '@/src/config/api.config';
 import { HttpService } from '@/src/services';
 import { Product } from '@/src/types/interfaces/ProductInterface';
@@ -11,6 +13,10 @@ import {
   GridCol,
   Group,
   Image,
+  Tabs,
+  TabsList,
+  TabsPanel,
+  TabsTab,
 } from '@mantine/core';
 import { IconCategory, IconLock } from '@tabler/icons-react';
 import { redirect } from 'next/navigation';
@@ -49,9 +55,9 @@ const page = async ({ params }: { params: { id: string } }) => {
               radius="sm"
             ></Image>
           </div>
-          <div className=" pr-3 md:pr-6 lg:pr-10  xs:pl-5 sm:pl-10 md:pl-24  ">
-            <div className="sm:flex xs:flex md:grid flex-col gap-4 md:grid-cols-10 md:grid-rows-3  grid-auto-rows-auto md:pt-[20vh] sm:pt-[10vh] xs:pt-[7vh] gap-y-4 ">
-              <div className=" col-span-6 ">
+          <div className="   xs:px-5 sm:px-10 md:px-20  ">
+            <div className="grid xs:grid-cols-1  md:grid-cols-2 md:grid-rows-4 md:gap-[1rem]  md:pt-[20vh] sm:pt-[10vh] xs:pt-[7vh] gap-y-4 ">
+              <div className="xs:col-span-full  sm:col-span-1 ">
                 <Grid align={'center'} justify="start">
                   <GridCol span={4}>
                     <AspectRatio
@@ -68,7 +74,7 @@ const page = async ({ params }: { params: { id: string } }) => {
                   </GridCol>
                   <GridCol span={8}>
                     <div>
-                      <h1 className="sm:text-2xl xs:text-xl  md:text-3xl  font-bold text-textPrimary">
+                      <h1 className="sm:text-2xl xs:text-xl xs:mt-[2rem]  md:text-3xl  font-bold ">
                         {' '}
                         {productData.name}
                       </h1>
@@ -99,19 +105,40 @@ const page = async ({ params }: { params: { id: string } }) => {
                   </GridCol>
                 </Grid>
               </div>
-              <div className=" row-span-2 col-span-4  mt-16">
+              <div className="xs:col-span-full sm:col-span-1 md:row-span-2  h-full xs:mt-2 sm:mt-10 md:mt-16">
                 <CheckoutForm
                   variations={productData.variations}
                   dynamicVariables={productData.dynamicVariables}
                 ></CheckoutForm>
               </div>
-              <div className="col-span-6 ">
-                <article className="text-textPrimary">
-                  <div
-                    dangerouslySetInnerHTML={{ __html: productData.summary }}
-                  />
-                </article>
+              <div className="xs:col-span-full sm:row-span-1 sm:col-span-1">
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: productData.summary,
+                  }}
+                />
                 <CustomAccordion faqs={productData.faqs}></CustomAccordion>
+              </div>
+              <div className="xs:col-span-full sm:row-span-2 ">
+                <article className="text-textPrimary">
+                  <Tabs defaultValue="rating">
+                    <TabsList className="mb-2" grow>
+                      <TabsTab value="rating" className="hover:bg-secondary">
+                        Rating and Reviews
+                      </TabsTab>
+                      <TabsTab value="qAndA" className="hover:bg-secondary">
+                        Q&A
+                      </TabsTab>
+                    </TabsList>
+                    <TabsPanel value="rating">
+                      <Review name={productData.name}></Review>
+                    </TabsPanel>
+
+                    <TabsPanel value="qAndA">
+                      <QandA></QandA>
+                    </TabsPanel>
+                  </Tabs>
+                </article>
               </div>
             </div>
           </div>

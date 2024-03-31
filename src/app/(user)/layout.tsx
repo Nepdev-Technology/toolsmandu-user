@@ -76,7 +76,7 @@ export default function DashboardLayout({
         <Button>Hello</Button>
       </AppShell.Navbar>
       <AppShellMain> {children}</AppShellMain>
-      <div className="mt-[4rem]">
+      <div className="sm:mt-[1rem] md:mt-[4rem]">
         <Divider></Divider>
         <Footer></Footer>
       </div>

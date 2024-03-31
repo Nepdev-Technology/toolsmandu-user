@@ -138,7 +138,7 @@ const CustomForm = ({
             <Text fw={500}>Select a payment provider</Text>
           </div>
           {isLoggedIn ? (
-            <div className="flex gap-4 ">
+            <div className="flex xs:flex-col  gap-4 ">
               <Button
                 onClick={() => setSelectedPaymentOption(PAYMENT_GATEWAYS.ESEWA)}
                 size="md"

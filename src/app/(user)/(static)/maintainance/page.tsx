@@ -1,7 +1,7 @@
 const Maintainance = () => {
   return (
     <section>
-      <div className="py-8 px-4 mx-auto max-w-screen-md text-center lg:py-16 lg:px-12">
+      <div>
         <svg
           className="mx-auto mb-4 w-10 h-10 text-textPrimary"
           xmlns="http://www.w3.org/2000/svg"
