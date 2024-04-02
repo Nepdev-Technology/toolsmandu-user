@@ -5,7 +5,10 @@ import {
   ProductVariation,
 } from '@/src/types/interfaces/ProductInterface';
 import { checkLoggedIn } from '@/src/utils/checkLoggedIn';
-import { showErrorNotification } from '@/src/utils/notificationUtils';
+import {
+  showErrorNotification,
+  showSuccessNotification,
+} from '@/src/utils/notificationUtils';
 import {
   EsewaPaymentProcessor,
   Order,
@@ -35,6 +38,14 @@ interface ICustomFormProps {
   selectedOption: ProductVariation;
 }
 
+interface DiscountInfo {
+  code: string;
+  calculatedDiscountAmount: number;
+  type: string;
+  discount: number;
+  totalAmount: number;
+}
+
 const CustomForm = ({
   fields,
   initialValues,
@@ -42,6 +53,9 @@ const CustomForm = ({
 }: ICustomFormProps) => {
   const [selectedPaymentOption, setSelectedPaymentOption] =
     useState<PAYMENT_GATEWAYS>(PAYMENT_GATEWAYS.ESEWA);
+
+  const [coupon, setCoupon] = useState<string>('');
+  const [validCoupon, setValidCoupon] = useState<DiscountInfo>();
 
   const result: any = {};
   for (const item of fields) {
@@ -61,10 +75,11 @@ const CustomForm = ({
         userInput: values[key],
       };
     });
+
     const orderPayload = {
       productId: selectedOption.product,
       productVariationId: selectedOption.id,
-      couponCode: '',
+      couponCode: validCoupon?.code,
       paymentMethod: PAYMENT_GATEWAYS.ESEWA,
       variables: result,
     };
@@ -88,6 +103,22 @@ const CustomForm = ({
       }
     } catch (error) {
       showErrorNotification('Something went wrong');
+    }
+  };
+  const checkCoupon = async () => {
+    const http = new HttpService();
+
+    const response: any = await http
+      .service()
+      .push(`${apiRoutes.coupon.discount}`, {
+        code: coupon,
+        productVariationId: selectedOption.product,
+      });
+    if (response.success) {
+      setValidCoupon(response.data);
+      showSuccessNotification('Coupon applied');
+    } else {
+      showErrorNotification('Invalid Coupon');
     }
   };
   return (
@@ -123,6 +154,21 @@ const CustomForm = ({
               </div>
             );
           })}
+          <div>
+            <TextInput
+              label="Coupon code"
+              placeholder="USER500"
+              description={
+                validCoupon && `Rs ${validCoupon.discount} discount applied`
+              }
+              onChange={(e) => setCoupon(e.target.value)}
+              rightSection={
+                <div>
+                  <Button onClick={checkCoupon}>Apply</Button>
+                </div>
+              }
+            ></TextInput>
+          </div>
         </CardSection>
       </Card>
       <Card shadow="sm" radius="md" className="bg-tertiary">
@@ -167,7 +213,9 @@ const CustomForm = ({
                     {' '}
                     <Text className="text-textPrimary font-display   text-sm font-bold ">
                       Rs
-                      {selectedOption.sellingPrice}
+                      {validCoupon?.discount
+                        ? selectedOption.sellingPrice - validCoupon.discount
+                        : selectedOption.sellingPrice}
                     </Text>
                     <Text
                       className="text-textPrimary font-display  text-xs  "
@@ -208,7 +256,9 @@ const CustomForm = ({
                     {' '}
                     <Text className="text-textPrimary font-display   text-sm font-bold ">
                       Rs
-                      {selectedOption.sellingPrice}
+                      {validCoupon?.discount
+                        ? selectedOption.sellingPrice - validCoupon.discount
+                        : selectedOption.sellingPrice}
                     </Text>
                     <Text
                       className="text-textPrimary font-display  text-xs  "
@@ -219,6 +269,7 @@ const CustomForm = ({
                   </div>
                 </Group>
               </Button>
+              <Button type="submit">Pay</Button>
             </div>
           ) : (
             <div>
@@ -227,7 +278,6 @@ const CustomForm = ({
               </Link>
             </div>
           )}
-          <Button type="submit">Pay</Button>
         </CardSection>
       </Card>
     </form>

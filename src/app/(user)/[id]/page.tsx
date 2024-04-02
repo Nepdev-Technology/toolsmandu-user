@@ -82,7 +82,7 @@ const page = async ({ params }: { params: { id: string } }) => {
                       <Group>
                         <span className="flex items-center gap-2">
                           <IconCategory className="text-iconSecondary "></IconCategory>
-                          {productData.categories.map((item) => {
+                          {productData?.categories?.map((item) => {
                             return (
                               <Badge
                                 key={item.id}
