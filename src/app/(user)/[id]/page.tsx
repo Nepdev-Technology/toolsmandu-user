@@ -135,7 +135,7 @@ const page = async ({ params }: { params: { id: string } }) => {
                     </TabsPanel>
 
                     <TabsPanel value="qAndA">
-                      <QandA></QandA>
+                      <QandA name={productData.name}></QandA>{' '}
                     </TabsPanel>
                   </Tabs>
                 </article>

@@ -1,6 +1,6 @@
 import { Avatar, Rating, Text } from '@mantine/core';
 
-const ReviewCard = () => {
+const QAndACard = () => {
   return (
     <div className="flex gap-16 justify-around mt-[1rem] ">
       <div className="flex gap-2">
@@ -20,4 +20,4 @@ const ReviewCard = () => {
   );
 };
 
-export default ReviewCard;
+export default QAndACard;

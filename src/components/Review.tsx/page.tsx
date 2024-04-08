@@ -1,5 +1,6 @@
 import { Divider, Group, Rating, ScrollArea, Stack, Text } from '@mantine/core';
 import ReviewCard from '../Cards/ReviewCard';
+import ReviewForm from '../CheckoutForm/ReviewForm';
 
 interface IReviewProps {
   name: string;
@@ -50,6 +51,12 @@ const Review = ({ name }: IReviewProps) => {
         <ReviewCard></ReviewCard>
         <ReviewCard></ReviewCard>
       </ScrollArea>
+      <Divider></Divider>
+      <div className="grid  md:grid-cols-2">
+        <div>
+          <ReviewForm></ReviewForm>
+        </div>
+      </div>
     </div>
   );
 };
