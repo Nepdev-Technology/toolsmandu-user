@@ -69,9 +69,10 @@ const CustomForm = ({
   const handleFormSubmit = async (values: any) => {
     const http = new HttpService();
     const result = Object.keys(values).map((key) => {
+      const variableName = fields.filter((item) => item.id === +key)[0]?.label;
       return {
         variableId: +key,
-        variable: 'dummy-data',
+        variable: variableName,
         userInput: values[key],
       };
     });

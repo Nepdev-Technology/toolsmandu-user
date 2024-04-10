@@ -1,22 +1,45 @@
 'use client';
-import { checkLoggedIn } from '@/src/utils/checkLoggedIn';
+import apiRoutes from '@/src/config/api.config';
+import { HttpService } from '@/src/services';
+import {
+  showErrorNotification,
+  showSuccessNotification,
+  showWarningNotification,
+} from '@/src/utils/notificationUtils';
 import { Button, Fieldset, Textarea } from '@mantine/core';
 import { useForm } from '@mantine/form';
+import Link from 'next/link';
+import { useParams } from 'next/navigation';
 
-const QuestionAndAnswerForm = () => {
-  const isLoggedIn = checkLoggedIn();
+const QuestionAndAnswerForm = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
+  const params = useParams<{ id: string }>();
+
   const form = useForm({
     initialValues: {
-      question: '',
+      content: '',
     },
     validate: {
-      question: (value) =>
+      content: (value) =>
         value.length < 2 ? 'Question cannot be empty' : null,
     },
   });
 
-  const handleFormSubmit = (e: any) => {
-    console.log(e);
+  const handleFormSubmit = async (data: any) => {
+    try {
+      const http = new HttpService();
+      const payload = { ...data, product: +params.id };
+      const response: any = await http
+        .service()
+        .push(`${apiRoutes.qAndA.create}`, payload);
+      if (response.success) {
+        showSuccessNotification(response.message);
+        form.reset();
+      } else {
+        showWarningNotification(response.message);
+      }
+    } catch (error) {
+      showErrorNotification('Something went wrong');
+    }
   };
   return (
     <Fieldset variant="unstyled">
@@ -28,12 +51,18 @@ const QuestionAndAnswerForm = () => {
           label="Question"
           placeholder="Ask your question"
           resize="vertical"
-          {...form.getInputProps('review')}
+          withAsterisk
+          required
+          {...form.getInputProps('content')}
         ></Textarea>
 
-        <Button type="submit" disabled={isLoggedIn}>
-          Submit
-        </Button>
+        {isLoggedIn ? (
+          <Button type="submit">Submit</Button>
+        ) : (
+          <Link href={'/login'}>
+            <Button>Login to continue</Button>
+          </Link>
+        )}
       </form>
     </Fieldset>
   );

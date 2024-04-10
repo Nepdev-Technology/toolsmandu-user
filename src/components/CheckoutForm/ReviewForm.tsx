@@ -1,26 +1,48 @@
 'use client';
-import { checkLoggedIn } from '@/src/utils/checkLoggedIn';
+import apiRoutes from '@/src/config/api.config';
+import { HttpService } from '@/src/services';
+import {
+  showErrorNotification,
+  showSuccessNotification,
+  showWarningNotification,
+} from '@/src/utils/notificationUtils';
 import { Button, Fieldset, Rating, Textarea } from '@mantine/core';
 import { useForm } from '@mantine/form';
-import { usePathname } from 'next/navigation';
+import Link from 'next/link';
+import { useParams } from 'next/navigation';
 
-const ReviewForm = () => {
-  const isLoggedIn = checkLoggedIn();
-  const pathName = usePathname();
+const ReviewForm = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
+  const params = useParams<{ id: string }>();
   const form = useForm({
     initialValues: {
       rating: 1,
-      review: '',
+      content: '',
     },
     validate: {
-      review: (value) => (value.length < 2 ? 'Rating cannot be empty' : null),
+      content: (value) => (value.length < 2 ? 'Rating cannot be empty' : null),
       rating: (value) => (value == 0 ? 'Review of 1 is required' : null),
     },
   });
 
-  const handleFormSubmit = (e: any) => {
-    console.log(e);
+  const handleFormSubmit = async (data: any) => {
+    try {
+      const http = new HttpService();
+      const payload = { ...data, product: +params.id };
+      console.log(payload);
+      const response: any = await http
+        .service()
+        .push(`${apiRoutes.review.create}`, payload);
+      if (response.success) {
+        showSuccessNotification(response.message);
+        form.reset();
+      } else {
+        showWarningNotification(response.message);
+      }
+    } catch (error) {
+      showErrorNotification('Something went wrong');
+    }
   };
+
   return (
     <Fieldset variant="unstyled">
       <form
@@ -33,14 +55,18 @@ const ReviewForm = () => {
         </div>
         <Textarea
           label="Review"
-          placeholder="Your review"
+          placeholder="Your content"
           resize="vertical"
-          {...form.getInputProps('review')}
+          {...form.getInputProps('content')}
         ></Textarea>
 
-        <Button type="submit" disabled={isLoggedIn}>
-          Submit
-        </Button>
+        {isLoggedIn ? (
+          <Button type="submit">Submit</Button>
+        ) : (
+          <Link href={'/login'}>
+            <Button>Login to continue</Button>
+          </Link>
+        )}
       </form>
     </Fieldset>
   );

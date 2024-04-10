@@ -131,11 +131,12 @@ const page = async ({ params }: { params: { id: string } }) => {
                       </TabsTab>
                     </TabsList>
                     <TabsPanel value="rating">
-                      <Review name={productData.name}></Review>
+                      <Review name={productData.name} id={params.id}></Review>
                     </TabsPanel>
 
                     <TabsPanel value="qAndA">
-                      <QandA name={productData.name}></QandA>{' '}
+                      <QandA name={productData.name} id={params.id}></QandA>{' '}
+                      <div></div>
                     </TabsPanel>
                   </Tabs>
                 </article>

@@ -1,11 +1,38 @@
+import apiRoutes from '@/src/config/api.config';
+import { HttpService } from '@/src/services';
+import { checkedLoggedInInServerComponent } from '@/src/utils/checkedLoggedInInServerComponent';
 import { Divider, Group, Rating, ScrollArea, Stack, Text } from '@mantine/core';
+import { redirect } from 'next/navigation';
 import ReviewCard from '../Cards/ReviewCard';
 import ReviewForm from '../CheckoutForm/ReviewForm';
 
 interface IReviewProps {
   name: string;
+  id: string;
 }
-const Review = ({ name }: IReviewProps) => {
+const getReviewData = async (id: string) => {
+  const http = new HttpService();
+  try {
+    const response: any = await http
+      .service()
+      .get(`${apiRoutes.review.find}/${id}`, {
+        next: {
+          cache: 'no-store',
+        },
+      });
+    const data = response.data.data;
+    return data;
+  } catch (error) {
+    if (error instanceof TypeError && error.message.includes('fetch failed')) {
+      // Redirect to the maintenance page
+      redirect('/maintainance');
+    }
+  }
+};
+const Review = async ({ name, id }: IReviewProps) => {
+  const review = await getReviewData(id);
+  const isLoggedIn = checkedLoggedInInServerComponent();
+
   return (
     <div className="flex flex-col gap-2">
       <h1 className="sm:text-1xl xs:text-lg  md:text-1xl  font-bold">
@@ -14,47 +41,56 @@ const Review = ({ name }: IReviewProps) => {
       <div className="flex justify-around items-center ">
         <div className="flex flex-col items-center">
           <Text>Overall</Text>
-          <Rating defaultValue={2} size="xl" readOnly />
-          <Text>Out of 2</Text>
+          <Rating
+            defaultValue={Math.floor(review.totalRating)}
+            fractions={
+              (review.totalRating - Math.floor(review.totalRating)) * 100
+            }
+            size="xl"
+            readOnly
+          />
+          <Text>{review.totalRating}</Text>
         </div>
         <Stack>
-          <Group>
-            <div>5 star</div>
-            <Rating fractions={2} defaultValue={1.5} readOnly />
-          </Group>
-          <Group>
-            <div>4 star</div>
-            <Rating fractions={3} defaultValue={2.33333333} readOnly />
-          </Group>
-          <Group>
-            <div>3 star</div>
-            <Rating fractions={4} defaultValue={3.75} readOnly />
-          </Group>
-          <Group>
-            <div>2 star</div>
-            <Rating fractions={4} defaultValue={3.75} readOnly />
-          </Group>
-          <Group>
-            <div>1 star</div>
-            <Rating fractions={4} defaultValue={3.75} readOnly />
-          </Group>
+          <>
+            {' '}
+            {review.ratings.map((item: any) => {
+              return (
+                <Group key={item.id}>
+                  <div>{item.star} star</div>
+                  <Rating defaultValue={item.count} readOnly />
+                </Group>
+              );
+            })}
+          </>
         </Stack>
       </div>
       <Divider></Divider>
-      <ScrollArea
-        h={{ md: 250, xs: 150, sm: 200 }}
-        className="sm:mt-[1rem] md:mt-[2rem] "
-      >
-        <ReviewCard></ReviewCard>
-        <ReviewCard></ReviewCard>
-        <ReviewCard></ReviewCard>
-        <ReviewCard></ReviewCard>
-        <ReviewCard></ReviewCard>
+      <ScrollArea h={{ md: 400, xs: 350, sm: 300 }}>
+        <div>
+          {review?.reviews?.length >= 1 ? (
+            review.reviews.map((item: any) => {
+              return (
+                <div key={item.id}>
+                  <ReviewCard
+                    fullName={item.externalUser.userName}
+                    rating={item.rating}
+                    content={item.content}
+                    date={item.createdAt}
+                    replies={item.replies}
+                  ></ReviewCard>
+                </div>
+              );
+            })
+          ) : (
+            <div>No reviews available</div>
+          )}
+        </div>
       </ScrollArea>
       <Divider></Divider>
       <div className="grid  md:grid-cols-2">
         <div>
-          <ReviewForm></ReviewForm>
+          <ReviewForm isLoggedIn={isLoggedIn}></ReviewForm>
         </div>
       </div>
     </div>

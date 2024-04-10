@@ -1,21 +1,56 @@
-import { Avatar, Rating, Text } from '@mantine/core';
+import { normalizeDate } from '@/src/utils/normalizeDate';
+import { Rating } from '@mantine/core';
 
-const ReviewCard = () => {
+interface IReviewCard {
+  fullName: string;
+  content: string;
+  rating: number;
+  date: string;
+  replies: Array<any>;
+}
+const ReviewCard = ({
+  fullName,
+  content,
+  rating,
+  date,
+  replies,
+}: IReviewCard) => {
   return (
-    <div className="flex gap-16 justify-around mt-[1rem] ">
-      <div className="flex gap-2">
-        <Avatar src={null} alt="no image here" />
-        <Text>Name Parajuli</Text>
-      </div>{' '}
-      <div>
-        <Text>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam,
-          officiis! Fugit minus ea, perferendis eum consectetur quae vitae.
-          Aliquid, quam reprehenderit? Maiores sed pariatur aliquid commodi
-          atque sunt officiis natus?
-        </Text>
+    <div className="flex flex-col gap-3 mt-5">
+      <div className="flex flex-col gap-4 bg-tertiary p-4">
+        <div className="flex justify justify-between">
+          <div className="flex gap-2">
+            <div className="w-7 h-7 text-center rounded-full bg-red-500">
+              {fullName?.split('')[0]}
+            </div>
+            <span>{fullName}</span>
+          </div>
+          <Rating value={rating} readOnly />
+        </div>
+
+        <div>{content}</div>
+        {replies &&
+          replies?.length >= 1 &&
+          replies.map((reply) => {
+            return (
+              <div className="mx-10" key={reply.id}>
+                {' '}
+                <div className="flex gap-2 ">
+                  <div className="w-7 h-7 text-center rounded-full bg-gray-500">
+                    {reply.externalUser.userName?.split('')[0]}
+                  </div>
+                  <span>{reply.externalUser.userName}</span>
+                  <span>{normalizeDate(reply.createdAt)}</span>
+                </div>
+                <div>{reply.content}</div>
+              </div>
+            );
+          })}
+
+        <div className="flex justify-between">
+          <span>Feb 13, 2021</span>
+        </div>
       </div>
-      <Rating value={3.5} fractions={2} readOnly />
     </div>
   );
 };
