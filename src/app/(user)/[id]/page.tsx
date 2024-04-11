@@ -82,7 +82,7 @@ const page = async ({ params }: { params: { id: string } }) => {
                       <Group>
                         <span className="flex items-center gap-2">
                           <IconCategory className="text-iconSecondary "></IconCategory>
-                          {productData.categories.map((item) => {
+                          {productData?.categories?.map((item) => {
                             return (
                               <Badge
                                 key={item.id}
@@ -131,11 +131,12 @@ const page = async ({ params }: { params: { id: string } }) => {
                       </TabsTab>
                     </TabsList>
                     <TabsPanel value="rating">
-                      <Review name={productData.name}></Review>
+                      <Review name={productData.name} id={params.id}></Review>
                     </TabsPanel>
 
                     <TabsPanel value="qAndA">
-                      <QandA></QandA>
+                      <QandA name={productData.name} id={params.id}></QandA>{' '}
+                      <div></div>
                     </TabsPanel>
                   </Tabs>
                 </article>

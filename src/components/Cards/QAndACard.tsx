@@ -1,20 +1,11 @@
 import { normalizeDate } from '@/src/utils/normalizeDate';
-import { Rating } from '@mantine/core';
-
 interface IReviewCard {
   fullName: string;
   content: string;
-  rating: number;
   date: string;
   replies: Array<any>;
 }
-const ReviewCard = ({
-  fullName,
-  content,
-  rating,
-  date,
-  replies,
-}: IReviewCard) => {
+const QAndACard = ({ fullName, content, date, replies }: IReviewCard) => {
   return (
     <div className="flex flex-col gap-3 mt-5">
       <div className="flex flex-col gap-4 bg-tertiary p-4">
@@ -25,7 +16,6 @@ const ReviewCard = ({
             </div>
             <span>{fullName}</span>
           </div>
-          <Rating value={rating} readOnly />
         </div>
 
         <div>{content}</div>
@@ -55,4 +45,4 @@ const ReviewCard = ({
   );
 };
 
-export default ReviewCard;
+export default QAndACard;

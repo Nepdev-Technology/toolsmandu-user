@@ -22,6 +22,17 @@ const apiRoutes = {
   payement: {
     esewa: '/checkout/esewa/verify',
   },
+  coupon: {
+    discount: '/coupon/validate-coupon',
+  },
+  review: {
+    create: '/review/create',
+    find: '/review/find',
+  },
+  qAndA: {
+    create: '/qa/create',
+    find: '/qa/find',
+  },
 };
 
 export default apiRoutes;

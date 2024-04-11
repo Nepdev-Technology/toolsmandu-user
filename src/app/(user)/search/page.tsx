@@ -6,16 +6,17 @@ import { Box } from '@mantine/core';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 
-const getTableData = async (query: string) => {
+const getTableData = async (query: string, category: string) => {
   const http = new HttpService();
+
   try {
+    const payload = {
+      name: query,
+      category,
+    };
     const response: any = await http
       .service()
-      .get(`${apiRoutes.products.search}/${query}`, {
-        next: {
-          cache: 'no-store',
-        },
-      });
+      .push(`${apiRoutes.products.search}`, payload);
     const data = response.data;
     return data;
   } catch (error) {
@@ -25,8 +26,15 @@ const getTableData = async (query: string) => {
     }
   }
 };
-const page = async ({ searchParams }: { searchParams: { query: string } }) => {
-  const productData: Product[] = await getTableData(searchParams.query);
+const page = async ({
+  searchParams,
+}: {
+  searchParams: { query: string; category: string };
+}) => {
+  const productData: Product[] = await getTableData(
+    searchParams.query,
+    searchParams.category
+  );
   return (
     <>
       {productData && productData.length >= 1 ? (
