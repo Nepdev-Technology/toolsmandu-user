@@ -42,7 +42,7 @@ class HttpService {
         ...customOptions,
         body: options.body, // Include the body property if it exists
       });
-
+      console.log(response);
       return (await response.json()) as T;
     } catch (error) {
       if (error instanceof TypeError && error.message === 'Failed to fetch') {
