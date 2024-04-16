@@ -14,7 +14,7 @@ const verifyOrder = async (id: string, data: string) => {
           cache: 'no-store',
         },
       });
-    console.log(response, 'at res component');
+    console.log(response, 'at verfication component');
     return response;
   } catch (error) {
     console.log(error);
