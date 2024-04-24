@@ -30,7 +30,13 @@ const Page = () => {
     const http = new HttpService();
     const response: any = await http
       .service()
-      .push(`${apiRoutes.auth.getProfile}`, values);
+      .update(`${apiRoutes.auth.changePassword}`, {
+        oldPassword: values.oldPassword,
+        newPassword: values.password,
+      });
+    if (response.success) {
+      form.reset();
+    }
 
     showNotificationOnRes(response);
     setLoading(false);

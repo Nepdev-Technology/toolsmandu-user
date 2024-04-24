@@ -1,7 +1,9 @@
 const apiRoutes = {
   auth: {
     login: '/auth/login',
+    register: '/auth/register',
     getProfile: '/auth/me',
+    changePassword: '/auth/user/password/change',
   },
   products: {
     base: '/product',
@@ -32,6 +34,9 @@ const apiRoutes = {
   blog: {
     base: '/blog',
     all: '/blog/all',
+  },
+  familySharing: {
+    user: '/family-sharing/findAll-by-user',
   },
 };
 

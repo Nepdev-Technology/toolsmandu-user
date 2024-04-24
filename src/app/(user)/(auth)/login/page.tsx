@@ -5,9 +5,18 @@ import {
   showErrorNotification,
   showSuccessNotification,
 } from '@/src/utils/notificationUtils';
-import { PasswordInput, TextInput, Title } from '@mantine/core';
+import {
+  Button,
+  Divider,
+  PasswordInput,
+  TextInput,
+  Title,
+} from '@mantine/core';
 import { useForm } from '@mantine/form';
+import { IconBrandGoogle } from '@tabler/icons-react';
+import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
+import { useState } from 'react';
 
 interface FormValues {
   name: string;
@@ -29,8 +38,10 @@ export default function Login() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const next = searchParams.get('next');
+  const [loading, setLoading] = useState(false);
 
   const onSubmit = (values: FormValues) => {
+    setLoading(true);
     login(values.name, values.password)
       .then(() => {
         showSuccessNotification(MESSAGE.LOGIN_SUCCESS);
@@ -43,37 +54,44 @@ export default function Login() {
           }`
         );
       });
+    setLoading(false);
   };
 
   return (
-    <div className="w-screen mt-20 flex items-center justify-center text-textPrimary">
-      <div className="h-fit flex flex-col gap-2">
-        <Title order={2} className="text-textPrimary">
+    <>
+      <Title order={2} className="text-textPrimary">
+        Login
+      </Title>
+      <form onSubmit={form.onSubmit(onSubmit)}>
+        <TextInput
+          label="Username or Email"
+          placeholder="johndoe@gmail.com"
+          withAsterisk
+          required
+          {...form.getInputProps('name')}
+        />
+        <PasswordInput
+          label="Password"
+          placeholder="Password"
+          withAsterisk
+          required
+          {...form.getInputProps('password')}
+        />
+        <Button type="submit" className=" w-80 mt-8 " loading={loading}>
           Login
-        </Title>
-        <form onSubmit={form.onSubmit(onSubmit)}>
-          <TextInput
-            label="Username or Email"
-            placeholder="johndoe@gmail.com"
-            withAsterisk
-            required
-            {...form.getInputProps('name')}
-          />
-          <PasswordInput
-            label="Password"
-            placeholder="Password"
-            withAsterisk
-            required
-            {...form.getInputProps('password')}
-          />
-          <button
-            type="submit"
-            className="h-10 w-80 mt-8 bg-black rounded text-white"
-          >
-            Login
-          </button>
-        </form>
+        </Button>
+      </form>
+      <div className="flex justify-end items-center">
+        <p> Don&apos;t have an account?</p>{' '}
+        <Link href="/register">
+          {' '}
+          <Button variant="transparent">Sign Up</Button>
+        </Link>
       </div>
-    </div>
+      <Divider label="OR" labelPosition="center"></Divider>
+      <Button type="submit" className=" w-80 mt-2 ">
+        <IconBrandGoogle></IconBrandGoogle>
+      </Button>
+    </>
   );
 }
