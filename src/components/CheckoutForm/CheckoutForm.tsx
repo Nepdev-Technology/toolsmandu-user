@@ -5,7 +5,7 @@ import {
 } from '@/src/types/interfaces/ProductInterface';
 import { Badge, Button, Card, CardSection, Flex, Text } from '@mantine/core';
 import { IconCheck } from '@tabler/icons-react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import CustomForm from '../CustomForm/CustomForm';
 
 interface ICheckoutFormProps {
@@ -15,6 +15,10 @@ interface ICheckoutFormProps {
 
 const CheckoutForm = ({ variations, dynamicVariables }: ICheckoutFormProps) => {
   const [selectedOption, setSelectedOption] = useState<ProductVariation>();
+
+  useEffect(() => {
+    setSelectedOption(variations[0]);
+  }, []);
 
   return (
     <div className="flex flex-col gap-4 justify-between">
@@ -54,12 +58,12 @@ const CheckoutForm = ({ variations, dynamicVariables }: ICheckoutFormProps) => {
           </Flex>
         </CardSection>
       </Card>
-      {selectedOption ? (
+      {selectedOption && (
         <CustomForm
           selectedOption={selectedOption}
           fields={dynamicVariables}
         ></CustomForm>
-      ) : null}
+      )}
     </div>
   );
 };

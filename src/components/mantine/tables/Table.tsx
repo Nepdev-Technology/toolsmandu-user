@@ -56,7 +56,7 @@ const CustomTable = ({ columns, elements, actions }: CustomTableProps) => {
           rows
         ) : (
           <TableTr>
-            <TableTd>No data</TableTd>
+            <TableTd>No data found</TableTd>
           </TableTr>
         )}
       </TableTbody>

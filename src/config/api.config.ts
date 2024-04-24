@@ -1,12 +1,7 @@
 const apiRoutes = {
   auth: {
     login: '/auth/login',
-  },
-  suppliers: {
-    supplier: '/supplier',
-    suppliersById: (id: any) => `/supplier/${id}`,
-    getAllSuppliers: (params?: string) => `/supplier?${params}`,
-    searchSuppliers: `/supplier/find/`,
+    getProfile: '/auth/me',
   },
   products: {
     base: '/product',
@@ -18,6 +13,7 @@ const apiRoutes = {
   },
   orders: {
     base: '/order',
+    user: '/order/finall-by-user',
   },
   payement: {
     esewa: '/checkout/esewa/verify',
@@ -32,6 +28,10 @@ const apiRoutes = {
   qAndA: {
     create: '/qa/create',
     find: '/qa/find',
+  },
+  blog: {
+    base: '/blog',
+    all: '/blog/all',
   },
 };
 

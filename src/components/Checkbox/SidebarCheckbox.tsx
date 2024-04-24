@@ -1,17 +1,15 @@
 import { Checkbox } from '@mantine/core';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { useState } from 'react';
-import classes from './Demo.module.css';
 
 interface ISidebarCheckboxProps {
   label: string;
   id: string;
 }
 export default function SideBarCheckbox({ label, id }: ISidebarCheckboxProps) {
-  const [checked, setChecked] = useState(false);
+  const searchParams = useSearchParams();
+
   const router = useRouter();
   const pathname = usePathname();
-  const searchParams = useSearchParams();
 
   const changeQueryParams = (query: string) => {
     const search = searchParams.get('query');
@@ -38,18 +36,20 @@ export default function SideBarCheckbox({ label, id }: ISidebarCheckboxProps) {
   };
 
   return (
-    <Checkbox
-      classNames={classes}
-      id={id}
-      label={label}
-      checked={checked}
-      onChange={(event) => setChecked(event.currentTarget.checked)}
-      wrapperProps={{
-        onClick: () => {
-          setChecked((c) => !c);
-          handleChecked(label);
-        },
-      }}
-    />
+    <>
+      <Checkbox
+        // classNames={classes}
+        className="bg-tertiary  text-center py-3 px-5 text-textPrimary"
+        id={id}
+        label={label}
+        checked={searchParams.get('category')?.includes(label)}
+        wrapperProps={{
+          onClick: () => {
+            // setChecked((c) => !c);
+            handleChecked(label);
+          },
+        }}
+      />
+    </>
   );
 }

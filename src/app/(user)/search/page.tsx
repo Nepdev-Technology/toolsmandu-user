@@ -17,9 +17,27 @@ const getTableData = async (query: string, category: string) => {
     const response: any = await http
       .service()
       .push(`${apiRoutes.products.search}`, payload);
-    const data = response.data;
-    return data;
+
+    console.log(response);
+
+    const transformedData = response?.data?.map((product: Product) => {
+      let lowestMRP = Infinity;
+      let lowestSP = Infinity;
+      product?.variations.map((variation) => {
+        if (variation.sellingPrice < lowestSP) {
+          lowestSP = variation.sellingPrice;
+          lowestMRP = variation.maximumRetailPrice;
+        }
+      });
+      product.sellingPrice = lowestSP;
+      product.maximumRetailPrice = lowestMRP;
+      return product;
+    });
+
+    console.log(transformedData);
+    return transformedData;
   } catch (error) {
+    console.log(error);
     if (error instanceof TypeError && error.message.includes('fetch failed')) {
       // Redirect to the maintenance page
       redirect('/maintainance');
@@ -38,18 +56,9 @@ const page = async ({
   return (
     <>
       {productData && productData.length >= 1 ? (
-        <section className="relative bottom-1 text-textPrimary">
-          <Box className="flex gap-4 flex-wrap mt-2 justify-center">
-            {[
-              ...productData,
-              ...productData,
-              ...productData,
-              ...productData,
-              ...productData,
-              ...productData,
-              ...productData,
-              ...productData,
-            ].map((product) => {
+        <section className="relative bottom-1 text-textPrimary ">
+          <Box className="flex gap-4 flex-wrap mt-2 xs:px-[10px] sm:px-[2rem] justify-start">
+            {productData.map((product) => {
               return (
                 <div key={product.id}>
                   <Link href={`${product.id}`} className="py-0">

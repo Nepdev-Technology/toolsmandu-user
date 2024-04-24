@@ -43,7 +43,8 @@ const ProductCard = ({
             src={process.env.NEXT_PUBLIC_IMAGE_URL + imageUrl}
             alt={imageAlt}
           />
-          {discount && !offerTitle && (
+          {/* //show banner incase of offer auto calculating */}
+          {discount && discount >= 1 && !offerTitle ? (
             <div className="absolute top-0 right-0">
               <div className="w-32 h-6 absolute top-4 -left-8">
                 <div className="h-full w-full bg-red-500 text-white text-center   transform rotate-[-45deg]">
@@ -51,7 +52,8 @@ const ProductCard = ({
                 </div>
               </div>
             </div>
-          )}
+          ) : null}
+          {/* //show banner based on offer title */}
           {offerTitle && (
             <div className="absolute top-0 right-0">
               <div className="w-32 h-6 absolute top-4 -left-8">
@@ -77,12 +79,14 @@ const ProductCard = ({
             <Text className="text-textSP font-display   text-lg font-bold ">
               Rs&nbsp;{sellingPrice}
             </Text>
-            <Text
-              className="text-textMRP font-display  text-sm  "
-              td="line-through"
-            >
-              Rs&nbsp;{maximumRetailPrice}
-            </Text>
+            {discount >= 1 && (
+              <Text
+                className="text-textMRP font-display  text-sm  "
+                td="line-through"
+              >
+                Rs&nbsp;{maximumRetailPrice}
+              </Text>
+            )}
           </Flex>
         </Flex>
       </CardSection>

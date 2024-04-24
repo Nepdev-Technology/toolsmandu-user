@@ -1,16 +1,18 @@
 'use client';
 import { Container, Flex } from '@mantine/core';
-import DropDownMenuItem from './DropDownMenuItem';
+import DropDownMenuItem, { IDropDownMenuItemProps } from './DropDownMenuItem';
 
-const DropDownMenu = () => {
+const DropDownMenu = ({ items }: { items: IDropDownMenuItemProps[] }) => {
   return (
     <Container className="bg-tertiary py-2" fluid visibleFrom="sm">
       <Flex justify={'center'} gap={{ sm: 10, md: 20, lg: 30 }}>
-        <DropDownMenuItem></DropDownMenuItem>
-        <DropDownMenuItem></DropDownMenuItem>
-        <DropDownMenuItem></DropDownMenuItem>
-        <DropDownMenuItem></DropDownMenuItem>
-        <DropDownMenuItem></DropDownMenuItem>
+        {items.map((item) => (
+          <DropDownMenuItem
+            key={item.category}
+            category={item.category}
+            products={item.products}
+          ></DropDownMenuItem>
+        ))}
       </Flex>
     </Container>
   );
