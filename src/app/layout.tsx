@@ -4,6 +4,7 @@ import { Notifications } from '@mantine/notifications';
 import '@mantine/notifications/styles.css';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
+import ProgressBar from '../components/ProgressBar';
 import '../styles/globals.css';
 import { theme } from '../theme';
 
@@ -35,6 +36,7 @@ export default function RootLayout({
       </head>
       <body className={`${inter.className} bg-primary`}>
         {' '}
+        <ProgressBar></ProgressBar>
         <MantineProvider theme={theme}>
           <Notifications />
           {children}

@@ -23,6 +23,7 @@ import {
 import { useDisclosure } from '@mantine/hooks';
 import { IconUser } from '@tabler/icons-react';
 import Link from 'next/link';
+import NextNProgress from 'nextjs-progressbar';
 import React, { useEffect } from 'react';
 
 export default function DashboardLayout({
@@ -125,7 +126,10 @@ export default function DashboardLayout({
         />
         <Sidebar items={data}></Sidebar>
       </AppShell.Navbar>
-      <AppShellMain> {children}</AppShellMain>
+      <AppShellMain>
+        <NextNProgress height={4} />
+        {children}
+      </AppShellMain>
       <div className="sm:mt-[1rem] md:mt-[4rem]">
         <Divider></Divider>
         <Footer></Footer>
