@@ -1,9 +1,13 @@
 import { generateSignature, generateUUID } from '../generateSingature';
+import { fetchKhaltiData } from './fetch';
 
 export interface Order {
   orderId: string;
   productId: number;
   price: number;
+  customerName: string;
+  customerEmail: string;
+  customerPhone: string;
 }
 export enum PAYMENT_GATEWAYS {
   ESEWA = 'ESEWA',
@@ -12,7 +16,14 @@ export enum PAYMENT_GATEWAYS {
 }
 
 interface PaymentProcessor {
-  pay(amount: number, orderId: string, productId: number): void;
+  pay(
+    amount: number,
+    orderId: string,
+    productId: number,
+    customerName: string,
+    customerEmail: string,
+    customerPhone: string
+  ): void;
 }
 
 export class Store {
@@ -20,12 +31,19 @@ export class Store {
 
   purchaseItem(order: Order): void {
     const amount = order.price;
-    this.paymentProcessor.pay(amount, order.orderId, order.productId);
+    this.paymentProcessor.pay(
+      amount,
+      order.orderId,
+      order.productId,
+      order.customerName,
+      order.customerEmail,
+      order.customerPhone
+    );
   }
 }
 export class EsewaPaymentProcessor implements PaymentProcessor {
   async pay(amount: number, orderId: string, productId: number): Promise<void> {
-    const productCode = 'EPAYTEST';
+    const productCode = `${process.env.NEXT_PUBLIC_ESEWA_KEY}`;
     const transactionUuid = generateUUID();
 
     const signature = generateSignature({
@@ -50,10 +68,7 @@ export class EsewaPaymentProcessor implements PaymentProcessor {
     const post = (payload: any) => {
       const form = document.createElement('form');
       form.setAttribute('method', 'POST');
-      form.setAttribute(
-        'action',
-        'https://rc-epay.esewa.com.np/api/epay/main/v2/form'
-      );
+      form.setAttribute('action', `${process.env.NEXT_PUBLIC_ESEWA_URL}`);
 
       for (let key in payload) {
         if (Object.prototype.hasOwnProperty.call(payload, key)) {
@@ -70,6 +85,42 @@ export class EsewaPaymentProcessor implements PaymentProcessor {
     };
 
     post(payload);
+  }
+  catch(error: any) {
+    console.error('Error processing payment:', error);
+  }
+}
+
+export class KhaltiPaymentProcessor implements PaymentProcessor {
+  async pay(
+    amount: number,
+    orderId: string,
+    productId: number,
+    customerName: string,
+    customerEmail: string,
+    customerPhone: string
+  ): Promise<void> {
+    const payload = {
+      method: 'POST',
+      url: `${process.env.NEXT_PUBLIC_KHALTI_URL}`,
+      headers: {
+        Authorization: `Key ${process.env.NEXT_PUBLIC_KHALTI_KEY}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        return_url: `${process.env.NEXT_PUBLIC_SITE_URL}/${productId}/verify/${orderId}`,
+        website_url: `${process.env.NEXT_PUBLIC_SITE_URL}`,
+        amount: amount * 100,
+        purchase_order_id: orderId,
+        purchase_order_name: 'Order Id: ' + orderId,
+        customer_info: {
+          name: customerName,
+          email: customerEmail,
+          phone: customerPhone,
+        },
+      }),
+    };
+    await fetchKhaltiData(payload.url, payload);
   }
   catch(error: any) {
     console.error('Error processing payment:', error);

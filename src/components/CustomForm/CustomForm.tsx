@@ -11,6 +11,7 @@ import {
 } from '@/src/utils/notificationUtils';
 import {
   EsewaPaymentProcessor,
+  KhaltiPaymentProcessor,
   Order,
   PAYMENT_GATEWAYS,
   Store,
@@ -21,16 +22,14 @@ import {
   Button,
   Card,
   CardSection,
-  Group,
-  Image,
   Text,
   TextInput,
 } from '@mantine/core';
 import { useForm } from '@mantine/form';
-import { IconCheck } from '@tabler/icons-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
+import PaymentCard from '../Cards/PaymentCard';
 
 interface ICustomFormProps {
   fields: DynamicVariable[];
@@ -90,19 +89,30 @@ const CustomForm = ({
         .push(`${apiRoutes.orders.base}`, orderPayload);
 
       if (response.success) {
-        const { orderId, totalAmount } = response.data;
+        const { orderId, totalAmount, user } = response.data;
 
         const order: Order = {
           orderId: orderId,
           price: totalAmount,
           productId: selectedOption.product,
+          customerName: `${user?.firstName} ${user?.lastName}`,
+          customerEmail: user?.email,
+          customerPhone: '',
         };
         if (selectedPaymentOption == PAYMENT_GATEWAYS.ESEWA) {
           const store = new Store(new EsewaPaymentProcessor());
           store.purchaseItem(order);
+        } else if (selectedPaymentOption === PAYMENT_GATEWAYS.KHALTI) {
+          try {
+            const store = new Store(new KhaltiPaymentProcessor());
+            store.purchaseItem(order);
+          } catch (error) {
+            console.log(error);
+          }
         }
       }
     } catch (error) {
+      console.log(error);
       showErrorNotification('Something went wrong');
     }
   };
@@ -186,7 +196,7 @@ const CustomForm = ({
           </div>
           {isLoggedIn ? (
             <div className="flex xs:flex-col  gap-4 ">
-              <Button
+              {/* <Button
                 onClick={() => setSelectedPaymentOption(PAYMENT_GATEWAYS.ESEWA)}
                 size="md"
                 variant="outline"
@@ -226,8 +236,30 @@ const CustomForm = ({
                     </Text>
                   </div>
                 </Group>
-              </Button>
-              <Button
+              </Button> */}
+              <PaymentCard
+                title="Esewa"
+                src={'esewa_logo.png'}
+                alt="Esewa logo"
+                selectedPaymentOption={
+                  selectedPaymentOption === PAYMENT_GATEWAYS.ESEWA
+                }
+                onClick={() => setSelectedPaymentOption(PAYMENT_GATEWAYS.ESEWA)}
+              />
+
+              <PaymentCard
+                title="Khalti"
+                src={'khalti-seeklogo.svg'}
+                alt="Khalti logo"
+                selectedPaymentOption={
+                  selectedPaymentOption === PAYMENT_GATEWAYS.KHALTI
+                }
+                onClick={() =>
+                  setSelectedPaymentOption(PAYMENT_GATEWAYS.KHALTI)
+                }
+              />
+
+              {/* <Button
                 onClick={() =>
                   setSelectedPaymentOption(PAYMENT_GATEWAYS.KHALTI)
                 }
@@ -269,8 +301,10 @@ const CustomForm = ({
                     </Text>
                   </div>
                 </Group>
+              </Button> */}
+              <Button type="submit" className="bg-green-500">
+                Pay
               </Button>
-              <Button type="submit">Pay</Button>
             </div>
           ) : (
             <div>

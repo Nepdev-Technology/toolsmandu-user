@@ -1,4 +1,4 @@
-import { Menu, Text } from '@mantine/core';
+import { Menu, MenuDropdown, MenuTarget, Text } from '@mantine/core';
 import { IconChevronDown } from '@tabler/icons-react';
 import Link from 'next/link';
 export interface ProductCategoryHeaderProps {
@@ -12,19 +12,19 @@ export interface IDropDownMenuItemProps {
 const DropDownMenuItem = ({ category, products }: IDropDownMenuItemProps) => {
   return (
     <Menu shadow="md" width={200} trigger="hover">
-      <Menu.Target>
+      <MenuTarget>
         <Text className="flex justify-center items-center">
           {category} <IconChevronDown></IconChevronDown>
         </Text>
-      </Menu.Target>
+      </MenuTarget>
 
-      <Menu.Dropdown>
+      <MenuDropdown>
         {products.map((product) => (
           <Link href={product.url} key={product.name}>
             <Menu.Item>{product.name}</Menu.Item>
           </Link>
         ))}
-      </Menu.Dropdown>
+      </MenuDropdown>
     </Menu>
   );
 };

@@ -21,8 +21,8 @@ const ProfileHeader = () => {
     router.push('/login');
   };
   return (
-    <Container className="bg-primary py-2" fluid visibleFrom="sm">
-      <Flex justify={'center'} gap={{ sm: 10, md: 20, lg: 30 }}>
+    <Container className="bg-primary py-2" fluid>
+      <Flex justify={'center'} gap={{ sm: 10, md: 20, lg: 30 }} wrap={'wrap'}>
         <Link href="/profile">
           <Button
             variant="transparent"

@@ -13,7 +13,6 @@ import {
   Title,
 } from '@mantine/core';
 import { useForm } from '@mantine/form';
-import { IconBrandGoogle } from '@tabler/icons-react';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useState } from 'react';
@@ -89,9 +88,6 @@ export default function Login() {
         </Link>
       </div>
       <Divider label="OR" labelPosition="center"></Divider>
-      <Button type="submit" className=" w-80 mt-2 ">
-        <IconBrandGoogle></IconBrandGoogle>
-      </Button>
     </>
   );
 }

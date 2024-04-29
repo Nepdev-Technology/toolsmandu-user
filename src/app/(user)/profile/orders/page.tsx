@@ -34,6 +34,7 @@ const Page = () => {
         date: normalizeDate(item.createdAt),
         amount: item.amount,
         paymentMethod: item.paymentMethod,
+        status: item.status,
       };
     });
     setTotal(response?.data?.totalCount);
@@ -47,6 +48,7 @@ const Page = () => {
     { key: 'productName', displayName: 'Product Name' },
     { key: 'date', displayName: 'Date' },
     { key: 'amount', displayName: 'Total Amount' },
+    { key: 'status', displayName: 'Status' },
     { key: 'paymentMethod', displayName: 'Payment Method' },
   ];
 

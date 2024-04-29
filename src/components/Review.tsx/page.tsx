@@ -66,28 +66,32 @@ const Review = async ({ name, id }: IReviewProps) => {
         </Stack>
       </div>
       <Divider></Divider>
-      <ScrollArea h={{ md: 400, xs: 350, sm: 300 }}>
-        <div>
-          {review?.reviews?.length >= 1 ? (
-            review.reviews.map((item: any) => {
-              return (
-                <div key={item.id}>
-                  <ReviewCard
-                    fullName={item.externalUser.userName}
-                    rating={item.rating}
-                    content={item.content}
-                    date={item.createdAt}
-                    replies={item.replies}
-                  ></ReviewCard>
-                </div>
-              );
-            })
-          ) : (
-            <div>No reviews available</div>
-          )}
-        </div>
-      </ScrollArea>
-      <Divider></Divider>
+      {review?.reviews?.length >= 1 ? (
+        <>
+          {' '}
+          <ScrollArea h={{ md: 400, xs: 350, sm: 300 }}>
+            <div>
+              {review.reviews.map((item: any) => {
+                return (
+                  <div key={item.id}>
+                    <ReviewCard
+                      fullName={item.externalUser.userName}
+                      rating={item.rating}
+                      content={item.content}
+                      date={item.createdAt}
+                      replies={item.replies}
+                    ></ReviewCard>
+                  </div>
+                );
+              })}
+            </div>
+          </ScrollArea>
+          <Divider></Divider>
+        </>
+      ) : (
+        <div>No review posted! But the product to review it </div>
+      )}
+
       <div className="grid  md:grid-cols-2">
         <div>
           <ReviewForm isLoggedIn={isLoggedIn}></ReviewForm>

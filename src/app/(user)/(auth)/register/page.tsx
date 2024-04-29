@@ -12,7 +12,7 @@ import {
   Title,
 } from '@mantine/core';
 import { useForm } from '@mantine/form';
-import { IconBrandGoogle, IconLock } from '@tabler/icons-react';
+import { IconLock } from '@tabler/icons-react';
 import Link from 'next/link';
 import { useState } from 'react';
 
@@ -149,9 +149,6 @@ const Page = () => {
         </Link>
       </div>
       <Divider label="OR" labelPosition="center"></Divider>
-      <Button type="submit" className=" w-full mt-2 ">
-        <IconBrandGoogle></IconBrandGoogle>
-      </Button>
     </>
   );
 };

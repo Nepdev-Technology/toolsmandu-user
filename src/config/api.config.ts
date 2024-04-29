@@ -4,6 +4,7 @@ const apiRoutes = {
     register: '/auth/register',
     getProfile: '/auth/me',
     changePassword: '/auth/user/password/change',
+    google: '/auth/google/callback',
   },
   products: {
     base: '/product',
@@ -20,6 +21,7 @@ const apiRoutes = {
   payement: {
     esewa: '/checkout/esewa/verify',
   },
+
   coupon: {
     discount: '/coupon/validate-coupon',
   },
@@ -37,6 +39,10 @@ const apiRoutes = {
   },
   familySharing: {
     user: '/family-sharing/findAll-by-user',
+  },
+  ticket: {
+    base: '/ticketing',
+    user: '/ticketing/user',
   },
 };
 

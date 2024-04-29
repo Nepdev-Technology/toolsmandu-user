@@ -3,17 +3,31 @@ import {
   DynamicVariable,
   ProductVariation,
 } from '@/src/types/interfaces/ProductInterface';
-import { Badge, Button, Card, CardSection, Flex, Text } from '@mantine/core';
-import { IconCheck } from '@tabler/icons-react';
+import {
+  AspectRatio,
+  Badge,
+  Button,
+  Card,
+  CardSection,
+  Flex,
+  rem,
+  Text,
+} from '@mantine/core';
+import { IconShoppingCart } from '@tabler/icons-react';
 import { useEffect, useState } from 'react';
 import CustomForm from '../CustomForm/CustomForm';
 
 interface ICheckoutFormProps {
+  image: string;
   variations: ProductVariation[];
   dynamicVariables: DynamicVariable[];
 }
 
-const CheckoutForm = ({ variations, dynamicVariables }: ICheckoutFormProps) => {
+const CheckoutForm = ({
+  image,
+  variations,
+  dynamicVariables,
+}: ICheckoutFormProps) => {
   const [selectedOption, setSelectedOption] = useState<ProductVariation>();
 
   useEffect(() => {
@@ -34,25 +48,57 @@ const CheckoutForm = ({ variations, dynamicVariables }: ICheckoutFormProps) => {
             </Badge>
             <Text fw={500}>Select Item</Text>
           </div>
+
           <Flex wrap="wrap" gap={10} className="mt-2">
             {variations.map((variations) => {
               return (
-                <Button
+                <div
+                  className={`flex justify-between px-2  rounded-lg w-full py-2 hover:cursor-pointer ${
+                    selectedOption?.id === variations.id
+                      ? 'border-2	border-sky-500'
+                      : 'bg-primary'
+                  }`}
                   key={variations.id}
                   onClick={() => setSelectedOption(variations)}
-                  variant="outline"
-                  rightSection={
-                    selectedOption?.id == variations.id ? (
-                      <IconCheck></IconCheck>
-                    ) : null
-                  }
-                  color={
-                    selectedOption?.id == variations.id ? 'yellow' : 'white'
-                  }
-                  size="md"
                 >
-                  {variations.name}
-                </Button>
+                  <div className="flex gap-4 flex-1">
+                    <AspectRatio
+                      ratio={240 / 347}
+                      style={{ flex: `0 0 ${rem(100)}` }}
+                      maw={'34px'}
+                    >
+                      <img
+                        src={process.env.NEXT_PUBLIC_IMAGE_URL + image}
+                        // height={'24px'}
+                        // width={'35px'}
+                        alt={''}
+                      ></img>
+                    </AspectRatio>
+
+                    <Flex direction={'column'} wrap={'nowrap'}>
+                      <Text className="text-textPrimary font-display  text-md font-bold ">
+                        {variations.name}
+                      </Text>
+                      <Flex gap={10} align={'center'}>
+                        <Text className="text-textSP font-display text-md font-bold ">
+                          Rs&nbsp;{variations.sellingPrice}
+                        </Text>
+
+                        {/* <Text
+                          className="text-textMRP font-display  text-sm  "
+                          td="line-through"
+                        >
+                          Rs&nbsp;{variations.maximumRetailPrice}
+                        </Text> */}
+                      </Flex>
+                    </Flex>
+                  </div>
+                  <div>
+                    <Button className="bg-green-500 h-full ">
+                      <IconShoppingCart className="text-primary"></IconShoppingCart>
+                    </Button>
+                  </div>
+                </div>
               );
             })}
           </Flex>

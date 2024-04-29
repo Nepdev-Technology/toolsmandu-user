@@ -39,28 +39,30 @@ const QandA = async ({ name, id }: IReviewProps) => {
       <h1 className="sm:text-1xl xs:text-lg  md:text-1xl  font-bold">
         QandA for {name}
       </h1>
+      {qandA && qandA.length >= 1 ? (
+        <>
+          <ScrollArea h={{ md: 400, xs: 350, sm: 300 }}>
+            <div>
+              {qandA.map((item: any) => {
+                return (
+                  <div key={item.id}>
+                    <QAndACard
+                      fullName={item.externalUser.userName}
+                      content={item.content}
+                      date={'2022-12-13'}
+                      replies={item.replies}
+                    ></QAndACard>
+                  </div>
+                );
+              })}
+            </div>
+          </ScrollArea>
+          <Divider></Divider>
+        </>
+      ) : (
+        <div>No Question and Answer! Try asking questions below</div>
+      )}
 
-      <ScrollArea h={{ md: 400, xs: 350, sm: 300 }}>
-        <div>
-          {qandA && qandA.length >= 1 ? (
-            qandA.map((item: any) => {
-              return (
-                <div key={item.id}>
-                  <QAndACard
-                    fullName={item.externalUser.userName}
-                    content={item.content}
-                    date={'2022-12-13'}
-                    replies={item.replies}
-                  ></QAndACard>
-                </div>
-              );
-            })
-          ) : (
-            <div>No question and answers available</div>
-          )}
-        </div>
-      </ScrollArea>
-      <Divider></Divider>
       <div className="grid  md:grid-cols-2">
         <div>
           <QuestionAndAnswerForm

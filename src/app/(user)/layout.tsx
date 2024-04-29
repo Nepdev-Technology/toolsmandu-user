@@ -21,10 +21,11 @@ import {
   Image,
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import { IconUser } from '@tabler/icons-react';
+import { IconHelp, IconUser } from '@tabler/icons-react';
 import Link from 'next/link';
+import { redirect } from 'next/navigation';
 import NextNProgress from 'nextjs-progressbar';
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 
 export default function DashboardLayout({
   children,
@@ -33,16 +34,12 @@ export default function DashboardLayout({
 }) {
   const [opened, { toggle }] = useDisclosure();
   const [data, setData] = React.useState<IDropDownMenuItemProps[]>([]);
-  const getProducts = async () => {
+  const getCategories = useCallback(async () => {
     const http = new HttpService();
     try {
       const response: any = await http
         .service()
-        .get(apiRoutes.products.featured, {
-          next: {
-            cache: 'no-store',
-          },
-        });
+        .get(apiRoutes.products.featured);
 
       const dropdownMenuItems: IDropDownMenuItemProps[] = response.data.map(
         (category: FeaturedCategory) => ({
@@ -53,7 +50,6 @@ export default function DashboardLayout({
           })),
         })
       );
-
       setData(dropdownMenuItems);
     } catch (error) {
       if (
@@ -61,12 +57,12 @@ export default function DashboardLayout({
         error.message.includes('fetch failed')
       ) {
         // Redirect to the maintenance page
-        // redirect('/maintainance');
+        redirect('/maintenance');
       }
     }
-  };
+  }, []);
   useEffect(() => {
-    getProducts();
+    getCategories();
   }, []);
   return (
     <AppShell
@@ -101,11 +97,17 @@ export default function DashboardLayout({
             />
           </Link>
           <SearchBar></SearchBar>
-          <Group ml="xl" gap={0} visibleFrom="sm">
+          <Group ml="xl" gap={4} visibleFrom="sm">
             <Link href={'/profile'}>
               <Button className="bg-quaternary">
                 {' '}
                 <IconUser></IconUser>
+              </Button>
+            </Link>
+            <Link href={'/tickets'}>
+              <Button className="bg-quaternary">
+                {' '}
+                <IconHelp></IconHelp>
               </Button>
             </Link>
           </Group>
