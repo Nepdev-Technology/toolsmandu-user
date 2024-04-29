@@ -2,10 +2,9 @@
 import apiRoutes from '@/src/config/api.config';
 import { HttpService } from '@/src/services';
 import { Button, Card, CardSection, Divider, Title } from '@mantine/core';
-import { NextApiRequest, NextApiResponse } from 'next';
 import Link from 'next/link';
 
-const page = (req: NextApiRequest, res: NextApiResponse) => {
+const page = () => {
   // const pathname = usePathname();
   // const serachParams = useSearchParams();
   // const router = useRouter();
