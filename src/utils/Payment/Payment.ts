@@ -54,7 +54,7 @@ export class EsewaPaymentProcessor implements PaymentProcessor {
 
     const payload = {
       amount: amount.toString(), // Convert amount to string
-      failure_url: `${process.env.NEXT_PUBLIC_SITE_URL}/${productId}/verify/${orderId}`,
+      failure_url: `${process.env.NEXT_PUBLIC_SITE_URL}/${productId}/verify/${PAYMENT_GATEWAYS.ESEWA}/${orderId}`,
       product_delivery_charge: '0',
       product_service_charge: '0',
       product_code: productCode,
@@ -108,7 +108,7 @@ export class KhaltiPaymentProcessor implements PaymentProcessor {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        return_url: `${process.env.NEXT_PUBLIC_SITE_URL}/${productId}/verify/${orderId}`,
+        return_url: `${process.env.NEXT_PUBLIC_SITE_URL}/${productId}/verify/${PAYMENT_GATEWAYS.KHALTI}/${orderId}`,
         website_url: `${process.env.NEXT_PUBLIC_SITE_URL}`,
         amount: amount * 100,
         purchase_order_id: orderId,

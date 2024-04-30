@@ -3,6 +3,7 @@ import { HttpService } from '@/src/services';
 import { normalizeDate } from '@/src/utils/normalizeDate';
 import { Image, Text } from '@mantine/core';
 import { IconCalendar, IconUser } from '@tabler/icons-react';
+import { Metadata } from 'next';
 import { redirect } from 'next/navigation';
 import { Blog } from '../page';
 
@@ -25,6 +26,29 @@ const getTableData = async (id: string) => {
     }
   }
 };
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { id: string };
+}): Promise<Metadata> {
+  const blogData: Blog = await getTableData(params.id);
+
+  const { id, title, image, metaTitle, metaDescription, metaKeywords } =
+    blogData;
+
+  return {
+    title: title,
+    description: metaDescription,
+    keywords: metaKeywords,
+    openGraph: {
+      url: `/${id}`,
+      title: metaTitle || title,
+      description: metaDescription,
+      images: [image],
+    },
+  };
+}
 const page = async ({ params }: { params: { id: string } }) => {
   const blogData: Blog = await getTableData(params.id);
   return (

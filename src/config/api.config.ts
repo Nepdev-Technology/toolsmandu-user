@@ -20,6 +20,7 @@ const apiRoutes = {
   },
   payement: {
     esewa: '/checkout/esewa/verify',
+    khalti: '/checkout/khalti/verify',
   },
 
   coupon: {

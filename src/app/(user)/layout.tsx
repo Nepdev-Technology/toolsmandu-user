@@ -19,6 +19,7 @@ import {
   Divider,
   Group,
   Image,
+  VisuallyHidden,
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { IconHelp, IconUser } from '@tabler/icons-react';
@@ -87,6 +88,7 @@ export default function DashboardLayout({
             className="text-primary "
             aria-label="Toggle navigation"
           />
+          <VisuallyHidden>Toggle</VisuallyHidden>
           <Link href={'/'}>
             <Image
               radius="md"
@@ -102,12 +104,14 @@ export default function DashboardLayout({
               <Button className="bg-quaternary">
                 {' '}
                 <IconUser></IconUser>
+                <VisuallyHidden>Profile</VisuallyHidden>
               </Button>
             </Link>
             <Link href={'/tickets'}>
               <Button className="bg-quaternary">
                 {' '}
                 <IconHelp></IconHelp>
+                <VisuallyHidden>Help</VisuallyHidden>
               </Button>
             </Link>
           </Group>

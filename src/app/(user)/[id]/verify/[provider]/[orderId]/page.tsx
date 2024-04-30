@@ -1,10 +1,11 @@
 import apiRoutes from '@/src/config/api.config';
 import { HttpService } from '@/src/services';
+import { PAYMENT_GATEWAYS } from '@/src/utils/Payment/Payment';
 import { Button, Card, CardSection, Divider, Title } from '@mantine/core';
 import { IconAlertCircle, IconCheck } from '@tabler/icons-react';
 import Link from 'next/link';
 
-const verifyOrder = async (id: string, data: string) => {
+const verifyEsewaPayment = async (id: string, data: string) => {
   try {
     const http = new HttpService();
     const response: any = await http
@@ -19,14 +20,45 @@ const verifyOrder = async (id: string, data: string) => {
     console.log(error);
   }
 };
+const verifyKhaltiPayment = async (id: string, pdix: string) => {
+  try {
+    const http = new HttpService();
+    const response: any = await http
+      .service()
+      .get(`${apiRoutes.payement.khalti}?token=${pdix}&order_id=${id}`, {
+        next: {
+          cache: 'no-store',
+        },
+      });
+    console.log(response);
+    return response;
+  } catch (error) {
+    console.log(error);
+  }
+};
 const page = async ({
   params,
   searchParams,
 }: {
-  params: { id: string; orderId: string };
-  searchParams: { data: string };
+  params: { id: string; orderId: string; provider: string };
+  searchParams: {
+    pidx: string;
+    data: string;
+    transaction_id: string;
+    tidx: string;
+    amount: string;
+    total_amount: string;
+    mobile: string;
+  };
 }) => {
-  const response = await verifyOrder(params.orderId, searchParams.data);
+  const { pidx, data, transaction_id, tidx, amount, total_amount, mobile } =
+    searchParams;
+  let response;
+  if (params.provider === PAYMENT_GATEWAYS.ESEWA) {
+    response = await verifyEsewaPayment(params.orderId, data);
+  } else {
+    response = await verifyKhaltiPayment(params.orderId, pidx);
+  }
 
   return (
     <div className="flex justify-center items-center mt-10">

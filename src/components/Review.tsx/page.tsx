@@ -89,7 +89,7 @@ const Review = async ({ name, id }: IReviewProps) => {
           <Divider></Divider>
         </>
       ) : (
-        <div>No review posted! But the product to review it </div>
+        <div>No review posted! Buy the product to review it </div>
       )}
 
       <div className="grid  md:grid-cols-2">

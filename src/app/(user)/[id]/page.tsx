@@ -20,6 +20,7 @@ import {
   Tooltip,
 } from '@mantine/core';
 import { IconCategory, IconLock, IconWorld } from '@tabler/icons-react';
+import { Metadata } from 'next';
 import { redirect } from 'next/navigation';
 
 const getTableData = async (id: string) => {
@@ -41,6 +42,36 @@ const getTableData = async (id: string) => {
     }
   }
 };
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { id: string };
+}): Promise<Metadata> {
+  const product: Product = await getTableData(params.id);
+
+  const {
+    id,
+    name,
+    image,
+    backgorundImage,
+    metaTitle,
+    metaDescription,
+    metaKeywords,
+  } = product;
+
+  return {
+    title: name,
+    description: metaDescription,
+    keywords: metaKeywords,
+    openGraph: {
+      url: `/${id}`,
+      title: metaTitle || name,
+      description: metaDescription,
+      images: [image, backgorundImage],
+    },
+  };
+}
 const page = async ({ params }: { params: { id: string } }) => {
   const productData: Product = await getTableData(params.id);
   return (
@@ -59,8 +90,8 @@ const page = async ({ params }: { params: { id: string } }) => {
             <div className="absolute inset-0 bg-gradient-to-t  from-primary from-2%" />
           </div>
           <div className="   xs:px-5 sm:px-10 md:px-20  ">
-            <div className="grid xs:grid-cols-1  md:grid-cols-3 sm:grid-rows-3 md:gap-[1rem]  md:pt-[20vh] sm:pt-[10vh] xs:pt-[7vh] gap-y-4 ">
-              <div className="xs:col-span-full  sm:col-span-2 sm:row-span-1 ">
+            <div className="grid xs:grid-cols-1  md:grid-cols-3 sm:grid-rows-[repeat(3,auto)] md:gap-[1rem]  md:pt-[20vh] sm:pt-[10vh] xs:pt-[7vh] gap-y-4 ">
+              <div className="xs:col-span-full  sm:col-span-2  ">
                 <Grid align={'center'} justify="start">
                   <GridCol span={4}>
                     <AspectRatio
@@ -134,7 +165,7 @@ const page = async ({ params }: { params: { id: string } }) => {
                   dynamicVariables={productData.dynamicVariables}
                 ></CheckoutForm>
               </div>
-              <div className="xs:col-span-full sm:row-span-2 sm:col-span-2">
+              <div className="xs:col-span-full sm:row-span-3 sm:col-span-2">
                 <div
                   dangerouslySetInnerHTML={{
                     __html: productData.summary,
@@ -147,7 +178,7 @@ const page = async ({ params }: { params: { id: string } }) => {
                 <CustomAccordion faqs={productData.faqs}></CustomAccordion>
               </div>
             </div>
-            <div className="xs:col-span-full sm:row-span-4 ">
+            <div className=" ">
               <article className="text-textPrimary">
                 <Tabs defaultValue="rating">
                   <TabsList className="mb-2" grow>

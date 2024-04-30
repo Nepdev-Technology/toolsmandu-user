@@ -3,8 +3,9 @@ import apiRoutes from '@/src/config/api.config';
 import { HttpService } from '@/src/services';
 import { Button, Card, CardSection, Divider, Title } from '@mantine/core';
 import Link from 'next/link';
+import React from 'react';
 
-const page = () => {
+const Page = () => {
   // const pathname = usePathname();
   // const serachParams = useSearchParams();
   // const router = useRouter();
@@ -14,7 +15,7 @@ const page = () => {
   const verifyOrder = async (data: string) => {
     try {
       const http = new HttpService();
-      console.log(`${apiRoutes.auth.google}/${data}`, 'this is the url');
+      console.log(`${apiRoutes.auth.google}${data}`, 'this is the url');
       const response: any = await http
         .service()
         .get(`${apiRoutes.auth.google}${data}`, {
@@ -28,10 +29,10 @@ const page = () => {
       console.log(error);
     }
   };
-  // useEffect(() => {
-  //   const hash = window.location.hash;
-  //   console.log(hash);
-  // }, []);
+
+  React.useEffect(() => {
+    verifyOrder(window.location.hash);
+  }, []);
 
   return (
     <div className="flex justify-center items-center mt-10">
@@ -69,4 +70,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

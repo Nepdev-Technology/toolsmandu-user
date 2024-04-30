@@ -1,4 +1,5 @@
 import { AspectRatio, Card, CardSection, Flex, Text } from '@mantine/core';
+import Head from 'next/head';
 
 interface ICardProps {
   id: string | number;
@@ -13,6 +14,7 @@ interface ICardProps {
   metaDescription: string;
   metaKeywords: string;
 }
+
 const ProductCard = ({
   id,
   name,
@@ -37,6 +39,13 @@ const ProductCard = ({
       py={0}
       className="bg-tertiary w-[11rem] md:w-48 transition-transform duration-500 transform-gpu hover:-translate-y-1.5"
     >
+      {' '}
+      <Head>
+        <title>{name}</title>
+        <meta property="title" content={metaTitle} />
+        <meta name="description" content={metaDescription} />
+        <meta name="keywords" content={metaKeywords} />
+      </Head>
       <CardSection>
         <AspectRatio ratio={240 / 347} mx="auto">
           <img

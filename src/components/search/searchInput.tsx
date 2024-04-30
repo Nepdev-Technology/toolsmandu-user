@@ -1,4 +1,4 @@
-import { Button, TextInput } from '@mantine/core';
+import { Button, TextInput, VisuallyHidden } from '@mantine/core';
 import { getHotkeyHandler } from '@mantine/hooks';
 import { IconSearch } from '@tabler/icons-react';
 import Link from 'next/link';
@@ -43,6 +43,7 @@ const SearchInput = ({ visibleFrom }: { visibleFrom?: string }) => {
             <Button>
               {' '}
               <IconSearch></IconSearch>
+              <VisuallyHidden>Search</VisuallyHidden>
             </Button>
           </Link>
         }
