@@ -46,7 +46,7 @@ const CheckoutForm = ({
             <Badge size="md" circle>
               1
             </Badge>
-            <Text fw={500}>Select Item</Text>
+            <Text fw={500}>Select a Plan</Text>
           </div>
 
           <Flex wrap="wrap" gap={10} className="mt-2">

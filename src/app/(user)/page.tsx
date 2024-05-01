@@ -8,7 +8,6 @@ import '@mantine/carousel/styles.css';
 import { Box, ScrollArea } from '@mantine/core';
 import '@mantine/core/styles.css';
 import Link from 'next/link';
-import { redirect } from 'next/navigation';
 
 const getProducts = async () => {
   const http = new HttpService();
@@ -42,7 +41,7 @@ const getProducts = async () => {
   } catch (error) {
     if (error instanceof TypeError && error.message.includes('fetch failed')) {
       // Redirect to the maintenance page
-      redirect('/maintainance');
+      // redirect('/maintainance');
     }
   }
 };

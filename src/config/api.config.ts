@@ -5,6 +5,7 @@ const apiRoutes = {
     getProfile: '/auth/me',
     changePassword: '/auth/user/password/change',
     google: '/auth/google/callback',
+    googleLogin: '/auth/login/google',
   },
   products: {
     base: '/product',

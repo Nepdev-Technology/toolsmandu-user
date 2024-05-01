@@ -19,9 +19,15 @@ import {
   TabsTab,
   Tooltip,
 } from '@mantine/core';
-import { IconCategory, IconLock, IconWorld } from '@tabler/icons-react';
+import {
+  IconCategory,
+  IconClock,
+  IconLock,
+  IconWorld,
+} from '@tabler/icons-react';
 import { Metadata } from 'next';
 import { redirect } from 'next/navigation';
+import classes from './Demo.module.css';
 
 const getTableData = async (id: string) => {
   const http = new HttpService();
@@ -93,7 +99,7 @@ const page = async ({ params }: { params: { id: string } }) => {
             <div className="grid xs:grid-cols-1  md:grid-cols-3 sm:grid-rows-[repeat(3,auto)] md:gap-[1rem]  md:pt-[20vh] sm:pt-[10vh] xs:pt-[7vh] gap-y-4 ">
               <div className="xs:col-span-full  sm:col-span-2  ">
                 <Grid align={'center'} justify="start">
-                  <GridCol span={4}>
+                  <GridCol span={3}>
                     <AspectRatio
                       ratio={240 / 347}
                       maw={{ md: 250, sm: 200, xs: 180 }}
@@ -153,6 +159,16 @@ const page = async ({ params }: { params: { id: string } }) => {
                             </span>
                           </span>
                         </Tooltip>
+                        <Tooltip label="Delivery time">
+                          <span className="flex items-center gap-2 ">
+                            <IconClock className="text-iconTertiary "></IconClock>
+                            <span className="text-textPrimary">
+                              {productData.deliveryTime
+                                ? productData?.deliveryTime?.toUpperCase()
+                                : '1H'}
+                            </span>
+                          </span>
+                        </Tooltip>
                       </Group>
                     </div>
                   </GridCol>
@@ -171,31 +187,51 @@ const page = async ({ params }: { params: { id: string } }) => {
                     __html: productData.summary,
                   }}
                 />
-                <h1 className="sm:text-2xl xs:text-xl xs:mt-[2rem]  md:text-3xl  font-bold ">
-                  {' '}
-                  {'Frequently Asked Questions'}
-                </h1>
-                <CustomAccordion faqs={productData.faqs}></CustomAccordion>
               </div>
             </div>
+            {/* <div className="my-4">
+              {' '}
+                <h1 className="sm:text-2xl xs:text-xl xs:mt-[2rem]  md:text-3xl  font-bold ">
+                <h1 className="sm:text-2xl xs:text-xl xs:mt-[2rem]  md:text-3xl  font-bold ">
+                  {' '}
+              <h1 className="sm:text-2xl xs:text-xl xs:mt-[2rem]  md:text-3xl  font-bold ">
+                  {' '}
+                {'Frequently Asked Questions'}
+              </h1>
+              <CustomAccordion faqs={productData.faqs}></CustomAccordion>
+            </div> */}
             <div className=" ">
-              <article className="text-textPrimary">
-                <Tabs defaultValue="rating">
+              <article className="text-textPrimary my-4">
+                <h1 className="sm:text-2xl xs:text-xl xs:my-[2rem]  md:text-3xl  font-bold ">
+                  Queries
+                </h1>
+                <Tabs
+                  defaultValue="faq"
+                  variant="unstyled"
+                  classNames={classes}
+                >
                   <TabsList className="mb-2" grow>
-                    <TabsTab value="rating" className="hover:bg-tertiary">
-                      Rating and Reviews
-                    </TabsTab>
-                    <TabsTab value="qAndA" className="hover:bg-tertiary">
-                      Q&A
-                    </TabsTab>
+                    <TabsTab value="faq">FAQs</TabsTab>
+                    <TabsTab value="rating">Rating & Reviews</TabsTab>
+                    <TabsTab value="qAndA">Question & Answers</TabsTab>
                   </TabsList>
+                  <TabsPanel value="faq">
+                    <div className="mt-8">
+                      <CustomAccordion
+                        faqs={productData.faqs}
+                      ></CustomAccordion>
+                    </div>{' '}
+                  </TabsPanel>
                   <TabsPanel value="rating">
-                    <Review name={productData.name} id={params.id}></Review>
+                    <div className="mt-8">
+                      <Review name={productData.name} id={params.id}></Review>
+                    </div>{' '}
                   </TabsPanel>
 
                   <TabsPanel value="qAndA">
-                    <QandA name={productData.name} id={params.id}></QandA>{' '}
-                    <div></div>
+                    <div className="mt-8">
+                      <QandA name={productData.name} id={params.id}></QandA>{' '}
+                    </div>{' '}
                   </TabsPanel>
                 </Tabs>
               </article>

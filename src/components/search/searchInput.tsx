@@ -19,6 +19,7 @@ const SearchInput = ({ visibleFrom }: { visibleFrom?: string }) => {
         style={{
           width: '100%',
         }}
+        size="md"
         visibleFrom={visibleFrom}
         // className="sm:hidden"
         // leftSection={<IconSearch></IconSearch>}
@@ -40,7 +41,7 @@ const SearchInput = ({ visibleFrom }: { visibleFrom?: string }) => {
               query: { query: value },
             }}
           >
-            <Button>
+            <Button size="md">
               {' '}
               <IconSearch></IconSearch>
               <VisuallyHidden>Search</VisuallyHidden>

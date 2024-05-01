@@ -78,7 +78,7 @@ export default function DashboardLayout({
       <header className="  box-border	mb-2">
         {' '}
         <TrustHeader></TrustHeader>
-        <div className=" flex justify-around items-center lg:justify-around gap-2 h-16 bg-senary box-border	">
+        <div className=" flex justify-around items-center lg:justify-around gap-2 h-20 bg-senary box-border	">
           <Burger
             color="primary.0"
             opened={opened}

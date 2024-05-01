@@ -37,7 +37,7 @@ const QandA = async ({ name, id }: IReviewProps) => {
   return (
     <div className="flex flex-col gap-2">
       <h1 className="sm:text-1xl xs:text-lg  md:text-1xl  font-bold">
-        QandA for {name}
+        Question & Answers for {name}
       </h1>
       {qandA && qandA.length >= 1 ? (
         <>

@@ -8,13 +8,32 @@ import {
 
 export default function CustomAccordion({ faqs }: { faqs: FAQItem[] }) {
   const items = faqs.map((item) => (
-    <AccordionItem key={item.id} value={item.title} variant="filled">
-      <AccordionControl className="hover:bg-tertiary">
+    <AccordionItem key={item.id} value={item.title}>
+      <AccordionControl
+        className="hover:bg-tertiary  "
+        classNames={{
+          chevron: 'text-textPrimary',
+        }}
+      >
         <h5 className="text-textPrimary">{item.title}</h5>
       </AccordionControl>
       <AccordionPanel>{item.summary}</AccordionPanel>
     </AccordionItem>
   ));
 
-  return <Accordion>{items}</Accordion>;
+  return (
+    <>
+      <h1 className="sm:text-1xl xs:text-lg  md:text-1xl  font-bold">
+        Frequently asked questions
+        <Accordion
+          classNames={{
+            content: 'bg-tertiary',
+            item: 'bg-primary',
+          }}
+        >
+          {items}
+        </Accordion>
+      </h1>
+    </>
+  );
 }

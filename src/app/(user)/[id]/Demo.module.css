@@ -1,0 +1,32 @@
+.tab {
+  position: relative;
+  border: 0.5px solid #cccccc; /* Adjust the color as needed */
+  background-color: #012651; /* Adjust the color as needed */
+}
+
+.tab:first-of-type {
+  border-radius: 4px 0 0 4px;
+}
+
+.tab:last-of-type {
+  border-radius: 0 4px 4px 0;
+}
+
+.tab + .tab {
+  border-left-width: 0;
+}
+
+.tab:hover {
+  background-color: #011d3e; /* Adjust the color as needed */
+}
+
+.tab[data-active] {
+  z-index: 1;
+  background-color: #3182ce; /* Adjust the color as needed */
+  border-color: #3182ce; /* Adjust the color as needed */
+  color: #ffffff; /* Adjust the color as needed */
+}
+
+.tab[data-active]:hover {
+  background-color: #4299e1; /* Adjust the color as needed */
+}

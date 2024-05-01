@@ -1,70 +1,50 @@
 'use client';
-import apiRoutes from '@/src/config/api.config';
-import { HttpService } from '@/src/services';
-import { Button, Card, CardSection, Divider, Title } from '@mantine/core';
-import Link from 'next/link';
+import { useGoogleLogin } from '@/src/hooks/auth/userLogin';
+import { Card, CardSection, Divider, Loader, Title } from '@mantine/core';
+import { useRouter, useSearchParams } from 'next/navigation';
 import React from 'react';
 
 const Page = () => {
-  // const pathname = usePathname();
-  // const serachParams = useSearchParams();
-  // const router = useRouter();
+  const serachParams = useSearchParams();
+  const refreshToken = serachParams.get('refreshToken');
+  const jwtToken = serachParams.get('refreshToken');
+  const { googleLogin } = useGoogleLogin();
+  const router = useRouter();
+  const setToken = () => {
+    if (jwtToken && refreshToken) {
+      const [header, payload, signature] = jwtToken.split('.');
+      const decodedPayload = JSON.parse(atob(payload));
+      const id = decodedPayload.sub;
+      const roles = decodedPayload.roles;
+      const expiredAt = decodedPayload.exp;
 
-  // const query = serachParams.get('access_token');
-  // const params = useParams();
-  const verifyOrder = async (data: string) => {
-    try {
-      const http = new HttpService();
-      console.log(`${apiRoutes.auth.google}${data}`, 'this is the url');
-      const response: any = await http
-        .service()
-        .get(`${apiRoutes.auth.google}${data}`, {
-          next: {
-            cache: 'no-store',
-          },
-        });
-      console.log(response);
-      return response;
-    } catch (error) {
-      console.log(error);
+      const user = {
+        id,
+        roles,
+        expiredAt,
+        accessToken: jwtToken,
+        refreshToken,
+      };
+      googleLogin(user).then((res) => {
+        if (res) {
+          router.push('/');
+        }
+      });
     }
+    //@ts-ignore
   };
-
   React.useEffect(() => {
-    verifyOrder(window.location.hash);
+    setToken();
   }, []);
 
   return (
     <div className="flex justify-center items-center mt-10">
       <Card shadow="lg" px={40} py={30} withBorder>
         <CardSection>
-          <Title order={1}>Payment Status</Title>
+          <Title order={1}>Signing In</Title>
         </CardSection>
         <Divider></Divider>
-        {/* <CardSection>
-          {response?.success ? (
-            <div className="flex flex-col items-center justify-center">
-              {' '}
-              <IconCheck size={200} color="green" />
-              <Title order={2}>{response.message}</Title>
-            </div>
-          ) : (
-            <div className="flex flex-col items-center justify-center">
-              <IconAlertCircle size={200} color="red" />
-              <Title order={2}>{response.message}</Title>
-            </div>
-          )}
-        </CardSection> */}
-        <p className="text-gray-600 my-2">
-          Thank you for completing your secure online payment.
-        </p>
-        <p> Have a great day! </p>
-        <div className="flex justify-center gap-3 mt-4">
-          <Link href={`/`}>
-            {' '}
-            <Button>Go back</Button>
-          </Link>
-        </div>
+        <Loader color="blue" type="bars" size="xl" />
       </Card>
     </div>
   );

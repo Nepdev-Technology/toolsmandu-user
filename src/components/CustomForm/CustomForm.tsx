@@ -147,7 +147,7 @@ const CustomForm = ({
             <Badge size="md" circle>
               2
             </Badge>
-            <Text fw={500}>Fill up details</Text>
+            <Text fw={500}>Provide Details</Text>
           </div>
           {fields.map((field) => {
             return (
@@ -167,6 +167,7 @@ const CustomForm = ({
           })}
           <div>
             <TextInput
+              className="mr-4"
               label="Coupon code"
               placeholder="USER500"
               description={
@@ -192,51 +193,10 @@ const CustomForm = ({
             <Badge size="md" circle>
               3
             </Badge>
-            <Text fw={500}>Select a payment provider</Text>
+            <Text fw={500}>Select a Payment Method</Text>
           </div>
           {isLoggedIn ? (
             <div className="flex xs:flex-col  gap-4 ">
-              {/* <Button
-                onClick={() => setSelectedPaymentOption(PAYMENT_GATEWAYS.ESEWA)}
-                size="md"
-                variant="outline"
-                rightSection={
-                  selectedPaymentOption == PAYMENT_GATEWAYS.ESEWA ? (
-                    <IconCheck></IconCheck>
-                  ) : null
-                }
-                color={
-                  selectedPaymentOption == PAYMENT_GATEWAYS.ESEWA
-                    ? 'yellow'
-                    : 'white'
-                }
-                justify="space-around"
-              >
-                <Group>
-                  <Image
-                    radius="md"
-                    h={20}
-                    w="auto"
-                    src={'esewa_logo.png'}
-                    alt="Esewa Logo"
-                  />
-                  <div>
-                    {' '}
-                    <Text className="text-textPrimary font-display   text-sm font-bold ">
-                      Rs
-                      {validCoupon?.discount
-                        ? selectedOption.sellingPrice - validCoupon.discount
-                        : selectedOption.sellingPrice}
-                    </Text>
-                    <Text
-                      className="text-textPrimary font-display  text-xs  "
-                      td="line-through"
-                    >
-                      {selectedOption.maximumRetailPrice}
-                    </Text>
-                  </div>
-                </Group>
-              </Button> */}
               <PaymentCard
                 title="Esewa"
                 src={'esewa_logo.png'}
@@ -258,50 +218,6 @@ const CustomForm = ({
                   setSelectedPaymentOption(PAYMENT_GATEWAYS.KHALTI)
                 }
               />
-
-              {/* <Button
-                onClick={() =>
-                  setSelectedPaymentOption(PAYMENT_GATEWAYS.KHALTI)
-                }
-                size="md"
-                variant="outline"
-                rightSection={
-                  selectedPaymentOption == PAYMENT_GATEWAYS.KHALTI ? (
-                    <IconCheck></IconCheck>
-                  ) : null
-                }
-                color={
-                  selectedPaymentOption == PAYMENT_GATEWAYS.KHALTI
-                    ? 'yellow'
-                    : 'gray'
-                }
-                justify="space-around"
-              >
-                <Group>
-                  <Image
-                    radius="md"
-                    h={20}
-                    w="auto"
-                    src={'khalti-seeklogo.svg'}
-                    alt="Khalti Logo"
-                  />
-                  <div>
-                    {' '}
-                    <Text className="text-textPrimary font-display   text-sm font-bold ">
-                      Rs
-                      {validCoupon?.discount
-                        ? selectedOption.sellingPrice - validCoupon.discount
-                        : selectedOption.sellingPrice}
-                    </Text>
-                    <Text
-                      className="text-textPrimary font-display  text-xs  "
-                      td="line-through"
-                    >
-                      {selectedOption.maximumRetailPrice}
-                    </Text>
-                  </div>
-                </Group>
-              </Button> */}
               <Button type="submit" className="bg-green-500">
                 Pay
               </Button>
@@ -309,7 +225,7 @@ const CustomForm = ({
           ) : (
             <div>
               <Link href={`/login?next=${pathName}`}>
-                <Button type="button">Login to Proceed</Button>
+                <Button type="button">Login/Register to Proceed</Button>
               </Link>
             </div>
           )}

@@ -13,3 +13,14 @@ export const useLogin = () => {
 
   return { login };
 };
+
+export const useGoogleLogin = () => {
+  const googleLogin = async (user: User) => {
+    if (user) {
+      await Cookies.set('currentUser', JSON.stringify(user));
+    }
+    return user as User;
+  };
+
+  return { googleLogin };
+};

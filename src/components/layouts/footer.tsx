@@ -4,7 +4,7 @@ import Link from 'next/link';
 const Footer = () => {
   return (
     <footer className="bg-tertiary">
-      <div className="mx-auto w-full max-w-screen-xl  py-6 px-3 xs:px-[auto] sm:px-[2rem] md:px-[5rem] lg:px-[10rem]">
+      <div className="mx-auto  w-full max-w-screen-xl  py-6 px-3 xs:px-[1rem] sm:px-[2rem] md:px-[5rem] lg:px-[10rem]">
         <div className="md:flex md:justify-between">
           <div className="mb-6  flex gap-2 flex-col">
             <Link href={'/'}>
@@ -16,7 +16,7 @@ const Footer = () => {
                 alt="Toolsmandu Logo"
               />
             </Link>
-            <p className="w-[25em]">
+            <p className="xs:w-[20em] md:w-[25em]">
               Toolsmandu.com – Digital Doctor For Your Business. Toolsmandu Was
               Created With One Idea In Mind: Tools That You Need To Grow Your
               Business.
@@ -149,27 +149,51 @@ const Footer = () => {
                 </div>
               </div>
             </div>
-            <div>
-              <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
-                Support Link
-              </h2>
-              <ul className="text-gray-500 dark:text-gray-400 font-medium">
-                <li className="mb-4">
-                  <Link href="/tickets" className="hover:underline">
-                    Help Center
-                  </Link>
-                </li>
-                <li className="mb-4">
-                  <Link href="#" className="hover:underline">
-                    Contact Us
-                  </Link>
-                </li>
-                <li className="mb-4">
-                  <Link href="/tickets" className="hover:underline">
-                    Payment issues
-                  </Link>
-                </li>
-              </ul>
+            <div className="xs:col-span-2 sm:col-span-1 xs:grid xs:grid-cols-2 sm:grid-cols-1">
+              <div>
+                <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
+                  Support Link
+                </h2>
+                <ul className="text-gray-500 dark:text-gray-400 font-medium">
+                  <li className="mb-4">
+                    <Link href="/tickets" className="hover:underline">
+                      Help Center
+                    </Link>
+                  </li>
+                  <li className="mb-4">
+                    <Link href="#" className="hover:underline">
+                      Contact Us
+                    </Link>
+                  </li>
+                  <li className="mb-4">
+                    <Link href="/tickets" className="hover:underline">
+                      Payment issues
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+              <div className=" sm:pt-5">
+                <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
+                  Trusted By
+                </h2>
+                <div className="flex gap-2">
+                  <Image
+                    src={'trustpilot.png'}
+                    radius="md"
+                    h={20}
+                    w="auto"
+                    alt={'Trustpilot logo'}
+                  />
+
+                  <Image
+                    src={'google reviews.png'}
+                    radius="md"
+                    h={20}
+                    w="auto"
+                    alt={'Google reviews logo'}
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </div>

@@ -36,7 +36,7 @@ const Review = async ({ name, id }: IReviewProps) => {
   return (
     <div className="flex flex-col gap-2">
       <h1 className="sm:text-1xl xs:text-lg  md:text-1xl  font-bold">
-        Review for {name}
+        Rating & Reviews for {name}
       </h1>
       <div className="flex justify-around items-center ">
         <div className="flex flex-col items-center">

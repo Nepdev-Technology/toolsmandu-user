@@ -1,7 +1,7 @@
 'use client';
-import { oauthSignIn } from '@/src/utils/GoogleSignup';
 import { Button } from '@mantine/core';
 import { IconBrandGoogle } from '@tabler/icons-react';
+import Link from 'next/link';
 import React from 'react';
 
 export default function DashboardLayout({
@@ -15,9 +15,11 @@ export default function DashboardLayout({
         <div className="h-fit flex flex-col gap-2">
           {children}
 
-          <Button onClick={oauthSignIn} className=" w-full mt-2 ">
-            <IconBrandGoogle></IconBrandGoogle>
-          </Button>
+          <Link href={`${process.env.NEXT_PUBLIC_BASE_URL}/auth/login/google`}>
+            <Button className=" w-full mt-2 ">
+              <IconBrandGoogle></IconBrandGoogle>
+            </Button>
+          </Link>
         </div>
       </div>
     </section>
