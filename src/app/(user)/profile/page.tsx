@@ -2,7 +2,14 @@
 import apiRoutes from '@/src/config/api.config';
 import { HttpService } from '@/src/services';
 import { showNotificationOnRes } from '@/src/utils/notificationUtils';
-import { Button, Card, CardSection, TextInput, Title } from '@mantine/core';
+import {
+  Button,
+  Card,
+  CardSection,
+  NumberInput,
+  TextInput,
+  Title,
+} from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { useEffect, useState } from 'react';
 
@@ -12,7 +19,7 @@ const Page = () => {
     initialValues: {
       firstName: '',
       lastName: '',
-      phoneNumber: '',
+      phone_no: '',
       userName: '',
       email: '',
     },
@@ -24,7 +31,7 @@ const Page = () => {
       userName: (value) =>
         value.length < 2 ? "Username can't be empty" : null,
       email: (value) => (/^\S+@\S+$/.test(value) ? null : 'Invalid email'),
-      phoneNumber: (value) =>
+      phone_no: (value) =>
         value.length < 2 ? "Phone no can't be empty" : null,
     },
   });
@@ -55,6 +62,7 @@ const Page = () => {
     form.setFieldValue('phoneNumber', response.data.phoneNumber);
     form.setFieldValue('userName', response.data.userName);
     form.setFieldValue('email', response.data.email);
+    form.setFieldValue('phone_no', response.data.phone_no);
     setLoading(false);
   };
   useEffect(() => {
@@ -136,7 +144,7 @@ const Page = () => {
               required
               {...form.getInputProps('email')}
             />
-            <TextInput
+            <NumberInput
               variant="unstyled"
               classNames={{
                 input: 'bg-quaternary text-white px-2',
@@ -145,10 +153,10 @@ const Page = () => {
                 width: '100%',
               }}
               label="Phone "
-              placeholder="+977987654321"
+              placeholder="987654321"
               withAsterisk
               required
-              {...form.getInputProps('phoneNumber')}
+              {...form.getInputProps('phone_no')}
             />
             <Button loading={loading} type="submit" className="mt-4">
               Save

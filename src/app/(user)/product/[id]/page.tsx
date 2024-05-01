@@ -242,5 +242,4 @@ const page = async ({ params }: { params: { id: string } }) => {
     </>
   );
 };
-
 export default page;

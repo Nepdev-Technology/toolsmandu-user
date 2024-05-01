@@ -26,7 +26,7 @@ const CategoryFilter = () => {
         (category: FeaturedCategory) => ({
           category: category.name,
           products: category.products.map((product: Product) => ({
-            url: `/${product.id}`,
+            url: `product/${product.id}`,
             name: product.name,
           })),
         })

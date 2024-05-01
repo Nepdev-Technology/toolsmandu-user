@@ -18,8 +18,10 @@ export const useGoogleLogin = () => {
   const googleLogin = async (user: User) => {
     if (user) {
       await Cookies.set('currentUser', JSON.stringify(user));
+      return user as User;
+    } else {
+      throw new Error('User not found');
     }
-    return user as User;
   };
 
   return { googleLogin };

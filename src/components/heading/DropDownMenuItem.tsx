@@ -20,7 +20,7 @@ const DropDownMenuItem = ({ category, products }: IDropDownMenuItemProps) => {
 
       <MenuDropdown>
         {products.map((product) => (
-          <Link href={product.url} key={product.name}>
+          <Link href={`product/${product.url}`} key={product.name}>
             <Menu.Item>{product.name}</Menu.Item>
           </Link>
         ))}

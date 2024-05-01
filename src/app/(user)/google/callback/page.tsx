@@ -1,6 +1,7 @@
 'use client';
 import { useGoogleLogin } from '@/src/hooks/auth/userLogin';
 import { Card, CardSection, Divider, Loader, Title } from '@mantine/core';
+import { IconBrandGoogle } from '@tabler/icons-react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import React from 'react';
 
@@ -25,11 +26,17 @@ const Page = () => {
         accessToken: jwtToken,
         refreshToken,
       };
-      googleLogin(user).then((res) => {
-        if (res) {
-          router.push('/');
-        }
-      });
+      googleLogin(user)
+        .then((res) => {
+          if (res) {
+            router.push('/');
+          }
+        })
+        .catch((err) => {
+          router.push('/login');
+        });
+    } else {
+      router.push('/login');
     }
     //@ts-ignore
   };
@@ -41,10 +48,14 @@ const Page = () => {
     <div className="flex justify-center items-center mt-10">
       <Card shadow="lg" px={40} py={30} withBorder>
         <CardSection>
-          <Title order={1}>Signing In</Title>
+          <Title order={1} className="flex items-center gap-2">
+            {<IconBrandGoogle></IconBrandGoogle>}Signing In Please Wait
+          </Title>
         </CardSection>
         <Divider></Divider>
-        <Loader color="blue" type="bars" size="xl" />
+        <div className="flex justify-center mt-10">
+          <Loader color="blue" size="xl" />
+        </div>
       </Card>
     </div>
   );

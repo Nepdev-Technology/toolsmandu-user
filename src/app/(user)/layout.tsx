@@ -18,11 +18,11 @@ import {
   Button,
   Divider,
   Group,
-  Image,
   VisuallyHidden,
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { IconHelp, IconUser } from '@tabler/icons-react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import NextNProgress from 'nextjs-progressbar';
@@ -91,10 +91,9 @@ export default function DashboardLayout({
           <VisuallyHidden>Toggle</VisuallyHidden>
           <Link href={'/'}>
             <Image
-              radius="md"
-              h={30}
-              w="auto"
-              src={'toolsmandu-light.png'}
+              height={30}
+              width={186}
+              src={'/toolsmandu-light.png'}
               alt="Toolsmandu Logo"
             />
           </Link>
@@ -136,7 +135,7 @@ export default function DashboardLayout({
         <NextNProgress height={4} />
         {children}
       </AppShellMain>
-      <div className="sm:mt-[1rem] md:mt-[4rem]">
+      <div className="xs:mt-4  md:mt-[4rem]">
         <Divider></Divider>
         <Footer></Footer>
       </div>

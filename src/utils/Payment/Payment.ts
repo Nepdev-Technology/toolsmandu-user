@@ -60,7 +60,7 @@ export class EsewaPaymentProcessor implements PaymentProcessor {
       product_code: productCode,
       signature,
       signed_field_names: `total_amount,transaction_uuid,product_code`,
-      success_url: `${process.env.NEXT_PUBLIC_SITE_URL}/${productId}/verify/${orderId}`,
+      success_url: `${process.env.NEXT_PUBLIC_SITE_URL}/product/${productId}/verify/${PAYMENT_GATEWAYS.ESEWA}/${orderId}`,
       tax_amount: '0',
       total_amount: amount.toString(),
       transaction_uuid: transactionUuid,
@@ -108,7 +108,7 @@ export class KhaltiPaymentProcessor implements PaymentProcessor {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        return_url: `${process.env.NEXT_PUBLIC_SITE_URL}/${productId}/verify/${PAYMENT_GATEWAYS.KHALTI}/${orderId}`,
+        return_url: `${process.env.NEXT_PUBLIC_SITE_URL}/product/${productId}/verify/${PAYMENT_GATEWAYS.KHALTI}/${orderId}`,
         website_url: `${process.env.NEXT_PUBLIC_SITE_URL}`,
         amount: amount * 100,
         purchase_order_id: orderId,

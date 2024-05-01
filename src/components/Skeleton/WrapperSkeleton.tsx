@@ -6,14 +6,7 @@ interface WrapperSkeletonProps extends SkeletonProps {
 }
 
 const WrapperSkeleton: React.FC<WrapperSkeletonProps> = (props) => {
-  return (
-    <Skeleton
-      styles={{
-        root: { color: '#000000' },
-      }}
-      {...props}
-    />
-  );
+  return <Skeleton {...props} />;
 };
 
 export default WrapperSkeleton;

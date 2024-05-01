@@ -1,4 +1,5 @@
 import { Flex, Text } from '@mantine/core';
+import Image from 'next/image';
 
 interface PaymentCardProps {
   onClick: () => void;
@@ -27,7 +28,7 @@ const PaymentCard: React.FC<PaymentCardProps> = ({
       <div className="flex gap-4 flex-1">
         <Flex direction={'row'} wrap={'nowrap'} align={'center'} gap={8}>
           <div>
-            <img src={src} height={'24px'} width={'50px'} alt={alt} />
+            <Image src={src} height={24} width={50} alt={alt} />
           </div>
           <Text className="text-textPrimary font-display  text-md font-bold ">
             {title}

@@ -7,6 +7,7 @@ import {
   Button,
   Checkbox,
   Divider,
+  NumberInput,
   PasswordInput,
   TextInput,
   Title,
@@ -22,7 +23,7 @@ const Page = () => {
     initialValues: {
       firstName: '',
       lastName: '',
-      phoneNumber: '',
+      phone_no: null,
       userName: '',
       email: '',
       checkbox: false,
@@ -37,8 +38,7 @@ const Page = () => {
       userName: (value) =>
         value.length < 2 ? "Username can't be empty" : null,
       email: (value) => (/^\S+@\S+$/.test(value) ? null : 'Invalid email'),
-      phoneNumber: (value) =>
-        value.length < 2 ? "Phone no can't be empty" : null,
+      phone_no: (value) => (!value ? "Phone no can't be empty" : null),
       checkbox: (value) =>
         !value ? 'You must agree to the terms and conditions' : null,
       password: (value) =>
@@ -97,12 +97,12 @@ const Page = () => {
           required
           {...form.getInputProps('email')}
         />
-        <TextInput
+        <NumberInput
           label="Phone "
-          placeholder="+977987654321"
+          placeholder="987654321"
           withAsterisk
           required
-          {...form.getInputProps('phoneNumber')}
+          {...form.getInputProps('phone_no')}
         />
         <div className="grid grid-cols-2 gap-2">
           <PasswordInput

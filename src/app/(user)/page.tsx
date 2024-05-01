@@ -63,7 +63,7 @@ export default async function Home() {
                     {category.products.map((product) => {
                       return (
                         <div key={product.id}>
-                          <Link href={`${product.id}`}>
+                          <Link href={`product/${product.id}`}>
                             <ProductCard
                               id={product.id}
                               name={product.name}

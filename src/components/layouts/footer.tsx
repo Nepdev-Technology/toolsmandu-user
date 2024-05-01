@@ -17,12 +17,12 @@ const Footer = () => {
                 alt="Toolsmandu Logo"
               />
             </Link>
-            <p className="xs:w-[20em] md:w-[25em]">
+            <div className="xs:w-[20em] md:w-[25em]">
               Toolsmandu.com – Digital Doctor For Your Business. Toolsmandu Was
               Created With One Idea In Mind: Tools That You Need To Grow Your
               Business.
-            </p>
-            <p className="flex flex-col gap-4">
+            </div>
+            <div className="flex flex-col gap-4">
               <div className="flex gap-2">
                 {' '}
                 {<IconLocation></IconLocation>} Bharatpur 07, Chitwan
@@ -35,7 +35,7 @@ const Footer = () => {
                 {' '}
                 {<IconRecordMail></IconRecordMail>} support@toolsmandu.com
               </div>
-            </p>
+            </div>
           </div>
           <div className="grid grid-cols-2  gap-8 sm:gap-6 sm:grid-cols-3">
             <div>

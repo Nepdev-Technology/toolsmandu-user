@@ -207,7 +207,7 @@ const CustomForm = ({
             <div className="flex xs:flex-col  gap-4 ">
               <PaymentCard
                 title="Esewa"
-                src={'esewa_logo.png'}
+                src={'/esewa_logo.png'}
                 alt="Esewa logo"
                 selectedPaymentOption={
                   selectedPaymentOption === PAYMENT_GATEWAYS.ESEWA
@@ -217,7 +217,7 @@ const CustomForm = ({
 
               <PaymentCard
                 title="Khalti"
-                src={'khalti-seeklogo.svg'}
+                src={'/khalti-seeklogo.svg'}
                 alt="Khalti logo"
                 selectedPaymentOption={
                   selectedPaymentOption === PAYMENT_GATEWAYS.KHALTI

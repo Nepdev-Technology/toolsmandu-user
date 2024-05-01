@@ -56,12 +56,12 @@ const page = async ({
   return (
     <>
       {productData && productData.length >= 1 ? (
-        <section className="relative bottom-1 text-textPrimary ">
+        <section className="relative bottom-1 text-textPrimary  ">
           <Box className="flex gap-4 flex-wrap mt-2 xs:px-[10px] sm:px-[2rem] justify-start">
             {productData.map((product) => {
               return (
                 <div key={product.id}>
-                  <Link href={`${product.id}`} className="py-0">
+                  <Link href={`product/${product.id}`} className="py-0">
                     <ProductCardForSearch
                       id={product.id}
                       name={product.name}

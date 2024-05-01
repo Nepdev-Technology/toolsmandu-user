@@ -19,7 +19,7 @@ const Loading = () => {
               my="md"
               labelPosition="center"
               label={
-                <div className=" px-[10rem] py-1 rounded-md">
+                <div className=" md:px-[10rem] py-1 rounded-md">
                   <WrapperSkeleton
                     height={40}
                     width={200}

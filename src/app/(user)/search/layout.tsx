@@ -21,10 +21,10 @@ export default function DashboardLayout({
           opened={opened}
           onClose={toggle}
           title="Filter"
-          styles={{
-            root: {
-              backgroundColor: 'red', // Change drawer background color here
-            },
+          classNames={{
+            body: 'bg-primary h-screen',
+            header: 'bg-primary text-textPrimary pb-2',
+            overlay: 'bg-primary',
           }}
         >
           <CategoryFilter></CategoryFilter>
