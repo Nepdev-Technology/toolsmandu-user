@@ -169,6 +169,7 @@ export default function DashboardLayout({
                       processing
                       label={notifications.length}
                       position="top-end"
+                      disabled={notifications.length < 1}
                     >
                       <span>
                         {' '}
