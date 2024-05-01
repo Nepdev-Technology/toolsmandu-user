@@ -1,6 +1,7 @@
 'use client';
+import SquareLoader from '@/src/components/Loading/SquareLoader';
 import { useGoogleLogin } from '@/src/hooks/auth/userLogin';
-import { Card, CardSection, Divider, Loader, Title } from '@mantine/core';
+import { Card, CardSection, Divider, Title } from '@mantine/core';
 import { IconBrandGoogle } from '@tabler/icons-react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import React from 'react';
@@ -8,7 +9,7 @@ import React from 'react';
 const Page = () => {
   const serachParams = useSearchParams();
   const refreshToken = serachParams.get('refreshToken');
-  const jwtToken = serachParams.get('refreshToken');
+  const jwtToken = serachParams.get('accessToken');
   const { googleLogin } = useGoogleLogin();
   const router = useRouter();
   const setToken = () => {
@@ -26,6 +27,7 @@ const Page = () => {
         accessToken: jwtToken,
         refreshToken,
       };
+
       googleLogin(user)
         .then((res) => {
           if (res) {
@@ -54,7 +56,7 @@ const Page = () => {
         </CardSection>
         <Divider></Divider>
         <div className="flex justify-center mt-10">
-          <Loader color="blue" size="xl" />
+          <SquareLoader></SquareLoader>
         </div>
       </Card>
     </div>

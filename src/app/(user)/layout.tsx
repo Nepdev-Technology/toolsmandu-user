@@ -1,4 +1,7 @@
 'use client';
+import HeaderNotification, {
+  IHeaderNotification,
+} from '@/src/components/Cards/Notificaton';
 import DropDownMenu from '@/src/components/heading/DropDownMenu';
 import { IDropDownMenuItemProps } from '@/src/components/heading/DropDownMenuItem';
 import Sidebar from '@/src/components/heading/Sidebar';
@@ -18,10 +21,14 @@ import {
   Button,
   Divider,
   Group,
+  Indicator,
+  Menu,
+  MenuDropdown,
+  MenuTarget,
   VisuallyHidden,
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import { IconHelp, IconUser } from '@tabler/icons-react';
+import { IconBell, IconHelp, IconUser } from '@tabler/icons-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
@@ -35,12 +42,14 @@ export default function DashboardLayout({
 }) {
   const [opened, { toggle }] = useDisclosure();
   const [data, setData] = React.useState<IDropDownMenuItemProps[]>([]);
+  const [notifications, setNotifications] = React.useState<
+    IHeaderNotification[]
+  >([]);
+
   const getCategories = useCallback(async () => {
     const http = new HttpService();
     try {
-      const response: any = await http
-        .service()
-        .get(apiRoutes.products.featured);
+      const response: any = await http.service().get(apiRoutes.products.navbar);
 
       const dropdownMenuItems: IDropDownMenuItemProps[] = response.data.map(
         (category: FeaturedCategory) => ({
@@ -62,8 +71,37 @@ export default function DashboardLayout({
       }
     }
   }, []);
+
+  const getNotification = useCallback(async () => {
+    const http = new HttpService();
+    try {
+      const response: any = await http
+        .service()
+        .get(apiRoutes.notification.base);
+
+      const notification: IHeaderNotification[] = response.data.result.map(
+        (notification: IHeaderNotification) => ({
+          title: notification.title,
+          message: notification.message,
+          createdAt: notification.createdAt,
+          link: notification.link,
+        })
+      );
+
+      setNotifications(notification);
+    } catch (error) {
+      if (
+        error instanceof TypeError &&
+        error.message.includes('fetch failed')
+      ) {
+        // Redirect to the maintenance page
+        redirect('/maintenance');
+      }
+    }
+  }, []);
   useEffect(() => {
     getCategories();
+    getNotification();
   }, []);
   return (
     <AppShell
@@ -100,19 +138,62 @@ export default function DashboardLayout({
           <SearchBar></SearchBar>
           <Group ml="xl" gap={4} visibleFrom="sm">
             <Link href={'/profile'}>
-              <Button className="bg-quaternary">
+              <Button className="bg-quaternary" size="md">
                 {' '}
                 <IconUser></IconUser>
                 <VisuallyHidden>Profile</VisuallyHidden>
               </Button>
             </Link>
             <Link href={'/tickets'}>
-              <Button className="bg-quaternary">
-                {' '}
-                <IconHelp></IconHelp>
+              <Button className="bg-quaternary" size="md">
+                <div>
+                  {' '}
+                  <IconHelp></IconHelp>
+                </div>
                 <VisuallyHidden>Help</VisuallyHidden>
               </Button>
             </Link>
+            <Menu
+              withArrow
+              classNames={{
+                arrow: 'bg-quaternary border-none ',
+              }}
+            >
+              <MenuTarget>
+                <Button className="bg-quaternary" size="md">
+                  {' '}
+                  <span className="w-[75%]">
+                    {' '}
+                    <Indicator
+                      color="red"
+                      processing
+                      label={notifications.length}
+                      position="top-end"
+                    >
+                      <span>
+                        {' '}
+                        <IconBell></IconBell>
+                      </span>{' '}
+                    </Indicator>
+                    <VisuallyHidden>Notification</VisuallyHidden>
+                  </span>
+                </Button>
+              </MenuTarget>
+              <MenuDropdown
+                style={{
+                  backgroundColor: '#1e3a8a',
+                  border: 'none',
+                  color: 'white',
+                  padding: '0.5rem 0.5rem ',
+                }}
+              >
+                <div>Notifications</div>
+                <Divider></Divider>
+                <HeaderNotification
+                  notifications={notifications}
+                ></HeaderNotification>
+              </MenuDropdown>
+            </Menu>
           </Group>
         </div>
         <DropDownMenu items={data}></DropDownMenu>

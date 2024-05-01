@@ -1,9 +1,9 @@
-import { Loader } from '@mantine/core';
+import SquareLoader from '@/src/components/Loading/SquareLoader';
 
 export const Loading = () => {
   return (
     <div className="flex justify-center">
-      <Loader color="blue" size="xl" />
+      <SquareLoader></SquareLoader>
     </div>
   );
 };

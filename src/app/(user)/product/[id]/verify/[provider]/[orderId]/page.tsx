@@ -30,7 +30,6 @@ const verifyKhaltiPayment = async (id: string, pdix: string) => {
           cache: 'no-store',
         },
       });
-    console.log(response);
     return response;
   } catch (error) {
     console.log(error);
@@ -56,7 +55,7 @@ const page = async ({
   let response;
   if (params.provider === PAYMENT_GATEWAYS.ESEWA) {
     response = await verifyEsewaPayment(params.orderId, data);
-  } else {
+  } else if (params.provider === PAYMENT_GATEWAYS.KHALTI) {
     response = await verifyKhaltiPayment(params.orderId, pidx);
   }
 
@@ -86,7 +85,7 @@ const page = async ({
         </p>
         <p> Have a great day! </p>
         <div className="flex justify-center gap-3 mt-4">
-          <Link href={`/${params.id}`}>
+          <Link href={`/product/${params.id}`}>
             {' '}
             <Button>Go back</Button>
           </Link>

@@ -7,9 +7,13 @@ const apiRoutes = {
     google: '/auth/google/callback',
     googleLogin: '/auth/login/google',
   },
+  notification: {
+    base: '/notification',
+  },
   products: {
     base: '/product',
     featured: '/category/featured/all',
+    navbar: '/category/featured/navbar',
     search: '/product/products/search',
   },
   crousel: {

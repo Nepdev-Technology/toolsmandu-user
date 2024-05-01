@@ -1,4 +1,5 @@
 import ProductCardForSearch from '@/src/components/Cards/ProductCardForSearch';
+import CustomPagination from '@/src/components/mantine/pagination/Pagination';
 import apiRoutes from '@/src/config/api.config';
 import { HttpService } from '@/src/services';
 import { Product } from '@/src/types/interfaces/ProductInterface';
@@ -6,7 +7,12 @@ import { Box } from '@mantine/core';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 
-const getTableData = async (query: string, category: string) => {
+const getTableData = async (
+  query: string,
+  category: string,
+  page: string,
+  limit: string
+) => {
   const http = new HttpService();
 
   try {
@@ -16,9 +22,10 @@ const getTableData = async (query: string, category: string) => {
     };
     const response: any = await http
       .service()
-      .push(`${apiRoutes.products.search}`, payload);
-
-    console.log(response);
+      .push(
+        `${apiRoutes.products.search}?page=${page}&limit=${limit ? limit : 10}`,
+        payload
+      );
 
     const transformedData = response?.data?.map((product: Product) => {
       let lowestMRP = Infinity;
@@ -34,7 +41,6 @@ const getTableData = async (query: string, category: string) => {
       return product;
     });
 
-    console.log(transformedData);
     return transformedData;
   } catch (error) {
     console.log(error);
@@ -47,11 +53,18 @@ const getTableData = async (query: string, category: string) => {
 const page = async ({
   searchParams,
 }: {
-  searchParams: { query: string; category: string };
+  searchParams: {
+    query: string;
+    category: string;
+    page: string;
+    limit: string;
+  };
 }) => {
   const productData: Product[] = await getTableData(
     searchParams.query,
-    searchParams.category
+    searchParams.category,
+    searchParams.page,
+    searchParams.limit
   );
   return (
     <>
@@ -80,6 +93,9 @@ const page = async ({
               );
             })}
           </Box>
+          <div className="mt-4 ml-10">
+            <CustomPagination totalPages={productData.length} />
+          </div>
         </section>
       ) : (
         <section className="relative bottom-1 text-textPrimary">
