@@ -32,9 +32,9 @@ const Page = () => {
         id: item.id,
         key: item.id,
         date: normalizeDate(item.createdAt),
-        amount: `RS ${item.amount}`,
+        amount: `Rs ${item.amount}`,
         paymentMethod: item.paymentMethod,
-        status: item.status,
+        status: item.status.charAt(0).toUpperCase() + item.status.slice(1),
       };
     });
     setTotal(response?.data?.totalCount);

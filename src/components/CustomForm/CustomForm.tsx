@@ -22,6 +22,7 @@ import {
   Button,
   Card,
   CardSection,
+  Checkbox,
   Text,
   TextInput,
 } from '@mantine/core';
@@ -152,7 +153,14 @@ const CustomForm = ({
           {fields.map((field) => {
             return (
               <div key={field.id}>
-                {
+                {field.type === 'checkbox' ? (
+                  <Checkbox
+                    label={field.label}
+                    required={field.required}
+                    placeholder={field.hintText}
+                    {...form.getInputProps(`${field.id}`)}
+                  />
+                ) : (
                   <TextInput
                     placeholder={field.hintText}
                     label={field.label}
@@ -161,7 +169,7 @@ const CustomForm = ({
                     type={field.type}
                     {...form.getInputProps(`${field.id}`)}
                   />
-                }
+                )}
               </div>
             );
           })}

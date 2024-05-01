@@ -1,4 +1,5 @@
 import { Image } from '@mantine/core';
+import { IconLocation, IconPhone, IconRecordMail } from '@tabler/icons-react';
 import Link from 'next/link';
 
 const Footer = () => {
@@ -20,6 +21,20 @@ const Footer = () => {
               Toolsmandu.com – Digital Doctor For Your Business. Toolsmandu Was
               Created With One Idea In Mind: Tools That You Need To Grow Your
               Business.
+            </p>
+            <p className="flex flex-col gap-4">
+              <div className="flex gap-2">
+                {' '}
+                {<IconLocation></IconLocation>} Bharatpur 07, Chitwan
+              </div>
+              <div className="flex gap-2">
+                {' '}
+                {<IconPhone></IconPhone>} +977 9864484274
+              </div>
+              <div className="flex gap-2">
+                {' '}
+                {<IconRecordMail></IconRecordMail>} support@toolsmandu.com
+              </div>
             </p>
           </div>
           <div className="grid grid-cols-2  gap-8 sm:gap-6 sm:grid-cols-3">
@@ -172,16 +187,17 @@ const Footer = () => {
                   </li>
                 </ul>
               </div>
-              <div className=" sm:pt-5">
+              <div className=" sm:pt-5 md:pt-0">
                 <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
                   Trusted By
                 </h2>
-                <div className="flex gap-2">
+                <div className="md:flex   gap-2">
                   <Image
                     src={'trustpilot.png'}
                     radius="md"
                     h={20}
                     w="auto"
+                    className="xs:mb-2"
                     alt={'Trustpilot logo'}
                   />
 

@@ -57,6 +57,7 @@ export enum InputTypes {
   NUMBER = 'number', // eslint-disable-line no-unused-vars
   PASSWORD = 'password', // eslint-disable-line no-unused-vars
   EMAIL = 'email', // eslint-disable-line no-unused-vars
+  CHECKBOX = 'checkbox',
 }
 
 export interface DynamicVariable {
