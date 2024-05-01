@@ -32,7 +32,7 @@ const Page = () => {
         id: item.id,
         key: item.id,
         date: normalizeDate(item.createdAt),
-        amount: item.amount,
+        amount: `RS ${item.amount}`,
         paymentMethod: item.paymentMethod,
         status: item.status,
       };
