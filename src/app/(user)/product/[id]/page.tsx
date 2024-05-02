@@ -39,6 +39,9 @@ const getTableData = async (id: string) => {
           cache: 'no-store',
         },
       });
+    if (response.status == 404 || response.data) {
+      redirect('/404');
+    }
     const data = response.data;
     return data;
   } catch (error) {
@@ -56,6 +59,12 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const product: Product = await getTableData(params.id);
 
+  if (!product) {
+    redirect('/404');
+    return {
+      title: '404',
+    };
+  }
   const {
     id,
     name,

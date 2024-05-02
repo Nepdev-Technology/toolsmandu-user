@@ -17,9 +17,13 @@ const getTableData = async (id: string) => {
           cache: 'no-store',
         },
       });
+    if (response.status === 404) {
+      redirect('/404');
+    }
     const data = response.data;
     return data;
   } catch (error) {
+    console.log(error);
     if (error instanceof TypeError && error.message.includes('fetch failed')) {
       // Redirect to the maintenance page
       redirect('/maintainance');
@@ -33,7 +37,11 @@ export async function generateMetadata({
   params: { id: string };
 }): Promise<Metadata> {
   const blogData: Blog = await getTableData(params.id);
-
+  if (blogData && blogData.id) {
+    return {
+      title: '404',
+    };
+  }
   const { id, title, image, metaTitle, metaDescription, metaKeywords } =
     blogData;
 

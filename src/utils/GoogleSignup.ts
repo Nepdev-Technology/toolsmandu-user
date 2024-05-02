@@ -5,7 +5,7 @@ import { redirect } from 'next/navigation';
  */
 
 export function oauthSignIn() {
-  redirect('http://localhost:8000/google/callback');
+  redirect(`http://localhost:8000/google/callback`);
   // // Google's OAuth 2.0 endpoint for requesting an access token
   // var oauth2Endpoint = 'https://accounts.google.com/o/oauth2/v2/auth';
 
