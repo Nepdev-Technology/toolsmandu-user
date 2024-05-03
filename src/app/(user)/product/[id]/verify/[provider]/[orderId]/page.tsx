@@ -35,6 +35,34 @@ const verifyKhaltiPayment = async (id: string, pdix: string) => {
     console.log(error);
   }
 };
+const Canceled = (props: { id: string }) => {
+  return (
+    <div className="flex justify-center items-center mt-10">
+      <Card shadow="lg" px={40} py={30} withBorder>
+        <CardSection>
+          <Title order={1}>Payment Status</Title>
+        </CardSection>
+        <Divider></Divider>
+        <CardSection>
+          <div className="flex flex-col items-center justify-center">
+            <IconAlertCircle size={200} color="red" />
+            <Title order={2}>Payment Canceled </Title>
+          </div>
+        </CardSection>
+        <p className="text-gray-600 my-2">
+          Thank you for completing your secure online payment.
+        </p>
+        <p> Have a great day! </p>
+        <div className="flex justify-center gap-3 mt-4">
+          <Link href={`/product/${props.id}`}>
+            {' '}
+            <Button>Go back</Button>
+          </Link>
+        </div>
+      </Card>
+    </div>
+  );
+};
 const page = async ({
   params,
   searchParams,
@@ -54,8 +82,14 @@ const page = async ({
     searchParams;
   let response;
   if (params.provider === PAYMENT_GATEWAYS.ESEWA) {
+    if (!data) {
+      return <Canceled id={params.id}></Canceled>;
+    }
     response = await verifyEsewaPayment(params.orderId, data);
   } else if (params.provider === PAYMENT_GATEWAYS.KHALTI) {
+    if (!pidx) {
+      return <Canceled id={params.id}></Canceled>;
+    }
     response = await verifyKhaltiPayment(params.orderId, pidx);
   }
 

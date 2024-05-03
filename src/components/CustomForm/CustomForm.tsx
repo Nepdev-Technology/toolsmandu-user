@@ -27,8 +27,7 @@ import {
   TextInput,
 } from '@mantine/core';
 import { useForm } from '@mantine/form';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { useState } from 'react';
 import PaymentCard from '../Cards/PaymentCard';
 
@@ -56,6 +55,7 @@ const CustomForm = ({
 
   const [coupon, setCoupon] = useState<string>('');
   const [validCoupon, setValidCoupon] = useState<DiscountInfo>();
+  const router = useRouter();
 
   const result: any = {};
   for (const item of fields) {
@@ -203,40 +203,46 @@ const CustomForm = ({
             </Badge>
             <Text fw={500}>Select a Payment Method</Text>
           </div>
-          {isLoggedIn ? (
-            <div className="flex xs:flex-col  gap-4 ">
-              <PaymentCard
-                title="Esewa"
-                src={'/esewa_logo.png'}
-                alt="Esewa logo"
-                selectedPaymentOption={
-                  selectedPaymentOption === PAYMENT_GATEWAYS.ESEWA
-                }
-                onClick={() => setSelectedPaymentOption(PAYMENT_GATEWAYS.ESEWA)}
-              />
 
-              <PaymentCard
-                title="Khalti"
-                src={'/khalti-seeklogo.svg'}
-                alt="Khalti logo"
-                selectedPaymentOption={
-                  selectedPaymentOption === PAYMENT_GATEWAYS.KHALTI
+          <div className="flex xs:flex-col  gap-4 ">
+            <PaymentCard
+              title="Esewa"
+              src={'/esewa_logo.png'}
+              alt="Esewa logo"
+              amount={selectedOption.sellingPrice}
+              selectedPaymentOption={
+                selectedPaymentOption === PAYMENT_GATEWAYS.ESEWA
+              }
+              onClick={() => setSelectedPaymentOption(PAYMENT_GATEWAYS.ESEWA)}
+            />
+
+            <PaymentCard
+              title="Khalti"
+              src={'/khalti.png'}
+              alt="Khalti logo"
+              amount={selectedOption.sellingPrice}
+              selectedPaymentOption={
+                selectedPaymentOption === PAYMENT_GATEWAYS.KHALTI
+              }
+              onClick={() => setSelectedPaymentOption(PAYMENT_GATEWAYS.KHALTI)}
+            />
+            <Button
+              type={isLoggedIn ? 'submit' : 'button'}
+              onClick={() => {
+                if (!isLoggedIn) {
+                  router.push(`/login?next=${pathName}`);
                 }
-                onClick={() =>
-                  setSelectedPaymentOption(PAYMENT_GATEWAYS.KHALTI)
-                }
-              />
-              <Button type="submit" className="bg-green-500">
-                Pay
-              </Button>
-            </div>
-          ) : (
-            <div>
-              <Link href={`/login?next=${pathName}`}>
-                <Button type="button">Login/Register to Proceed</Button>
-              </Link>
-            </div>
-          )}
+              }}
+              className="bg-green-500"
+            >
+              Pay
+            </Button>
+          </div>
+          {/* <div>
+            <Link href={`/login?next=${pathName}`}>
+              <Button type="button">Login/Register to Proceed</Button>
+            </Link>
+          </div> */}
         </CardSection>
       </Card>
     </form>

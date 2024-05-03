@@ -37,9 +37,9 @@ export async function generateMetadata({
   params: { id: string };
 }): Promise<Metadata> {
   const blogData: Blog = await getTableData(params.id);
-  if (blogData && blogData.id) {
+  if (!blogData) {
     return {
-      title: '404',
+      title: '404 - No blog found',
     };
   }
   const { id, title, image, metaTitle, metaDescription, metaKeywords } =
@@ -59,6 +59,9 @@ export async function generateMetadata({
 }
 const page = async ({ params }: { params: { id: string } }) => {
   const blogData: Blog = await getTableData(params.id);
+  if (!blogData) {
+    redirect('/404');
+  }
   return (
     <>
       {blogData && (

@@ -144,15 +144,6 @@ export default function DashboardLayout({
                 <VisuallyHidden>Profile</VisuallyHidden>
               </Button>
             </Link>
-            <Link href={'/tickets'}>
-              <Button className="bg-quaternary" size="md">
-                <div>
-                  {' '}
-                  <IconHelp></IconHelp>
-                </div>
-                <VisuallyHidden>Help</VisuallyHidden>
-              </Button>
-            </Link>
             <Menu
               withArrow
               classNames={{
@@ -195,6 +186,15 @@ export default function DashboardLayout({
                 ></HeaderNotification>
               </MenuDropdown>
             </Menu>
+            <Link href={'/tickets'}>
+              <Button className="bg-quaternary" size="md">
+                <div>
+                  {' '}
+                  <IconHelp></IconHelp>
+                </div>
+                <VisuallyHidden>Help</VisuallyHidden>
+              </Button>
+            </Link>
           </Group>
         </div>
         <DropDownMenu items={data}></DropDownMenu>

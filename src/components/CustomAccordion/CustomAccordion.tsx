@@ -6,7 +6,13 @@ import {
   AccordionPanel,
 } from '@mantine/core';
 
-export default function CustomAccordion({ faqs }: { faqs: FAQItem[] }) {
+export default function CustomAccordion({
+  faqs,
+  title,
+}: {
+  faqs: FAQItem[];
+  title: string;
+}) {
   const items = faqs.map((item) => (
     <AccordionItem key={item.id} value={item.title}>
       <AccordionControl
@@ -24,7 +30,7 @@ export default function CustomAccordion({ faqs }: { faqs: FAQItem[] }) {
   return (
     <>
       <h1 className="sm:text-1xl xs:text-lg  md:text-1xl  font-bold">
-        Frequently asked questions
+        Frequently asked questions for {title}
         <Accordion
           classNames={{
             content: 'bg-tertiary',

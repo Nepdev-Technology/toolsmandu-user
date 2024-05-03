@@ -29,6 +29,7 @@ const config: Config = {
         senary: '#012651',
         textPrimary: '#ffffff',
         textSecondary: '#000000',
+        textTertiary: '#edf2f7',
         textSP: '#ffbe0b',
         textMRP: '#ffbe0b',
         iconPrimary: '#000000',

@@ -1,5 +1,5 @@
 import { Container, Divider, Group } from '@mantine/core';
-import { IconClock24, IconClockBolt, IconWorldStar } from '@tabler/icons-react';
+import { IconBrandWhatsapp, IconLock, IconMailFast } from '@tabler/icons-react';
 
 const TrustHeader = () => {
   return (
@@ -12,19 +12,18 @@ const TrustHeader = () => {
       <Group>
         <span className="flex justify-center gap-1 items-center text-sm">
           {' '}
-          <IconWorldStar size={15}></IconWorldStar>
-          100% SAFETY GUARANTEE
+          <IconLock size={15}></IconLock>
+          100% SAFE & SECURED
         </span>
         <Divider orientation="vertical" />
         <span className="flex justify-center gap-1 items-center text-sm">
           {' '}
-          <IconClock24 size={15}></IconClock24>
+          <IconBrandWhatsapp size={15}></IconBrandWhatsapp>
           24/7 LIVE SUPPORT
         </span>
         <Divider orientation="vertical" />
         <span className="flex justify-center gap-1 items-center text-sm">
-          {' '}
-          <IconClockBolt size={15}></IconClockBolt>
+          <IconMailFast size={20}></IconMailFast>
           INSTANT DELIVERY
         </span>
       </Group>

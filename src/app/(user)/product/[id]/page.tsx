@@ -39,7 +39,7 @@ const getTableData = async (id: string) => {
           cache: 'no-store',
         },
       });
-    if (response.status == 404 || response.data) {
+    if (response.status == 404) {
       redirect('/404');
     }
     const data = response.data;
@@ -58,11 +58,9 @@ export async function generateMetadata({
   params: { id: string };
 }): Promise<Metadata> {
   const product: Product = await getTableData(params.id);
-
   if (!product) {
-    redirect('/404');
     return {
-      title: '404',
+      title: '404- Not found',
     };
   }
   const {
@@ -89,6 +87,9 @@ export async function generateMetadata({
 }
 const page = async ({ params }: { params: { id: string } }) => {
   const productData: Product = await getTableData(params.id);
+  if (!productData) {
+    redirect('/404');
+  }
   return (
     <>
       {productData && (
@@ -108,7 +109,7 @@ const page = async ({ params }: { params: { id: string } }) => {
             <div className="grid xs:grid-cols-1  md:grid-cols-3 sm:grid-rows-[repeat(3,auto)] md:gap-[1rem]  md:pt-[20vh] sm:pt-[10vh] xs:pt-[7vh] gap-y-4 ">
               <div className="xs:col-span-full  sm:col-span-2  ">
                 <Grid align={'center'} justify="start">
-                  <GridCol span={3}>
+                  <GridCol span={2.9}>
                     <AspectRatio
                       ratio={240 / 347}
                       maw={{ md: 250, sm: 200, xs: 180 }}
@@ -154,28 +155,48 @@ const page = async ({ params }: { params: { id: string } }) => {
                         <Tooltip label="Key">
                           <span className="flex items-center  gap-2 ">
                             <IconLock className="text-iconTertiary "></IconLock>
-                            <span className="text-textPrimary">Key</span>
+                            <Badge
+                              variant="gradient"
+                              gradient={{
+                                from: 'blue',
+                                to: 'cyan',
+                                deg: 90,
+                              }}
+                            >
+                              {productData.type}
+                            </Badge>
                           </span>
                         </Tooltip>
                         <Divider orientation="vertical" />
                         <Tooltip label="Region">
                           <span className="flex items-center gap-2 ">
                             <IconWorld className="text-iconTertiary "></IconWorld>
-                            <span className="text-textPrimary">
-                              {productData.region
-                                ? productData.region.toUpperCase()
-                                : 'GLOBAL'}
-                            </span>
+                            <Badge
+                              variant="gradient"
+                              gradient={{
+                                from: 'blue',
+                                to: 'cyan',
+                                deg: 90,
+                              }}
+                            >
+                              {productData.region}
+                            </Badge>
                           </span>
                         </Tooltip>
                         <Tooltip label="Delivery time">
                           <span className="flex items-center gap-2 ">
                             <IconClock className="text-iconTertiary "></IconClock>
-                            <span className="text-textPrimary">
-                              {productData.deliveryTime
-                                ? productData?.deliveryTime?.toUpperCase()
-                                : '1H'}
-                            </span>
+
+                            <Badge
+                              variant="gradient"
+                              gradient={{
+                                from: 'blue',
+                                to: 'cyan',
+                                deg: 90,
+                              }}
+                            >
+                              {productData.deliveryTime}
+                            </Badge>
                           </span>
                         </Tooltip>
                       </Group>
@@ -227,6 +248,7 @@ const page = async ({ params }: { params: { id: string } }) => {
                   <TabsPanel value="faq">
                     <div className="mt-8">
                       <CustomAccordion
+                        title={productData.name}
                         faqs={productData.faqs}
                       ></CustomAccordion>
                     </div>{' '}

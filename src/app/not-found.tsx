@@ -1,6 +1,10 @@
 import { Button } from '@mantine/core';
+import { Metadata } from 'next';
 import Link from 'next/link';
-
+export const metadata: Metadata = {
+  title: '404 - Not found',
+  description: `The page you are looking for doesn't exists.`,
+};
 export default function NotFound() {
   return (
     <div>

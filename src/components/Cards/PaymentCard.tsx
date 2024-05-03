@@ -7,6 +7,7 @@ interface PaymentCardProps {
   src: string;
   alt: string;
   title: string;
+  amount: string | number;
 }
 
 const PaymentCard: React.FC<PaymentCardProps> = ({
@@ -15,6 +16,7 @@ const PaymentCard: React.FC<PaymentCardProps> = ({
   src,
   alt,
   title,
+  amount,
 }) => {
   return (
     <div
@@ -25,7 +27,7 @@ const PaymentCard: React.FC<PaymentCardProps> = ({
       }`}
       onClick={onClick}
     >
-      <div className="flex gap-4 flex-1">
+      <div className="flex justify-between gap-4 flex-1">
         <Flex direction={'row'} wrap={'nowrap'} align={'center'} gap={8}>
           <div>
             <Image src={src} height={24} width={50} alt={alt} />
@@ -34,6 +36,9 @@ const PaymentCard: React.FC<PaymentCardProps> = ({
             {title}
           </Text>
         </Flex>
+        <Text className="text-textSP font-display   text-lg font-bold ">
+          Rs&nbsp;{amount}
+        </Text>
       </div>
     </div>
   );

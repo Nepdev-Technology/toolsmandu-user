@@ -54,7 +54,7 @@ export class EsewaPaymentProcessor implements PaymentProcessor {
 
     const payload = {
       amount: amount.toString(), // Convert amount to string
-      failure_url: `${process.env.NEXT_PUBLIC_SITE_URL}/${productId}/verify/${PAYMENT_GATEWAYS.ESEWA}/${orderId}`,
+      failure_url: `${process.env.NEXT_PUBLIC_SITE_URL}/product/${productId}/verify/${PAYMENT_GATEWAYS.ESEWA}/${orderId}`,
       product_delivery_charge: '0',
       product_service_charge: '0',
       product_code: productCode,

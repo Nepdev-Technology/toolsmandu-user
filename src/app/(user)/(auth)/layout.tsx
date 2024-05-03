@@ -1,6 +1,5 @@
 'use client';
-import { Button } from '@mantine/core';
-import { IconBrandGoogle } from '@tabler/icons-react';
+import { Button, Image } from '@mantine/core';
 import Link from 'next/link';
 import React from 'react';
 
@@ -17,7 +16,16 @@ export default function DashboardLayout({
 
           <Link href={`${process.env.NEXT_PUBLIC_BASE_URL}/auth/login/google`}>
             <Button className=" w-full mt-2 ">
-              <IconBrandGoogle></IconBrandGoogle>
+              {/* <IconBrandGoogle></IconBrandGoogle>
+               */}
+              <Image
+                src={'google.png'}
+                radius="md"
+                h={20}
+                w="auto"
+                alt={'Esewa logo'}
+              />
+              <span className="ml-4"> Continue With Google</span>{' '}
             </Button>
           </Link>
         </div>

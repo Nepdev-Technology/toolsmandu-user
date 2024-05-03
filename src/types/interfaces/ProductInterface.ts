@@ -11,6 +11,7 @@ interface Category {
 export interface Product {
   id: number;
   region: string;
+  type: string;
   deliveryTime: string;
   createdAt: string;
   updatedAt: string | null;
