@@ -9,11 +9,17 @@ export class AuthService {
       email: username,
       password,
     });
+
     if (!response.success) {
-      throw new Error(`Login:${response.message}`);
+      return {
+        status: response.status,
+        message: response.message,
+        data: response.data,
+      };
     }
-    const jwtToken = response.data.accessToken;
-    const refreshToken = response.data.refreshToken;
+
+    const jwtToken = response.data?.accessToken;
+    const refreshToken = response.data?.refreshToken;
 
     // eslint-disable-next-line
     const [header, payload, signature] = jwtToken.split('.');
@@ -21,13 +27,13 @@ export class AuthService {
     const id = decodedPayload.sub;
     const roles = decodedPayload.roles;
     const expiredAt = decodedPayload.exp;
-
     return {
       id,
       roles,
       expiredAt,
       accessToken: jwtToken,
       refreshToken,
+      status: response.status,
     };
   };
 

@@ -1,39 +1,32 @@
 'use client';
-import { useLogin } from '@/src/hooks/auth/userLogin';
-import { MESSAGE } from '@/src/types/enums/notification.enums';
-import {
-  showErrorNotification,
-  showSuccessNotification,
-} from '@/src/utils/notificationUtils';
-import {
-  Button,
-  Divider,
-  PasswordInput,
-  TextInput,
-  Title,
-} from '@mantine/core';
+import { Button, Divider, PasswordInput, Title } from '@mantine/core';
 import { useForm } from '@mantine/form';
+import { IconLock } from '@tabler/icons-react';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useState } from 'react';
 
 interface FormValues {
-  name: string;
+  email: string;
+  code: string;
   password: string;
+  confirmPassword: string;
 }
 export default function Login() {
   const form = useForm({
     initialValues: {
-      name: '',
+      email: '',
+      code: '',
       password: '',
+      confirmPassword: '',
     },
     validate: {
-      name: (value) => (value.length < 2 ? "Username can't be empty" : null),
       password: (value) =>
         value.length < 2 ? "Password can't be empty" : null,
+      confirmPassword: (value, values) =>
+        value !== values.password ? 'Passwords did not match' : null,
     },
   });
-  const { login } = useLogin();
   const router = useRouter();
   const searchParams = useSearchParams();
   const next = searchParams.get('next');
@@ -41,50 +34,34 @@ export default function Login() {
 
   const onSubmit = (values: FormValues) => {
     setLoading(true);
-    login(values.name, values.password)
-      .then((user) => {
-        if (user.status === 401) {
-          showErrorNotification(
-            `${MESSAGE.LOGIN_FAILED}${'Verify email first'}`
-          );
-          router.push(`/verify?email=${form.values.name}&login=${true}`);
-        } else {
-          showSuccessNotification(MESSAGE.LOGIN_SUCCESS);
-          router.push(next ? next : '/');
-        }
-      })
-      .catch((e) => {
-        showErrorNotification(
-          `${MESSAGE.LOGIN_FAILED}${
-            e.message || ' An unexpected error occurred.'
-          }`
-        );
-      });
+
     setLoading(false);
   };
 
   return (
     <>
       <Title order={2} className="text-textPrimary">
-        Login
+        Forget Password
       </Title>
       <form onSubmit={form.onSubmit(onSubmit)}>
-        <TextInput
-          label="Username or Email"
-          placeholder="johndoe@gmail.com"
-          withAsterisk
-          required
-          {...form.getInputProps('name')}
-        />
         <PasswordInput
+          leftSection={<IconLock></IconLock>}
           label="Password"
-          placeholder="Password"
+          placeholder="new password"
           withAsterisk
           required
           {...form.getInputProps('password')}
         />
+        <PasswordInput
+          leftSection={<IconLock></IconLock>}
+          label="Confirm Password"
+          placeholder="confirm password"
+          withAsterisk
+          required
+          {...form.getInputProps('confirmPassword')}
+        />
         <Button type="submit" className=" w-80 mt-8 " loading={loading}>
-          Login
+          Reset
         </Button>
       </form>
       <div className="flex justify-end items-center">

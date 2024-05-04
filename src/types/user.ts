@@ -4,4 +4,5 @@ export type User = {
   refreshToken: string;
   id: string;
   roles: string[];
+  status: number;
 };

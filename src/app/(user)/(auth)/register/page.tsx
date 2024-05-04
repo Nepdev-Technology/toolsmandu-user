@@ -15,10 +15,12 @@ import {
 import { useForm } from '@mantine/form';
 import { IconLock } from '@tabler/icons-react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
 const Page = () => {
   const [loading, setLoading] = useState(false);
+  const router = useRouter();
   const form = useForm({
     initialValues: {
       firstName: '',
@@ -56,6 +58,9 @@ const Page = () => {
       .service()
       .push(`${apiRoutes.auth.register}`, others);
 
+    if (response.success) {
+      router.push(`/verify?email=${form.values.email}&login=${true}`);
+    }
     showNotificationOnRes(response);
     setLoading(false);
   };
@@ -108,7 +113,7 @@ const Page = () => {
           <PasswordInput
             leftSection={<IconLock></IconLock>}
             label="Password"
-            placeholder="new confirm password"
+            placeholder="new password"
             withAsterisk
             required
             {...form.getInputProps('password')}
@@ -136,7 +141,7 @@ const Page = () => {
           {...form.getInputProps('checkbox', { type: 'checkbox' })}
           required
         />
-        <Button type="submit" className=" w-full mt-4 ">
+        <Button type="submit" className=" w-full mt-4 " loading={loading}>
           Register
         </Button>
       </form>
