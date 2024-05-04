@@ -5,4 +5,5 @@ export type User = {
   id: string;
   roles: string[];
   status: number;
+  message: string;
 };

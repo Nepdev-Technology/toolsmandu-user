@@ -48,9 +48,11 @@ export default function Login() {
             `${MESSAGE.LOGIN_FAILED}${'Verify email first'}`
           );
           router.push(`/verify?email=${form.values.name}&login=${true}`);
-        } else {
+        } else if (user.status === 200) {
           showSuccessNotification(MESSAGE.LOGIN_SUCCESS);
           router.push(next ? next : '/');
+        } else {
+          showErrorNotification(user.message);
         }
       })
       .catch((e) => {
@@ -83,7 +85,15 @@ export default function Login() {
           required
           {...form.getInputProps('password')}
         />
-        <Button type="submit" className=" w-80 mt-8 " loading={loading}>
+        <div className="flex justify-end">
+          {' '}
+          <Link href="/forgetPassword">
+            {' '}
+            <Button variant="transparent">Forgot your password?</Button>
+          </Link>
+        </div>
+
+        <Button type="submit" className=" w-80  " loading={loading}>
           Login
         </Button>
       </form>

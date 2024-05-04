@@ -1,74 +1,65 @@
 'use client';
-import { Button, Divider, PasswordInput, Title } from '@mantine/core';
+import apiRoutes from '@/src/config/api.config';
+import { HttpService } from '@/src/services';
+import { showNotificationOnRes } from '@/src/utils/notificationUtils';
+import { Button, Divider, TextInput, Title } from '@mantine/core';
 import { useForm } from '@mantine/form';
-import { IconLock } from '@tabler/icons-react';
 import Link from 'next/link';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
-interface FormValues {
+interface LoginFormValues {
   email: string;
-  code: string;
-  password: string;
-  confirmPassword: string;
 }
 export default function Login() {
+  const router = useRouter();
   const form = useForm({
     initialValues: {
       email: '',
-      code: '',
-      password: '',
-      confirmPassword: '',
     },
     validate: {
-      password: (value) =>
-        value.length < 2 ? "Password can't be empty" : null,
-      confirmPassword: (value, values) =>
-        value !== values.password ? 'Passwords did not match' : null,
+      email: (value) => (/^\S+@\S+$/.test(value) ? null : 'Invalid email'),
     },
   });
-  const router = useRouter();
-  const searchParams = useSearchParams();
-  const next = searchParams.get('next');
   const [loading, setLoading] = useState(false);
 
-  const onSubmit = (values: FormValues) => {
+  const onSubmit = async (values: LoginFormValues) => {
     setLoading(true);
-
+    const http = new HttpService();
+    const response: any = await http.get(
+      `${apiRoutes.auth.resetPasswordOtp}?email=${values.email}`
+    );
+    showNotificationOnRes(response);
+    if (response.success) {
+      router.push(`/forgetPassword/verify?email=${values.email}`);
+    }
     setLoading(false);
   };
 
   return (
     <>
       <Title order={2} className="text-textPrimary">
-        Forget Password
+        Forgot your password?
       </Title>
       <form onSubmit={form.onSubmit(onSubmit)}>
-        <PasswordInput
-          leftSection={<IconLock></IconLock>}
-          label="Password"
-          placeholder="new password"
+        <TextInput
+          label="Email"
+          placeholder="johndoe@gmail.com"
+          type="email"
           withAsterisk
           required
-          {...form.getInputProps('password')}
+          {...form.getInputProps('email')}
         />
-        <PasswordInput
-          leftSection={<IconLock></IconLock>}
-          label="Confirm Password"
-          placeholder="confirm password"
-          withAsterisk
-          required
-          {...form.getInputProps('confirmPassword')}
-        />
+
         <Button type="submit" className=" w-80 mt-8 " loading={loading}>
-          Reset
+          Send OTP
         </Button>
       </form>
       <div className="flex justify-end items-center">
-        <p> Don&apos;t have an account?</p>{' '}
-        <Link href="/register">
+        <p> Remember your password?</p>{' '}
+        <Link href="/login">
           {' '}
-          <Button variant="transparent">Sign Up</Button>
+          <Button variant="transparent">Login</Button>
         </Link>
       </div>
       <Divider label="OR" labelPosition="center"></Divider>

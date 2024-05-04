@@ -4,21 +4,38 @@ import { User } from '../../types/user';
 
 export const useLogin = () => {
   const login = async (username: string, password: string) => {
-    const { status, ...user } = await authService.login(username, password);
-    if (status === 401) {
+    try {
+      const { status, message, ...user } = await authService.login(
+        username,
+        password
+      );
+
+      if (status === 401 || status === 400) {
+        return {
+          status,
+          message,
+        };
+      } else if (status === 200 && user) {
+        Cookies.set('currentUser', JSON.stringify(user));
+        return { status, message, ...user };
+      } else {
+        // Handle other status codes or unexpected responses
+        return {
+          status: 500,
+          message: 'Internal server error',
+        };
+      }
+    } catch (error) {
+      // Handle any errors that occur during the login process
       return {
-        status,
-        message: user.message,
+        status: 500,
+        message: 'Internal server error',
       };
     }
-    if (user) {
-      Cookies.set('currentUser', JSON.stringify(user));
-    }
-    return user as User;
   };
+
   return { login };
 };
-
 export const useGoogleLogin = () => {
   const googleLogin = async (user: User) => {
     if (user) {

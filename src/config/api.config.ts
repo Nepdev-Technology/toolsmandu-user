@@ -8,6 +8,7 @@ const apiRoutes = {
     googleLogin: '/auth/login/google',
     activateAccount: '/otp/activateAccount',
     resendOTP: '/otp/resendActivateAccount',
+    resetPasswordOtp: '/otp',
   },
   notification: {
     base: '/notification',

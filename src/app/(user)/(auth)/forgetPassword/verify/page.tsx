@@ -2,8 +2,15 @@
 import apiRoutes from '@/src/config/api.config';
 import { HttpService } from '@/src/services';
 import { showNotificationOnRes } from '@/src/utils/notificationUtils';
-import { Button, Divider, TextInput, Title } from '@mantine/core';
+import {
+  Button,
+  Divider,
+  PasswordInput,
+  TextInput,
+  Title,
+} from '@mantine/core';
 import { useForm } from '@mantine/form';
+import { IconLock } from '@tabler/icons-react';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
@@ -11,6 +18,8 @@ import { useEffect, useState } from 'react';
 interface FormValues {
   email: string;
   otp: string;
+  password: string;
+  confirmPassword: string;
 }
 
 export default function Login() {
@@ -19,10 +28,16 @@ export default function Login() {
     initialValues: {
       email: '',
       otp: '',
+      password: '',
+      confirmPassword: '',
     },
     validate: {
-      email: (value) => (value.length < 2 ? "Username can't be empty" : null),
+      email: (value) => (value.length < 2 ? "Email can't be empty" : null),
       otp: (value) => (value.length < 2 ? "Otp can't be empty" : null),
+      password: (value) =>
+        value.length < 2 ? "Password can't be empty" : null,
+      confirmPassword: (value, values) =>
+        value !== values.password ? 'Passwords did not match' : null,
     },
   });
   const searchParams = useSearchParams();
@@ -54,9 +69,10 @@ export default function Login() {
     setLoading(true);
     const response: any = await http
       .service()
-      .push(apiRoutes.auth.activateAccount, {
+      .push(apiRoutes.auth.resetPasswordOtp, {
         email: values.email,
         otp: values.otp,
+        password: values.password,
       });
     showNotificationOnRes(response);
     if (response.success) {
@@ -68,9 +84,10 @@ export default function Login() {
   const sendOtp = async () => {
     // Implement your OTP sending logic here
     setLoading(true);
-    const response: any = await http.service().push(apiRoutes.auth.resendOTP, {
-      email: form.values.email,
-    });
+    const response: any = await http.get(
+      `${apiRoutes.auth.resetPasswordOtp}?email=${form.values.email}`
+    );
+    showNotificationOnRes(response);
     if (response.success) {
       setLoading(false);
       startTimer();
@@ -96,7 +113,7 @@ export default function Login() {
   return (
     <>
       <Title order={2} className="text-textPrimary">
-        Verify
+        Reset Password
       </Title>
       <form onSubmit={form.onSubmit(onSubmit)}>
         <TextInput
@@ -104,8 +121,25 @@ export default function Login() {
           placeholder="One time password"
           withAsterisk
           required
+          type="text"
           {...form.getInputProps('otp')}
-        />{' '}
+        />
+        <PasswordInput
+          leftSection={<IconLock></IconLock>}
+          label="Password"
+          placeholder="new password"
+          withAsterisk
+          required
+          {...form.getInputProps('password')}
+        />
+        <PasswordInput
+          leftSection={<IconLock></IconLock>}
+          label="Confirm Password"
+          placeholder="confirm password"
+          withAsterisk
+          required
+          {...form.getInputProps('confirmPassword')}
+        />
         <div className="flex justify-end items-center">
           {resendTimer === 0 ? (
             <Button variant="transparent" onClick={sendOtp}>
@@ -120,7 +154,7 @@ export default function Login() {
         </Button>
       </form>
       <div className="flex justify-end items-center">
-        <p> Already verified?</p>{' '}
+        <p>Remember your password?</p>{' '}
         <Link href="/login">
           {' '}
           <Button variant="transparent">Login</Button>
