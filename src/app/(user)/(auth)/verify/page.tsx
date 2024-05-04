@@ -87,11 +87,12 @@ export default function Login() {
 
   useEffect(() => {
     if (login === 'true' && resendTimer === 0) {
+      //login = true is true in login page only where auto send is required
       sendOtp();
-    } else if (login === 'true' && resendTimer !== 0) {
-      startTimer(); // Start the timer if login is true but the timer is still active
+    } else {
+      startTimer();
     }
-  }, [login, resendTimer]);
+  }, [login]);
 
   return (
     <>
