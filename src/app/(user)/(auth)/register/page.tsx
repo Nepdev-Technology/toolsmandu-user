@@ -59,7 +59,7 @@ const Page = () => {
       .push(`${apiRoutes.auth.register}`, others);
 
     if (response.success) {
-      router.push(`/verify?email=${form.values.email}&login=${true}`);
+      router.push(`/verify?email=${form.values.email}`);
     }
     showNotificationOnRes(response);
     setLoading(false);

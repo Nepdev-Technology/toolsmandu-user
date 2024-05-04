@@ -6,7 +6,7 @@ const Footer = () => {
   return (
     <footer className="bg-tertiary text-textTertiary text-sm">
       <div className="mx-auto  w-full max-w-screen-xl  py-6 px-3 xs:px-[1rem] sm:px-[2rem] md:px-[5rem] lg:px-[10rem]">
-        <div className="md:flex md:justify-between">
+        <div className="md:flex xs:items-center md:justify-between">
           <div className="mb-6  flex gap-2 flex-col">
             <Link href={'/'}>
               <Image
@@ -17,7 +17,7 @@ const Footer = () => {
                 alt="Toolsmandu Logo"
               />
             </Link>
-            <div className="xs:w-[20em] md:w-[25em]">
+            <div className="xs:w-[25em]  md:w-[25em]">
               Toolsmandu.com – Digital Doctor For Your Business. Toolsmandu Was
               Created With One Idea In Mind: Tools That You Need To Grow Your
               Business.
@@ -84,7 +84,7 @@ const Footer = () => {
               </div>
             </div>
           </div>
-          <div className="grid grid-cols-2  gap-8 sm:gap-6 sm:grid-cols-3">
+          <div className="grid  grid-cols-2  gap-8 sm:gap-6 sm:grid-cols-3">
             <div>
               <p className="mb-6 text-xs  font-semibold   uppercase ">
                 Important Information
@@ -106,29 +106,6 @@ const Footer = () => {
                   </Link>
                 </li>
               </ul>{' '}
-              <div className=" sm:pt-8 md:pt-4">
-                <p className="mb-6 text-xs  font-semibold   uppercase ">
-                  Trusted By
-                </p>
-                <div className="md:flex   gap-2">
-                  <Image
-                    src={'trustpilot.png'}
-                    radius="md"
-                    h={20}
-                    w="auto"
-                    className="xs:mb-2"
-                    alt={'Trustpilot logo'}
-                  />
-
-                  <Image
-                    src={'google reviews.png'}
-                    radius="md"
-                    h={20}
-                    w="auto"
-                    alt={'Google reviews logo'}
-                  />
-                </div>
-              </div>
             </div>
 
             <div>
@@ -153,7 +130,7 @@ const Footer = () => {
                 </li>
               </ul>
             </div>
-            <div className="xs:col-span-2 sm:col-span-1 xs:grid xs:grid-cols-2 sm:grid-cols-1">
+            <div className=" xs:grid xs:grid-cols-2 sm:grid-cols-1">
               <div>
                 <p className="mb-6 text-xs  font-semibold   uppercase ">
                   Support Link
@@ -181,6 +158,29 @@ const Footer = () => {
                     </Link>
                   </li>
                 </ul>
+              </div>
+            </div>
+            <div className=" sm:pt-8 md:pt-4">
+              <p className="mb-6 text-xs  font-semibold   uppercase ">
+                Trusted By
+              </p>
+              <div className="md:flex   gap-2">
+                <Image
+                  src={'trustpilot.png'}
+                  radius="md"
+                  h={20}
+                  w="auto"
+                  className="xs:mb-2"
+                  alt={'Trustpilot logo'}
+                />
+
+                <Image
+                  src={'google reviews.png'}
+                  radius="md"
+                  h={20}
+                  w="auto"
+                  alt={'Google reviews logo'}
+                />
               </div>
             </div>
           </div>

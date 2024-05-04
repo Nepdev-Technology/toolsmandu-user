@@ -49,7 +49,7 @@ export default function Login() {
   const http = new HttpService();
 
   const startTimer = () => {
-    setResendTimer(5); // Set timer to 60 seconds
+    setResendTimer(60); // Set timer to 60 seconds
   };
 
   useEffect(() => {

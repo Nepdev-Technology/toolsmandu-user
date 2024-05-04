@@ -32,7 +32,7 @@ const verifyKhaltiPayment = async (id: string, pdix: string) => {
       });
     return response;
   } catch (error) {
-    console.log(error);
+    console.log(error, 'this is error');
   }
 };
 const Canceled = (props: { id: string }) => {
