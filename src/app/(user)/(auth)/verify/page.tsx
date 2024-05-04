@@ -2,7 +2,7 @@
 import apiRoutes from '@/src/config/api.config';
 import { HttpService } from '@/src/services';
 import { showNotificationOnRes } from '@/src/utils/notificationUtils';
-import { Button, Divider, TextInput, Title } from '@mantine/core';
+import { Button, Divider, em, TextInput, Title } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
@@ -69,7 +69,7 @@ export default function Login() {
     // Implement your OTP sending logic here
     setLoading(true);
     const response: any = await http.service().push(apiRoutes.auth.resendOTP, {
-      email: form.values.email,
+      email: email,
     });
     if (response.success) {
       setLoading(false);
@@ -86,12 +86,12 @@ export default function Login() {
   }, []);
 
   useEffect(() => {
-    if (login) {
+    if (login === 'true' && resendTimer === 0) {
       sendOtp();
-    } else {
-      startTimer();
+    } else if (login === 'true' && resendTimer !== 0) {
+      startTimer(); // Start the timer if login is true but the timer is still active
     }
-  }, [login]);
+  }, [login, resendTimer]);
 
   return (
     <>
