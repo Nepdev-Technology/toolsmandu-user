@@ -26,6 +26,8 @@ const Page = () => {
         expiredAt,
         accessToken: jwtToken,
         refreshToken,
+        status: 200,
+        message: 'Success',
       };
 
       googleLogin(user)
