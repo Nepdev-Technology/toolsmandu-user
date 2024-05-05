@@ -83,6 +83,12 @@ const CheckoutForm = ({
                         <Text className="text-textSP font-display text-md font-bold ">
                           Rs&nbsp;{variations.sellingPrice}
                         </Text>
+                        <Text
+                          className="text-textMRP font-display  text-sm  "
+                          td="line-through"
+                        >
+                          Rs&nbsp;{variations.maximumRetailPrice}
+                        </Text>
 
                         {/* <Text
                           className="text-textMRP font-display  text-sm  "

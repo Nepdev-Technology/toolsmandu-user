@@ -74,7 +74,7 @@ const Page = () => {
           className="flex flex-col gap-3 justify-around"
         >
           <div className="flex gap-4 items-center">
-            <Title order={2}>Track your ticket</Title>
+            <Title order={2}>Track Your Support Case</Title>
           </div>
 
           <form onSubmit={form.onSubmit(onSubmit)}>
@@ -86,8 +86,8 @@ const Page = () => {
               style={{
                 width: '100%',
               }}
-              label="Ticket Number"
-              placeholder="Enter your ticket no eg:1"
+              label="Ticket ID"
+              placeholder="Enter Your Ticket ID:"
               withAsterisk
               required
               {...form.getInputProps('ticketId')}

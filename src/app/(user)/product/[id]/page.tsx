@@ -93,7 +93,7 @@ const page = async ({ params }: { params: { id: string } }) => {
   return (
     <>
       {productData && (
-        <section className="relative bottom-2 text-textPrimary">
+        <section className="relative bottom-2 text-textPrimary ">
           <div className="absolute z-0 ">
             <Image
               className="md:h-[25vh] xs:h-[10vh] sm:h-[15vh] w-[100vw] rounded-2xl relative "
@@ -105,7 +105,7 @@ const page = async ({ params }: { params: { id: string } }) => {
 
             <div className="absolute inset-0 bg-gradient-to-t  from-primary from-2%" />
           </div>
-          <div className="   xs:px-5 sm:px-10 md:px-20  ">
+          <div className="px-3 xs:px-[auto] sm:px-[2rem] md:px-[5rem] lg:px-[10rem]    ">
             <div className="grid xs:grid-cols-1  md:grid-cols-3 sm:grid-rows-[repeat(3,auto)] md:gap-[1rem]  md:pt-[20vh] sm:pt-[10vh] xs:pt-[7vh] gap-y-4 ">
               <div className="xs:col-span-full  sm:col-span-2  ">
                 <Grid align={'center'} justify="start">
@@ -152,7 +152,7 @@ const page = async ({ params }: { params: { id: string } }) => {
                           </span>
                         </Tooltip>
                         <Divider orientation="vertical" />
-                        <Tooltip label="Key">
+                        <Tooltip label="Type">
                           <span className="flex items-center  gap-2 ">
                             <IconLock className="text-iconTertiary "></IconLock>
                             <Badge

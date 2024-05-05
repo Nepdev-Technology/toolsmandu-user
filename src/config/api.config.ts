@@ -52,6 +52,7 @@ const apiRoutes = {
   ticket: {
     base: '/ticketing',
     user: '/ticketing/user',
+    getAll: '/ticketing/find-all-user',
   },
 };
 

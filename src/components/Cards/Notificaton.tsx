@@ -33,14 +33,10 @@ const HeaderNotification: React.FC<{
                 <p className="flex gap-2 items-center overflow-auto">
                   {' '}
                   <Text className="  font-bold flex gap-1 justify-center items-center ">
-                    {<IconUser size={15}></IconUser>}
                     {notification.title}
                   </Text>{' '}
-                  <Text className="text-xs">
-                    {normalizeDate(notification.createdAt)}
-                  </Text>
                 </p>
-                <Text className="text-xs underline text-blue-400">See all</Text>
+                <Text className="text-xs underline text-blue-400">View</Text>
               </Link>
 
               <Spoiler

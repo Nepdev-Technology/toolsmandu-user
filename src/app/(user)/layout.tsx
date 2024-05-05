@@ -138,7 +138,7 @@ export default function DashboardLayout({
           <SearchBar></SearchBar>
           <Group ml="xl" gap={4} visibleFrom="sm">
             <Link href={'/profile'}>
-              <Button className="bg-quaternary" size="md">
+              <Button className="bg-quaternary" size="md" px={10}>
                 {' '}
                 <IconUser></IconUser>
                 <VisuallyHidden>Profile</VisuallyHidden>
@@ -151,7 +151,7 @@ export default function DashboardLayout({
               }}
             >
               <MenuTarget>
-                <Button className="bg-quaternary" size="md">
+                <Button className="bg-quaternary" size="md" px={10}>
                   {' '}
                   <span className="w-[75%]">
                     {' '}
@@ -186,15 +186,6 @@ export default function DashboardLayout({
                 ></HeaderNotification>
               </MenuDropdown>
             </Menu>
-            <Link href={'/tickets'}>
-              <Button className="bg-quaternary" size="md">
-                <div>
-                  {' '}
-                  <IconHelp></IconHelp>
-                </div>
-                <VisuallyHidden>Help</VisuallyHidden>
-              </Button>
-            </Link>
           </Group>
         </div>
         <DropDownMenu items={data}></DropDownMenu>

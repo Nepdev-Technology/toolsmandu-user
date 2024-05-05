@@ -9,9 +9,8 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   return (
-    <section className="xs:px-[auto] sm:px-[2rem] md:px-[5rem] lg:px-[10rem]  ">
+    <section className="  ">
       <TicketHeader></TicketHeader>
-      <Divider size="xs"></Divider>
       <section className="mt-4">{children}</section>
     </section>
   );

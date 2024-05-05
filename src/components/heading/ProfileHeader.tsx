@@ -3,6 +3,7 @@ import { useLogout } from '@/src/hooks/auth/useLogout';
 import { showSuccessNotification } from '@/src/utils/notificationUtils';
 import { Button, Container, Flex } from '@mantine/core';
 import {
+  IconBrandWhatsapp,
   IconList,
   IconLockAccess,
   IconLogout,
@@ -59,7 +60,16 @@ const ProfileHeader = () => {
             Family Sharing
           </Button>
         </Link>
-
+        <Link href={'/profile/tickets'}>
+          {' '}
+          <Button
+            variant="transparent"
+            className="text-textPrimary"
+            leftSection={<IconBrandWhatsapp />}
+          >
+            Support Center
+          </Button>
+        </Link>
         <Button
           variant="transparent"
           className="text-textPrimary"

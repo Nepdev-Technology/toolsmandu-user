@@ -132,7 +132,7 @@ const Page = () => {
           className="my-3"
           label={
             <>
-              Accepts{' '}
+              I accept&nbsp;
               <Anchor size="sm" href="/" target="_blank">
                 terms and conditions
               </Anchor>

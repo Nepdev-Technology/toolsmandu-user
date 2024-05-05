@@ -73,19 +73,7 @@ const Page = () => {
               style={{
                 width: '100%',
               }}
-              data={[
-                'Redemption Problems',
-                'Balance Inquiries',
-                'Lost or Stolen Cards',
-                'Technical Glitches',
-                'Fraudulent Activity',
-                'Refund Requests',
-                'Compatibility Issues',
-                'Customer Support',
-                'Terms and Conditions Clarification',
-                'Accessibility Concerns',
-                'Other',
-              ]}
+              data={['Billing/Sales Related', 'Technical Problem', 'Others']}
               label="Category"
               placeholder="Choose a category.."
               withAsterisk
@@ -149,7 +137,11 @@ const Page = () => {
                 Ticket Submitted!
               </h3>
               <p className="text-gray-600 my-2">Your ticket id is: {token}</p>
-              <p> Have a great day! </p>
+              <p>
+                {' '}
+                Our Support team will be in touch with you via email. Keep
+                checking inbox.
+              </p>
             </div>
           </div>
         </div>
