@@ -73,8 +73,8 @@ export default function Login() {
       </Title>
       <form onSubmit={form.onSubmit(onSubmit)}>
         <TextInput
-          label="Username or Email"
-          placeholder="johndoe@gmail.com"
+          label="Email"
+          placeholder="Email/Username"
           withAsterisk
           required
           {...form.getInputProps('name')}

@@ -177,7 +177,7 @@ const CustomForm = ({
             <TextInput
               className="mr-4"
               label="Coupon code"
-              placeholder="USER500"
+              placeholder="Enter Coupon Code"
               description={
                 validCoupon && `Rs ${validCoupon.discount} discount applied`
               }

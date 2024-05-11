@@ -74,14 +74,14 @@ const Page = () => {
         <div className="grid grid-cols-2 gap-2">
           <TextInput
             label="First Name"
-            placeholder="John"
+            placeholder="First Name"
             withAsterisk
             required
             {...form.getInputProps('firstName')}
           />
           <TextInput
             label="Last Name"
-            placeholder="Doe"
+            placeholder="Last Name"
             withAsterisk
             required
             {...form.getInputProps('lastName')}
@@ -89,7 +89,7 @@ const Page = () => {
         </div>
         <TextInput
           label="Username "
-          placeholder="johndoe"
+          placeholder="Username"
           withAsterisk
           required
           {...form.getInputProps('userName')}
@@ -97,23 +97,24 @@ const Page = () => {
         <TextInput
           label="Email "
           type="email"
-          placeholder="johndoe@gmail.com"
+          placeholder="Enter your email address.."
           withAsterisk
           required
           {...form.getInputProps('email')}
         />
         <NumberInput
           label="Phone "
-          placeholder="987654321"
+          placeholder="98XXXXXXXX"
           withAsterisk
           required
+          hideControls
           {...form.getInputProps('phone_no')}
         />
         <div className="grid grid-cols-2 gap-2">
           <PasswordInput
             leftSection={<IconLock></IconLock>}
             label="Password"
-            placeholder="new password"
+            placeholder="Set your Password"
             withAsterisk
             required
             {...form.getInputProps('password')}
@@ -121,7 +122,7 @@ const Page = () => {
           <PasswordInput
             leftSection={<IconLock></IconLock>}
             label="Confirm Password"
-            placeholder="confirm password"
+            placeholder="Re-type your password"
             withAsterisk
             required
             {...form.getInputProps('confirmPassword')}

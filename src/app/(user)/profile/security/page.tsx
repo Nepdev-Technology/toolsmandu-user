@@ -69,8 +69,8 @@ const Page = () => {
               style={{
                 width: '100%',
               }}
-              label="Old Password"
-              placeholder="old password"
+              label="Current Password"
+              placeholder="Enter your Current Password"
               withAsterisk
               required
               {...form.getInputProps('oldPassword')}
@@ -85,7 +85,7 @@ const Page = () => {
                 width: '100%',
               }}
               label="New Password"
-              placeholder="new password"
+              placeholder="Enter New Password"
               withAsterisk
               required
               {...form.getInputProps('password')}
@@ -100,7 +100,7 @@ const Page = () => {
                 width: '100%',
               }}
               label="Confirm New Password"
-              placeholder="new confirm password"
+              placeholder="Re-type New Password"
               withAsterisk
               required
               {...form.getInputProps('confirmPassword')}

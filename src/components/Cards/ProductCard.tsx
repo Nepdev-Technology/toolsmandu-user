@@ -57,7 +57,7 @@ const ProductCard = ({
             <div className="absolute top-0 right-0">
               <div className="w-32 h-6 absolute top-4 -left-8">
                 <div className="h-full w-full bg-red-500 text-white text-center   transform rotate-[-45deg]">
-                  {discount}% OFF
+                  {discount.toFixed(0)}% OFF
                 </div>
               </div>
             </div>

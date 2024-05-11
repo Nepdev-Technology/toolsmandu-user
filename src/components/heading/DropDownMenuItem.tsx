@@ -12,11 +12,13 @@ export interface IDropDownMenuItemProps {
 const DropDownMenuItem = ({ category, products }: IDropDownMenuItemProps) => {
   return (
     <Menu shadow="md" width={200} trigger="hover">
-      <MenuTarget>
-        <Text className="flex justify-center items-center">
-          {category} <IconChevronDown></IconChevronDown>
-        </Text>
-      </MenuTarget>
+      <Link href={`/category?category=${category}`}>
+        <MenuTarget>
+          <Text className="flex justify-center items-center">
+            {category} <IconChevronDown></IconChevronDown>
+          </Text>
+        </MenuTarget>
+      </Link>
 
       <MenuDropdown>
         {products.map((product) => (

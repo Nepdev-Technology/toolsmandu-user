@@ -7,6 +7,7 @@ import {
   IconList,
   IconLockAccess,
   IconLogout,
+  IconTicket,
   IconUser,
   IconUsersGroup,
 } from '@tabler/icons-react';
@@ -66,7 +67,7 @@ const ProfileHeader = () => {
           <Button
             variant="transparent"
             className="text-textPrimary"
-            leftSection={<IconBrandWhatsapp />}
+            leftSection={<IconTicket />}
           >
             Support Center
           </Button>
