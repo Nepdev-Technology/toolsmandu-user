@@ -51,6 +51,7 @@ export default function Login() {
         } else if (user.status === 200) {
           showSuccessNotification(MESSAGE.LOGIN_SUCCESS);
           router.push(next ? next : '/');
+          router.refresh();
         } else {
           showErrorNotification(user.message);
         }

@@ -5,7 +5,32 @@ interface SignatureParams {
   transactionUuid: string;
   productCode: string | number;
 }
+interface FonepaySignatureParams {
+  PID: string;
+  MD: string;
+  PRN: number;
+  AMT: number;
+  CRN: string;
+  DT: string;
+  R1: string;
+  R2: string;
+  RU: string;
+}
 
+export function generateSignatureForFonepay(
+  params: FonepaySignatureParams
+): string {
+  const { PID, MD, PRN, AMT, CRN, DT, R1, R2, RU } = params;
+
+  const dataString = `PID=${PID}&MD=${MD}&PRN=${PRN}&AMT=${AMT}&CRN=${CRN}&DT=${DT}&R1=${R1}&R2=${R2}&RU=${RU}`;
+
+  const hmac = crypto
+    .createHmac('sha256', '8gBm/:&EnhH.1/q')
+    .update(dataString)
+    .digest('base64');
+
+  return hmac;
+}
 export function generateSignature(params: SignatureParams): string {
   const { totalAmount, transactionUuid, productCode } = params;
 

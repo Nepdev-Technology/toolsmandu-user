@@ -20,6 +20,7 @@ const ProfileHeader = () => {
     logout.logout();
     showSuccessNotification('Logged out successfully');
     router.push('/login');
+    router.refresh();
   };
   return (
     <Container className="bg-primary py-2" fluid>

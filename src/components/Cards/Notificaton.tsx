@@ -25,9 +25,10 @@ const HeaderNotification: React.FC<{
             key={notification.createdAt}
           >
             <div className="flex flex-col w-[20em] font-display  text-textPrimary gap-1 flex-1">
-              <Link
+              <a
                 href={notification.link}
                 key={notification.title}
+                target="_blank"
                 className="flex justify-between  "
               >
                 <p className="flex gap-2 items-center overflow-auto">
@@ -37,7 +38,7 @@ const HeaderNotification: React.FC<{
                   </Text>{' '}
                 </p>
                 <Text className="text-xs underline text-blue-400">View</Text>
-              </Link>
+              </a>
 
               <Spoiler
                 maxHeight={18}

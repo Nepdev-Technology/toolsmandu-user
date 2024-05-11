@@ -29,6 +29,7 @@
     "@mantine/notifications": "^7.5.2",
     "@tabler/icons-react": "^2.47.0",
     "axios": "^1.6.7",
+    "commitlint": "^19.3.0",
     "cross-env": "^7.0.3",
     "embla-carousel-react": "^7.1.0",
     "js-cookie": "^3.0.1",

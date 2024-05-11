@@ -1,4 +1,9 @@
-import { generateSignature, generateUUID } from '../generateSingature';
+import { HttpService } from '@/src/services';
+import {
+  generateSignature,
+  generateSignatureForFonepay,
+  generateUUID,
+} from '../generateSingature';
 import { fetchKhaltiData } from './fetch';
 
 export interface Order {
@@ -91,6 +96,39 @@ export class EsewaPaymentProcessor implements PaymentProcessor {
   }
 }
 
+export class FonePayPaymentProcessor implements PaymentProcessor {
+  async pay(amount: number, orderId: string, productId: number): Promise<void> {
+    const productCode = `${process.env.NEXT_PUBLIC_ESEWA_KEY}`;
+    const transactionUuid = generateUUID();
+    const http = new HttpService();
+    const payload = {
+      RU: 'from env',
+      PID: 'from env',
+      PRN: productId,
+      AMT: amount,
+      CRN: 'NPR',
+      DT: '01/27/2024',
+      R1: 'Description',
+      R2: 'Description 2',
+      MD: 'P',
+    };
+    const signature = generateSignatureForFonepay(payload);
+    http
+      .get(
+        `https://dev-clientapi.fonepay.com/api/merchantRequest?PID=${
+          payload.PID
+        }&MD=${payload.MD}&AMT=${payload.AMT}&RN=${payload.CRN}&DT=${
+          payload.DT
+        }&R1=${payload.R1}&R2=${
+          payload.R2
+        }&DV=${signature}&RU=${`${process.env.NEXT_PUBLIC_SITE_URL}/product/${productId}/verify/${PAYMENT_GATEWAYS.ESEWA}/${orderId}`}`
+      )
+      .then((response) => console.log(response));
+  }
+  catch(error: any) {
+    console.error('Error processing payment:', error);
+  }
+}
 export class KhaltiPaymentProcessor implements PaymentProcessor {
   async pay(
     amount: number,
