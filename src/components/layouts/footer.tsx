@@ -1,5 +1,5 @@
-import { Image } from '@mantine/core';
 import { IconLocation, IconMail, IconPhone } from '@tabler/icons-react';
+import Image from 'next/image';
 import Link from 'next/link';
 
 const Footer = () => {
@@ -10,17 +10,16 @@ const Footer = () => {
           <div className="mb-6  flex gap-2 flex-col">
             <Link href={'/'}>
               <Image
-                radius="md"
-                h={50}
-                w="auto"
-                src={'toolsmandu_color.png'}
+                height={500}
+                width={250}
+                src={'/toolsmandu_color.png'}
                 alt="Toolsmandu Logo"
               />
             </Link>
             <div className="xs:w-[25em]  md:w-[25em]">
-              Toolsmandu.com – Digital Doctor For Your Business. Toolsmandu Was
-              Created With One Idea In Mind: Tools That You Need To Grow Your
-              Business.
+              Toolsmandu Provides Genuine Digital Subscriptions At Best Price.
+              Serving Nepalese Market Since 2021 - Trusted By 25,000+ Customers
+              Worldwide.
             </div>
             <div className="flex flex-col gap-4">
               <div className="flex gap-2">
@@ -37,7 +36,10 @@ const Footer = () => {
               </div>
 
               <div className="flex gap-1 mt-8 sm:justify sm:mt-0">
-                <a href="https://www.facebook.com/ToolsMandu" className="  ">
+                <a
+                  href="https://www.facebook.com/profile.php?id=100094975557066"
+                  className="  "
+                >
                   <svg
                     className="w-4 h-4"
                     aria-hidden="true"
@@ -53,41 +55,45 @@ const Footer = () => {
                   </svg>
                   <span className="sr-only">Facebook page</span>
                 </a>
-                <a href="#" className="   ms-5">
+                <a
+                  href="https://www.instagram.com/toolsmandu"
+                  className=" ms-5"
+                >
                   <svg
-                    className="w-4 h-4"
-                    aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
                     fill="currentColor"
-                    viewBox="0 0 21 16"
+                    className="bi bi-instagram"
+                    viewBox="0 0 16 16"
                   >
-                    <path d="M16.942 1.556a16.3 16.3 0 0 0-4.126-1.3 12.04 12.04 0 0 0-.529 1.1 15.175 15.175 0 0 0-4.573 0 11.585 11.585 0 0 0-.535-1.1 16.274 16.274 0 0 0-4.129 1.3A17.392 17.392 0 0 0 .182 13.218a15.785 15.785 0 0 0 4.963 2.521c.41-.564.773-1.16 1.084-1.785a10.63 10.63 0 0 1-1.706-.83c.143-.106.283-.217.418-.33a11.664 11.664 0 0 0 10.118 0c.137.113.277.224.418.33-.544.328-1.116.606-1.71.832a12.52 12.52 0 0 0 1.084 1.785 16.46 16.46 0 0 0 5.064-2.595 17.286 17.286 0 0 0-2.973-11.59ZM6.678 10.813a1.941 1.941 0 0 1-1.8-2.045 1.93 1.93 0 0 1 1.8-2.047 1.919 1.919 0 0 1 1.8 2.047 1.93 1.93 0 0 1-1.8 2.045Zm6.644 0a1.94 1.94 0 0 1-1.8-2.045 1.93 1.93 0 0 1 1.8-2.047 1.918 1.918 0 0 1 1.8 2.047 1.93 1.93 0 0 1-1.8 2.045Z" />
+                    <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334" />
                   </svg>
-                  <span className="sr-only">Discord community</span>
+                  <span className="sr-only">Instagram page</span>
                 </a>
-                <a href="#" className=" ms-5">
+                <a
+                  href="https://api.whatsapp.com/send/?phone=9779864484274&text&type=phone_number&app_absent=0"
+                  className=" ms-5"
+                >
                   <svg
-                    className="w-4 h-4"
-                    aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
                     fill="currentColor"
-                    viewBox="0 0 20 17"
+                    className="bi bi-whatsapp"
+                    viewBox="0 0 16 16"
                   >
-                    <path
-                      fill-rule="evenodd"
-                      d="M20 1.892a8.178 8.178 0 0 1-2.355.635 4.074 4.074 0 0 0 1.8-2.235 8.344 8.344 0 0 1-2.605.98A4.13 4.13 0 0 0 13.85 0a4.068 4.068 0 0 0-4.1 4.038 4 4 0 0 0 .105.919A11.705 11.705 0 0 1 1.4.734a4.006 4.006 0 0 0 1.268 5.392 4.165 4.165 0 0 1-1.859-.5v.05A4.057 4.057 0 0 0 4.1 9.635a4.19 4.19 0 0 1-1.856.07 4.108 4.108 0 0 0 3.831 2.807A8.36 8.36 0 0 1 0 14.184 11.732 11.732 0 0 0 6.291 16 11.502 11.502 0 0 0 17.964 4.5c0-.177 0-.35-.012-.523A8.143 8.143 0 0 0 20 1.892Z"
-                      clip-rule="evenodd"
-                    />
+                    <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232" />
                   </svg>
-                  <span className="sr-only">Twitter page</span>
+                  <span className="sr-only">Whatsapp Page</span>
                 </a>
               </div>
             </div>
           </div>
-          <div className="grid  grid-cols-2  gap-8 sm:gap-6 sm:grid-cols-3">
+          <div className="grid  grid-cols-2  gap-8 sm:gap-6 sm:grid-cols-4">
             <div>
               <p className="mb-6 text-xs  font-semibold   uppercase ">
-                Important Information
+                Information
               </p>
               <ul className=" font-medium">
                 <li className="mb-4">
@@ -101,18 +107,17 @@ const Footer = () => {
                   </Link>
                 </li>
                 <li className="mb-4">
-                  <Link href="/profile" className="   hover:underline text-xs">
-                    My Account
+                  <Link href="/blog" className="   hover:underline text-xs">
+                    Blog
                   </Link>
                 </li>
               </ul>{' '}
             </div>
-
             <div>
               <p className="mb-6 text-xs  font-semibold   uppercase ">
                 Our Policy
               </p>
-              <ul className="       font-medium">
+              <ul className="font-medium">
                 <li className="mb-4">
                   <Link href="#" className="   hover:underline text-xs">
                     Privacy Policy
@@ -133,15 +138,17 @@ const Footer = () => {
             <div className=" xs:grid xs:grid-cols-2 sm:grid-cols-1">
               <div>
                 <p className="mb-6 text-xs  font-semibold   uppercase ">
-                  Support Link
+                  Support
                 </p>
                 <ul className="       font-medium">
                   <li className="mb-4">
-                    <Link
-                      href="/tickets"
-                      className="   hover:underline text-xs"
-                    >
-                      Help Center
+                    <Link href="#" className="   hover:underline text-xs">
+                      Payment Issues{' '}
+                    </Link>
+                  </li>
+                  <li className="mb-4">
+                    <Link href="#" className="   hover:underline text-xs">
+                      Request a Service
                     </Link>
                   </li>
                   <li className="mb-4">
@@ -149,72 +156,96 @@ const Footer = () => {
                       Contact Us
                     </Link>
                   </li>
+                </ul>
+              </div>
+            </div>
+            <div className=" xs:grid xs:grid-cols-2 sm:grid-cols-1">
+              <div>
+                <p className="mb-6 text-xs  font-semibold   uppercase ">
+                  Partnership/Deal
+                </p>
+                <ul className="       font-medium">
                   <li className="mb-4">
-                    <Link
-                      href="/tickets"
-                      className="   hover:underline text-xs"
-                    >
-                      Payment issues
+                    <Link href="#" className="   hover:underline text-xs">
+                      Coupons
+                    </Link>
+                  </li>
+                  <li className="mb-4">
+                    <Link href="#" className="   hover:underline text-xs">
+                      Partnership
                     </Link>
                   </li>
                 </ul>
               </div>
             </div>
-            <div className=" sm:pt-8 md:pt-4">
+            <div className=" sm:pt-8 md:pt-4  ">
               <p className="mb-6 text-xs  font-semibold   uppercase ">
-                Trusted By
+                CHECK OUR REVIEWS
               </p>
-              <div className="md:flex   gap-2">
-                <Image
-                  src={'trustpilot.png'}
-                  radius="md"
-                  h={20}
-                  w="auto"
-                  className="xs:mb-2"
-                  alt={'Trustpilot logo'}
-                />
-
-                <Image
-                  src={'google reviews.png'}
-                  radius="md"
-                  h={20}
-                  w="auto"
-                  alt={'Google reviews logo'}
-                />
+              <div className="flex   gap-2">
+                <a
+                  href="https://www.trustpilot.com/review/toolsmandu.com"
+                  target="_blank"
+                >
+                  <Image
+                    src={'/trustpilot.png'}
+                    height={120}
+                    width={300}
+                    alt={'Trustpilot logo'}
+                  />
+                </a>{' '}
+                <a
+                  href="https://g.page/r/CUKd9KQPxJrfEBM/review"
+                  target="_blank"
+                >
+                  <Image
+                    src={'/google-reviews.png'}
+                    height={150}
+                    width={150}
+                    alt={'Google reviews logo'}
+                  />
+                </a>
               </div>
             </div>
           </div>
         </div>
 
         <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
-        <div className="sm:flex sm:items-center sm:justify-between">
-          <span className="text-sm    sm:text-center    ">
-            © {new Date().getFullYear()}
-            <a
-              href="https://flowbite.com/"
-              className="   hover:underline text-xs mx-1"
-            >
-              Toolsmandu
-            </a>
-            All rights reserved
-          </span>
-          <div className="  flex items-center justify-center gap-4 ">
-            <p className=" text-xs  font-semibold   uppercase ">We accept</p>
-            <div className="flex gap-2">
+        <div className="flex items-center xs:items-start sm:justify-between sm:flex-row xs:flex-col-reverse gap-2 xs:gap-4 ">
+          <div>
+            <span className="text-sm    sm:text-center    ">
+              © {new Date().getFullYear()}
+              <a
+                href="https://flowbite.com/"
+                className="   hover:underline  mx-1"
+              >
+                Toolsmandu
+              </a>
+              All rights reserved
+            </span>
+          </div>
+          <div className="  flex items-center justify-center  sm:gap-4 ">
+            <p className=" text-xs sm:mt-3  font-semibold   uppercase ">
+              We Accept:
+            </p>
+            <div className="flex gap-2 xs:mt-4">
               <Image
-                src={'esewa_logo.png'}
-                radius="md"
-                h={20}
-                w="auto"
+                src={'/esewa_logo.png'}
+                height={20}
+                width={100}
                 alt={'Esewa logo'}
               />
-
               <Image
-                src={'khalti.png'}
-                radius="md"
-                h={20}
-                w="auto"
+                src={'/khalti.png'}
+                height={40}
+                width={80}
                 alt={'Khalti logo'}
+              />{' '}
+              <Image
+                src={'/connectips.png'}
+                height={40}
+                width={100}
+                alt={'Esewa logo'}
               />
             </div>
           </div>
