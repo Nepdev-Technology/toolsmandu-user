@@ -54,6 +54,9 @@ const apiRoutes = {
     user: '/ticketing/user',
     getAll: '/ticketing/find-all-user',
   },
+  contactUs: {
+    base: '/contactus',
+  },
 };
 
 export default apiRoutes;

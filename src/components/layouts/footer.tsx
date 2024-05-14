@@ -4,8 +4,8 @@ import Link from 'next/link';
 
 const Footer = () => {
   return (
-    <footer className="bg-tertiary text-textTertiary text-sm">
-      <div className="mx-auto  w-full max-w-screen-xl  py-6 px-3 xs:px-[1rem] sm:px-[2rem] md:px-[5rem] lg:px-[10rem]">
+    <footer className="bg-tertiary text-textFooter text-sm">
+      <div className="mx-auto  w-full max-w-screen-xl  py-3 pb-2 px-3 xs:px-[1rem] sm:px-[2rem] md:px-[5rem] lg:px-[10rem]">
         <div className="md:flex xs:items-center md:justify-between">
           <div className="mb-6  flex gap-2 flex-col">
             <Link href={'/'}>
@@ -16,7 +16,7 @@ const Footer = () => {
                 alt="Toolsmandu Logo"
               />
             </Link>
-            <div className="xs:w-[25em]  md:w-[25em]">
+            <div className="xs:w-[22em]  md:w-[22em]  ">
               Toolsmandu Provides Genuine Digital Subscriptions At Best Price.
               Serving Nepalese Market Since 2021 - Trusted By 25,000+ Customers
               Worldwide.
@@ -92,7 +92,7 @@ const Footer = () => {
           </div>
           <div className="grid  grid-cols-2  gap-8 sm:gap-6 sm:grid-cols-4">
             <div>
-              <p className="mb-6 text-xs  font-semibold   uppercase ">
+              <p className="mb-6 text-xs  font-semibold   uppercase text-textPrimary ">
                 Information
               </p>
               <ul className=" font-medium">
@@ -114,7 +114,7 @@ const Footer = () => {
               </ul>{' '}
             </div>
             <div>
-              <p className="mb-6 text-xs  font-semibold   uppercase ">
+              <p className="mb-6 text-xs  font-semibold   uppercase text-textPrimary ">
                 Our Policy
               </p>
               <ul className="font-medium">
@@ -137,22 +137,23 @@ const Footer = () => {
             </div>
             <div className=" xs:grid xs:grid-cols-2 sm:grid-cols-1">
               <div>
-                <p className="mb-6 text-xs  font-semibold   uppercase ">
+                <p className="mb-6 text-xs  font-semibold   uppercase text-textPrimary ">
                   Support
                 </p>
                 <ul className="       font-medium">
                   <li className="mb-4">
-                    <Link href="#" className="   hover:underline text-xs">
+                    <Link
+                      href="/profile/tickets"
+                      className="   hover:underline text-xs"
+                    >
                       Payment Issues{' '}
                     </Link>
                   </li>
                   <li className="mb-4">
-                    <Link href="#" className="   hover:underline text-xs">
-                      Request a Service
-                    </Link>
-                  </li>
-                  <li className="mb-4">
-                    <Link href="#" className="   hover:underline text-xs">
+                    <Link
+                      href="/contact"
+                      className="   hover:underline text-xs"
+                    >
                       Contact Us
                     </Link>
                   </li>
@@ -161,7 +162,7 @@ const Footer = () => {
             </div>
             <div className=" xs:grid xs:grid-cols-2 sm:grid-cols-1">
               <div>
-                <p className="mb-6 text-xs  font-semibold   uppercase ">
+                <p className="mb-6 text-xs  font-semibold   uppercase text-textPrimary ">
                   Partnership/Deal
                 </p>
                 <ul className="       font-medium">
@@ -179,7 +180,7 @@ const Footer = () => {
               </div>
             </div>
             <div className=" sm:pt-8 md:pt-4  ">
-              <p className="mb-6 text-xs  font-semibold   uppercase ">
+              <p className="mb-6 text-xs  font-semibold   uppercase text-textPrimary">
                 CHECK OUR REVIEWS
               </p>
               <div className="flex   gap-2">
@@ -200,8 +201,9 @@ const Footer = () => {
                 >
                   <Image
                     src={'/google-reviews.png'}
-                    height={150}
-                    width={150}
+                    height={120}
+                    width={300}
+                    className="mt-2"
                     alt={'Google reviews logo'}
                   />
                 </a>
@@ -210,41 +212,38 @@ const Footer = () => {
           </div>
         </div>
 
-        <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
+        <hr className="my-3 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-4" />
         <div className="flex items-center xs:items-start sm:justify-between sm:flex-row xs:flex-col-reverse gap-2 xs:gap-4 ">
           <div>
             <span className="text-sm    sm:text-center    ">
               © {new Date().getFullYear()}
-              <a
-                href="https://flowbite.com/"
-                className="   hover:underline  mx-1"
-              >
-                Toolsmandu
+              <a href="https://flowbite.com/" className="   underline  mx-1">
+                Toolsmandu.com
               </a>
-              All rights reserved
+              | All Rights Reserved
             </span>
           </div>
           <div className="  flex items-center justify-center  sm:gap-4 ">
-            <p className=" text-xs sm:mt-3  font-semibold   uppercase ">
-              We Accept:
-            </p>
-            <div className="flex gap-2 xs:mt-4">
+            <div className=" grid grid-cols-3 gap-2 xs:mt-4">
               <Image
                 src={'/esewa_logo.png'}
-                height={20}
-                width={100}
+                height={10}
+                width={75}
+                className="relative bottom-3"
                 alt={'Esewa logo'}
               />
               <Image
                 src={'/khalti.png'}
                 height={40}
-                width={80}
+                width={60}
+                className="relative bottom-3"
                 alt={'Khalti logo'}
               />{' '}
               <Image
                 src={'/connectips.png'}
                 height={40}
-                width={100}
+                width={75}
+                className="relative bottom-3 right-1"
                 alt={'Esewa logo'}
               />
             </div>

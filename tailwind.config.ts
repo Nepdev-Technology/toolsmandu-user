@@ -30,6 +30,7 @@ const config: Config = {
         textPrimary: '#ffffff',
         textSecondary: '#000000',
         textTertiary: '#edf2f7',
+        textFooter: '#B1BBCA',
         textSP: '#ffbe0b',
         textMRP: '#ffbe0b',
         iconPrimary: '#000000',

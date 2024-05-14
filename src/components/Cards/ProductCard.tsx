@@ -1,4 +1,5 @@
 import { AspectRatio, Card, CardSection, Flex, Text } from '@mantine/core';
+import { Metadata } from 'next';
 import Head from 'next/head';
 
 interface ICardProps {
