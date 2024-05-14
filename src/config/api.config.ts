@@ -57,6 +57,9 @@ const apiRoutes = {
   contactUs: {
     base: '/contactus',
   },
+  category: {
+    base: '/category',
+  },
 };
 
 export default apiRoutes;

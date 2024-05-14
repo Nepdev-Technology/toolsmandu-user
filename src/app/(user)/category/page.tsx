@@ -2,8 +2,12 @@ import ProductCardForSearch from '@/src/components/Cards/ProductCardForSearch';
 import CustomPagination from '@/src/components/mantine/pagination/Pagination';
 import apiRoutes from '@/src/config/api.config';
 import { HttpService } from '@/src/services';
-import { Product } from '@/src/types/interfaces/ProductInterface';
+import {
+  FeaturedCategory,
+  Product,
+} from '@/src/types/interfaces/ProductInterface';
 import { Box, Divider, Title } from '@mantine/core';
+import { Metadata } from 'next';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 
@@ -50,11 +54,55 @@ const getTableData = async (
     }
   }
 };
+export async function generateMetadata({
+  searchParams,
+}: {
+  searchParams: {
+    query: string;
+    category: string;
+    page: string;
+    limit: string;
+  };
+}): Promise<Metadata> {
+  const productData: Product[] = await getTableData(
+    searchParams.query,
+    searchParams.category,
+    searchParams.page,
+    searchParams.limit
+  );
+  if (!productData) {
+    return {
+      title: '404- Not found',
+    };
+  }
+  const data = productData?.[0]?.categories?.filter(
+    (item) => item.name === searchParams.category
+  );
+  if (!data) {
+    return {
+      title: '404- Not found',
+    };
+  }
+
+  const { id, name, metaTitle, metaDescription, metaKeywords } = data[0];
+
+  return {
+    title: name,
+    description: metaDescription,
+    keywords: metaKeywords,
+    openGraph: {
+      url: `/${id}`,
+      title: metaTitle || name,
+      description: metaDescription,
+    },
+  };
+}
 const page = async ({
   searchParams,
 }: {
   searchParams: {
     query: string;
+    categoryId: string;
     category: string;
     page: string;
     limit: string;
