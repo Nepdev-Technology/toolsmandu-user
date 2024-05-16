@@ -2,10 +2,10 @@ import { normalizeDate } from '@/src/utils/normalizeDate';
 interface IReviewCard {
   fullName: string;
   content: string;
-  date: string;
+  createdAt: string;
   replies: Array<any>;
 }
-const QAndACard = ({ fullName, content, date, replies }: IReviewCard) => {
+const QAndACard = ({ fullName, content, replies, createdAt }: IReviewCard) => {
   return (
     <div className="flex flex-col gap-3 mt-5">
       <div className="flex flex-col gap-4 bg-tertiary p-4">
@@ -15,6 +15,7 @@ const QAndACard = ({ fullName, content, date, replies }: IReviewCard) => {
               {fullName?.split('')[0]}
             </div>
             <span>{fullName}</span>
+            <span>{normalizeDate(createdAt)}</span>
           </div>
         </div>
 
@@ -36,10 +37,6 @@ const QAndACard = ({ fullName, content, date, replies }: IReviewCard) => {
               </div>
             );
           })}
-
-        <div className="flex justify-between">
-          <span>Feb 13, 2021</span>
-        </div>
       </div>
     </div>
   );

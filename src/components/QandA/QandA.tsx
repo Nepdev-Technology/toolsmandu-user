@@ -49,7 +49,7 @@ const QandA = async ({ name, id }: IReviewProps) => {
                     <QAndACard
                       fullName={item.externalUser.userName}
                       content={item.content}
-                      date={'2022-12-13'}
+                      createdAt={item.createdAt}
                       replies={item.replies}
                     ></QAndACard>
                   </div>

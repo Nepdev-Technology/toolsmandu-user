@@ -64,77 +64,73 @@ const Page = () => {
           py={10}
           className="flex flex-col gap-3 justify-around"
         >
-          <div className="flex gap-4 items-center">
+          <div className="flex gap-4 items-center justify-center">
             <Title order={2}>Contact Us / Request a service</Title>
           </div>
-          <p>
+          <p className="text-center">
             Please fill below form to get in touch with us. We will reply in few
             hours.{' '}
           </p>
           <form onSubmit={form.onSubmit(onSubmit)}>
-            <div className="grid grid-cols-2 gap-2">
-              <TextInput
-                variant="unstyled"
-                classNames={{
-                  input: 'bg-quaternary text-white px-2',
-                }}
-                style={{
-                  width: '100%',
-                }}
-                label="Name"
-                placeholder="Enter your name"
-                withAsterisk
-                required
-                {...form.getInputProps('name')}
-              />
-              <TextInput
-                variant="unstyled"
-                type="email"
-                classNames={{
-                  input: 'bg-quaternary text-white px-2',
-                }}
-                style={{
-                  width: '100%',
-                }}
-                label="Email"
-                placeholder="Enter your email"
-                withAsterisk
-                required
-                {...form.getInputProps('email')}
-              />
-            </div>
-            <div className="grid grid-cols-2 gap-2">
-              <TextInput
-                variant="unstyled"
-                classNames={{
-                  input: 'bg-quaternary text-white px-2',
-                }}
-                style={{
-                  width: '100%',
-                }}
-                label="Phone "
-                type="number"
-                placeholder="Enter your phone"
-                withAsterisk
-                required
-                {...form.getInputProps('phone')}
-              />
-              <TextInput
-                variant="unstyled"
-                type="email"
-                classNames={{
-                  input: 'bg-quaternary text-white px-2',
-                }}
-                style={{
-                  width: '100%',
-                }}
-                label="Subject"
-                placeholder="Enter your subject"
-                withAsterisk
-                required
-                {...form.getInputProps('subject')}
-              />
-            </div>
+            <TextInput
+              variant="unstyled"
+              classNames={{
+                input: 'bg-quaternary text-white px-2',
+              }}
+              style={{
+                width: '100%',
+              }}
+              label="Name"
+              placeholder="Enter your name"
+              withAsterisk
+              required
+              {...form.getInputProps('name')}
+            />
+            <TextInput
+              variant="unstyled"
+              type="email"
+              classNames={{
+                input: 'bg-quaternary text-white px-2',
+              }}
+              style={{
+                width: '100%',
+              }}
+              label="Email"
+              placeholder="Enter your email"
+              withAsterisk
+              required
+              {...form.getInputProps('email')}
+            />
+            <TextInput
+              variant="unstyled"
+              classNames={{
+                input: 'bg-quaternary text-white px-2',
+              }}
+              style={{
+                width: '100%',
+              }}
+              label="Phone "
+              type="number"
+              placeholder="Enter your phone"
+              withAsterisk
+              required
+              {...form.getInputProps('phone')}
+            />
+            <TextInput
+              variant="unstyled"
+              type="email"
+              classNames={{
+                input: 'bg-quaternary text-white px-2',
+              }}
+              style={{
+                width: '100%',
+              }}
+              label="Subject"
+              placeholder="Enter your subject"
+              withAsterisk
+              required
+              {...form.getInputProps('subject')}
+            />
             <Textarea
               autosize
               minRows={4}

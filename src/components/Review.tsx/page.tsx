@@ -75,6 +75,7 @@ const Review = async ({ name, id }: IReviewProps) => {
                 return (
                   <div key={item.id}>
                     <ReviewCard
+                      createdAt={item.createdAt}
                       fullName={item.externalUser.userName}
                       rating={item.rating}
                       content={item.content}

@@ -32,6 +32,7 @@ const Page = () => {
         type: item.type,
         date: normalizeDate(item.createdAt),
         subject: item.subject,
+        orderId: item.orderId,
         status: item.status.charAt(0).toUpperCase() + item.status.slice(1),
       };
     });
@@ -44,6 +45,7 @@ const Page = () => {
   const columns = [
     { key: 'id', displayName: 'Id' },
     { key: 'type', displayName: 'Type' },
+    { key: 'orderId', displayName: 'Order Id' },
     { key: 'date', displayName: 'Date' },
     { key: 'status', displayName: 'Status' },
     { key: 'subject', displayName: 'Subject' },

@@ -24,11 +24,16 @@ const getTableData = async (page: string) => {
   try {
     const response: any = await http
       .service()
-      .get(`${apiRoutes.blog.all}?page=${page ? page : 1}&limit=${10}`, {
-        next: {
-          cache: 'no-store',
-        },
-      });
+      .get(
+        `${apiRoutes.blog.all}?page=${
+          page ? page : 1
+        }&limit=${10}&sortBy=index&sortOrder=asc`,
+        {
+          next: {
+            cache: 'no-store',
+          },
+        }
+      );
     const data = response.data;
     return data;
   } catch (error) {
@@ -40,7 +45,7 @@ const getTableData = async (page: string) => {
 };
 const page = async ({ searchParams }: { searchParams: { page: string } }) => {
   const blogRawData: any = await getTableData(searchParams.page);
-  const blogData: Blog[] = blogRawData.result;
+  const blogData: Blog[] = blogRawData?.result;
   return (
     <>
       {blogData && blogData.length >= 1 ? (
@@ -66,7 +71,9 @@ const page = async ({ searchParams }: { searchParams: { page: string } }) => {
             })}
           </Box>
           <div className="mt-4 ml-4">
-            <CustomPagination totalPages={blogRawData.totalCount} />
+            {blogData.length >= 10 ? (
+              <CustomPagination totalPages={blogRawData.totalCount} />
+            ) : null}{' '}
           </div>
         </section>
       ) : (

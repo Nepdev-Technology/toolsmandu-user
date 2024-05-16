@@ -23,6 +23,7 @@ const Page = () => {
       description: '',
       subject: '',
       type: '',
+      orderId: '',
     },
     validate: {
       description: (value) =>
@@ -30,6 +31,8 @@ const Page = () => {
       subject: (value) =>
         value.length < 2 ? 'Subject can not be empty' : null,
       type: (value) => (value.length < 2 ? 'Type can not be empty' : null),
+      orderId: (value) =>
+        value.length < 1 ? 'Order Id can not be empty' : null,
     },
   });
 
@@ -93,6 +96,20 @@ const Page = () => {
               withAsterisk
               required
               {...form.getInputProps('subject')}
+            />
+            <TextInput
+              variant="unstyled"
+              classNames={{
+                input: 'bg-quaternary text-white px-2',
+              }}
+              style={{
+                width: '100%',
+              }}
+              label="Order Id"
+              placeholder="Enter the orderId"
+              withAsterisk
+              required
+              {...form.getInputProps('orderId')}
             />
             <Textarea
               autosize

@@ -6,6 +6,7 @@ interface IReviewCard {
   content: string;
   rating: number;
   date: string;
+  createdAt: string;
   replies: Array<any>;
 }
 const ReviewCard = ({
@@ -13,6 +14,7 @@ const ReviewCard = ({
   content,
   rating,
   date,
+  createdAt,
   replies,
 }: IReviewCard) => {
   return (
@@ -23,7 +25,7 @@ const ReviewCard = ({
             <div className="w-7 h-7 text-center rounded-full bg-red-500">
               {fullName?.split('')[0]}
             </div>
-            <span>{fullName}</span>
+            <span>{fullName}</span> <span>{normalizeDate(createdAt)}</span>
           </div>
           <Rating value={rating} readOnly />
         </div>
@@ -46,10 +48,6 @@ const ReviewCard = ({
               </div>
             );
           })}
-
-        <div className="flex justify-between">
-          <span>Feb 13, 2021</span>
-        </div>
       </div>
     </div>
   );

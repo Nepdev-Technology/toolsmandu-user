@@ -27,7 +27,7 @@ const getTableData = async (
     const response: any = await http
       .service()
       .push(
-        `${apiRoutes.products.search}?page=${page}&limit=${limit ? limit : 10}`,
+        `${apiRoutes.products.search}?page=${page}&limit=${limit ? limit : 15}`,
         payload
       );
 
@@ -148,9 +148,11 @@ const page = async ({
               );
             })}
           </Box>
-          <div className="mt-4 ml-10">
-            <CustomPagination totalPages={productData.length} />
-          </div>
+          {productData.length >= 15 && (
+            <div className="mt-4 ml-10">
+              <CustomPagination totalPages={productData.length} />
+            </div>
+          )}
         </section>
       ) : (
         <section className="relative bottom-1 text-textPrimary">

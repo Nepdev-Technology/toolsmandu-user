@@ -14,19 +14,9 @@ const DropDownMenuItem = ({ category, products }: IDropDownMenuItemProps) => {
     <Menu shadow="md" width={200} trigger="hover">
       <Link href={`/category?category=${category}`}>
         <MenuTarget>
-          <Text className="flex justify-center items-center">
-            {category} <IconChevronDown></IconChevronDown>
-          </Text>
+          <Text className="flex justify-center items-center">{category}</Text>
         </MenuTarget>
       </Link>
-
-      <MenuDropdown>
-        {products.map((product) => (
-          <Link href={`/product/${product.url}`} key={product.name}>
-            <Menu.Item>{product.name}</Menu.Item>
-          </Link>
-        ))}
-      </MenuDropdown>
     </Menu>
   );
 };

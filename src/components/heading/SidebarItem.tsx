@@ -13,18 +13,9 @@ const SidebarItem = ({ category, products }: IDropDownMenuItemProps) => {
     <NavLink
       label={category}
       childrenOffset={28}
-      href="#required-for-focus"
+      href={`/category?category=${category}`}
       className="hover:bg-primary"
-    >
-      {products.map((product) => (
-        <NavLink
-          key={product.name}
-          label={product.name}
-          href={product.url}
-          className="hover:bg-primary"
-        />
-      ))}
-    </NavLink>
+    ></NavLink>
   );
 };
 

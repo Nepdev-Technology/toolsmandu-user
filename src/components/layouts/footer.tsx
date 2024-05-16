@@ -6,7 +6,7 @@ const Footer = () => {
   return (
     <footer className="bg-tertiary text-textFooter text-sm">
       <div className="mx-auto  w-full max-w-screen-xl  py-3 pb-2 px-3 xs:px-[1rem] sm:px-[2rem] md:px-[5rem] lg:px-[10rem]">
-        <div className="md:flex xs:items-center md:justify-between">
+        <div className="md:grid grid-cols-2 ">
           <div className="mb-6  flex gap-2 flex-col">
             <Link href={'/'}>
               <Image
