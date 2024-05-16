@@ -26,7 +26,6 @@ const getTableData = async (
         `${apiRoutes.products.search}?page=${page}&limit=${limit ? limit : 10}`,
         payload
       );
-
     const transformedData = response?.data?.map((product: Product) => {
       let lowestMRP = Infinity;
       let lowestSP = Infinity;
@@ -40,7 +39,6 @@ const getTableData = async (
       product.maximumRetailPrice = lowestMRP;
       return product;
     });
-
     return transformedData;
   } catch (error) {
     console.log(error);
