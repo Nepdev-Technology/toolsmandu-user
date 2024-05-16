@@ -12,7 +12,7 @@ const getTableData = async (id: string) => {
   try {
     const response: any = await http
       .service()
-      .get(`${apiRoutes.blog.base}/${id}`, {
+      .get(`${apiRoutes.blog.findOne}/${id}`, {
         next: {
           cache: 'no-store',
         },

@@ -26,6 +26,7 @@ const getTableData = async (
         `${apiRoutes.products.search}?page=${page}&limit=${limit ? limit : 10}`,
         payload
       );
+    console.log(response);
     const transformedData = response?.data?.map((product: Product) => {
       let lowestMRP = Infinity;
       let lowestSP = Infinity;

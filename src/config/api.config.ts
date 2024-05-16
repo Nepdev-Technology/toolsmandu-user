@@ -18,6 +18,7 @@ const apiRoutes = {
     featured: '/category/featured/all',
     navbar: '/category/featured/navbar',
     search: '/product/user/search',
+    admin: '/product/products/search',
   },
   crousel: {
     crousel: '/crousel',
@@ -46,6 +47,7 @@ const apiRoutes = {
     base: '/blog',
     all: '/blog/all',
     user: '/blog/all/user',
+    findOne: '/blog/user',
   },
   familySharing: {
     user: '/family-sharing/findAll-by-user',

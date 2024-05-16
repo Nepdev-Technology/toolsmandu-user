@@ -25,7 +25,7 @@ const getTableData = async (page: string) => {
     const response: any = await http
       .service()
       .get(
-        `${apiRoutes.blog.all}?page=${
+        `${apiRoutes.blog.user}?page=${
           page ? page : 1
         }&limit=${10}&sortBy=index&sortOrder=asc`,
         {

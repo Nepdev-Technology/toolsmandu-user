@@ -128,7 +128,7 @@ const page = async ({ params }: { params: { id: string } }) => {
                         {' '}
                         {productData.name}
                       </h1>
-                      <Divider my="lg" />
+                      {/* <Divider my="lg" /> */}
                       <Group>
                         <Tooltip label="Category">
                           <span className="flex items-center gap-2">
@@ -151,7 +151,7 @@ const page = async ({ params }: { params: { id: string } }) => {
                             })}
                           </span>
                         </Tooltip>
-                        <Divider orientation="vertical" />
+                        {/* <Divider orientation="vertical" /> */}
                         <Tooltip label="Type">
                           <span className="flex items-center  gap-2 ">
                             <IconLock className="text-iconTertiary "></IconLock>
@@ -167,7 +167,7 @@ const page = async ({ params }: { params: { id: string } }) => {
                             </Badge>
                           </span>
                         </Tooltip>
-                        <Divider orientation="vertical" />
+                        {/* <Divider orientation="vertical" /> */}
                         <Tooltip label="Region">
                           <span className="flex items-center gap-2 ">
                             <IconWorld className="text-iconTertiary "></IconWorld>
