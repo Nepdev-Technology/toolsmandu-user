@@ -34,7 +34,7 @@ const Page = () => {
         date: normalizeDate(item.createdAt),
         amount: `Rs ${item.amount}`,
         paymentMethod: item.paymentMethod,
-        status: item.status.charAt(0).toUpperCase() + item.status.slice(1),
+        status: item?.status?.charAt(0)?.toUpperCase() + item?.status?.slice(1),
       };
     });
     setTotal(response?.data?.totalCount);

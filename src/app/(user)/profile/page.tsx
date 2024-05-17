@@ -41,7 +41,7 @@ const Page = () => {
     const http = new HttpService();
     const response: any = await http
       .service()
-      .push(`${apiRoutes.auth.getProfile}`, values);
+      .update(`${apiRoutes.auth.profileUpdate}`, values);
 
     showNotificationOnRes(response);
     setLoading(false);

@@ -2,7 +2,7 @@
 import { CustomPagination, CustomTable } from '@/src/components/mantine';
 import apiRoutes from '@/src/config/api.config';
 import { HttpService } from '@/src/services';
-import { normalizeDate } from '@/src/utils/normalizeDate';
+import { daysRemaining, normalizeDate } from '@/src/utils/normalizeDate';
 import { Card, CardSection, Title } from '@mantine/core';
 import { useSearchParams } from 'next/navigation';
 import { Suspense, useEffect, useState } from 'react';
@@ -35,10 +35,13 @@ const Page = () => {
         id: item.id,
         key: item.id,
         date: normalizeDate(item.createdAt),
-        username: item?.credentials?.[0]?.username,
-        password: item?.credentials?.[0]?.password,
+        username: item?.username,
+        password: item?.password,
+        expiresIn: normalizeDate(item?.credentialUserIds?.[0]?.expiresIn),
+        remainingDays: daysRemaining(item?.credentialUserIds?.[0]?.expiresIn),
       };
     });
+
     setTotal(response?.data?.totalCount);
 
     setTableData(transformedData);
@@ -51,6 +54,8 @@ const Page = () => {
     { key: 'date', displayName: 'Date' },
     { key: 'username', displayName: 'Username' },
     { key: 'password', displayName: 'Password' },
+    { key: 'expiresIn', displayName: 'Expires In ' },
+    { key: 'remainingDays', displayName: 'Remaining Days' },
   ];
 
   useEffect(() => {

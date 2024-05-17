@@ -9,6 +9,7 @@ const apiRoutes = {
     activateAccount: '/otp/activateAccount',
     resendOTP: '/otp/resendActivateAccount',
     resetPasswordOtp: '/otp',
+    profileUpdate: '/auth/user',
   },
   notification: {
     base: '/notification',
