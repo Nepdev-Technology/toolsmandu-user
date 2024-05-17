@@ -31,7 +31,7 @@ const Page = () => {
 
     const transformedData = response?.data?.result?.map((item: any) => {
       return {
-        productName: item?.product?.name,
+        productName: item?.familySharingId?.product?.name,
         id: item.id,
         key: item.id,
         date: normalizeDate(item.createdAt),
