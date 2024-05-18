@@ -137,7 +137,7 @@ export default function DashboardLayout({
             />
           </Link>
           <SearchBar></SearchBar>
-          <Group ml="xl" gap={4} visibleFrom="sm">
+          <div className="flex gap-2">
             <Link href={'/profile'}>
               <Button className="bg-quaternary" size="md" px={10}>
                 {' '}
@@ -187,7 +187,7 @@ export default function DashboardLayout({
                 ></HeaderNotification>
               </MenuDropdown>
             </Menu>
-          </Group>
+          </div>
         </div>
         <DropDownMenu items={data}></DropDownMenu>
       </header>

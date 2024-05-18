@@ -126,7 +126,7 @@ const page = async ({
             </div>
           </div>
           <Box className="flex   gap-4 flex-wrap mt-2 xs:px-[10px] sm:px-[2rem] justify-center">
-            {productData.map((product) => {
+            {[...productData].map((product) => {
               return (
                 <div key={product.id}>
                   <Link href={`product/${product.id}`} className="py-0">

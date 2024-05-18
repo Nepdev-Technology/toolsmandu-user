@@ -3,7 +3,7 @@ import CustomPagination from '@/src/components/mantine/pagination/Pagination';
 import apiRoutes from '@/src/config/api.config';
 import { HttpService } from '@/src/services';
 import { Product } from '@/src/types/interfaces/ProductInterface';
-import { Box } from '@mantine/core';
+import { Box, Title } from '@mantine/core';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 
@@ -67,10 +67,17 @@ const page = async ({
   );
   return (
     <>
+      <div>
+        <div className="bg-primary px-2 py-1 rounded-md flex justify-center xs:mb-3 sm:my-5 lg:my-8">
+          <Title order={1} className="  text-textPrimary">
+            Search result for {searchParams.query}
+          </Title>
+        </div>
+      </div>
       {productData && productData.length >= 1 ? (
-        <section className="relative bottom-1 text-textPrimary  ">
-          <Box className="flex gap-4 flex-wrap mt-2 xs:px-[10px] sm:px-[2rem] justify-start">
-            {productData.map((product) => {
+        <section>
+          <Box className="flex gap-4 flex-wrap mt-2 xs:px-[10px] sm:px-[2rem] justify-center">
+            {[...productData].map((product) => {
               return (
                 <div key={product.id}>
                   <Link href={`product/${product.id}`} className="py-0">
@@ -92,9 +99,11 @@ const page = async ({
               );
             })}
           </Box>
-          <div className="mt-4 ml-10">
-            <CustomPagination totalPages={productData.length} />
-          </div>
+          {productData.length >= 15 && (
+            <div className="mt-4 ml-10">
+              <CustomPagination totalPages={productData.length} />
+            </div>
+          )}
         </section>
       ) : (
         <section className="relative bottom-1 text-textPrimary">

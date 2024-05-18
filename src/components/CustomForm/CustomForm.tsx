@@ -130,7 +130,7 @@ const CustomForm = ({
       setValidCoupon(response.data);
       showSuccessNotification('Coupon applied');
     } else {
-      showErrorNotification('Invalid Coupon');
+      showErrorNotification(response.message);
     }
   };
   return (
@@ -206,6 +206,7 @@ const CustomForm = ({
 
           <div className="flex xs:flex-col  gap-4 ">
             <PaymentCard
+              discount={validCoupon?.discount}
               title="Esewa"
               src={'/esewa_logo.png'}
               alt="Esewa logo"
@@ -217,6 +218,7 @@ const CustomForm = ({
             />
 
             <PaymentCard
+              discount={validCoupon?.discount}
               title="Khalti"
               src={'/khalti.png'}
               alt="Khalti logo"

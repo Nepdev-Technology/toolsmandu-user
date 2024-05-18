@@ -11,39 +11,9 @@ export default function DashboardLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const [opened, { toggle }] = useDisclosure();
-
   return (
-    <section className="xs:px-[auto] sm:px-[2rem] md:px-[5rem] lg:px-[10rem]  grid grid-cols-10 gap-2">
-      <div className="col-span-0 sm:col-span-2 md:col-span-2 hidden sm:block gap-10">
-        <SidebarFilter></SidebarFilter>
-        <Drawer
-          opened={opened}
-          onClose={toggle}
-          title="Filter"
-          classNames={{
-            body: 'bg-primary h-screen',
-            header: 'bg-primary text-textPrimary pb-2',
-            overlay: 'bg-primary',
-          }}
-        >
-          <CategoryFilter></CategoryFilter>
-        </Drawer>
-      </div>
-
-      <section className="col-span-10 sm:col-span-10 md:col-span-8 justify-center ">
-        <Button
-          variant="transparent"
-          onClick={toggle}
-          hiddenFrom="sm"
-          size="md"
-          className="text-textPrimary "
-          aria-label="Toggle navigation"
-        >
-          {!opened ? <IconFilter /> : <IconX />}
-        </Button>
-        {children}
-      </section>
+    <section className=" sm:px-[2rem] md:px-[5rem] lg:px-[10rem] ">
+      <section className=" ">{children}</section>
     </section>
   );
 }

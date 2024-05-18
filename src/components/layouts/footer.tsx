@@ -7,7 +7,7 @@ const Footer = () => {
     <footer className="bg-tertiary text-textFooter text-sm">
       <div className="mx-auto  w-full max-w-screen-xl  py-3 pb-2 px-3 xs:px-[1rem] sm:px-[2rem] md:px-[5rem] lg:px-[10rem]">
         <div className="md:grid grid-cols-2 mt-4 md:mt-6">
-          <div className="mb-6  flex gap-2 flex-col">
+          <div className="mb-6 relative bottom-4  flex gap-2 flex-col">
             <Link href={'/'}>
               <Image
                 height={500}
@@ -16,7 +16,7 @@ const Footer = () => {
                 alt="Toolsmandu Logo"
               />
             </Link>
-            <div className="xs:w-[22em]  md:w-[22em]  ">
+            <div className="xs:w-[22em] sm:w-full  md:w-[22em]  ">
               Toolsmandu Provides Genuine Digital Subscriptions At Best Price.
               Serving Nepalese Market Since 2021 - Trusted By 25,000+ Customers
               Worldwide.
@@ -203,7 +203,7 @@ const Footer = () => {
                     src={'/google-reviews.png'}
                     height={120}
                     width={300}
-                    className="mt-2"
+                    className="mt-2 relative sm:bottom-2 md:bottom-0"
                     alt={'Google reviews logo'}
                   />
                 </a>
@@ -213,11 +213,14 @@ const Footer = () => {
         </div>
 
         <hr className="my-3 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-4" />
-        <div className="flex items-center xs:items-start sm:justify-between sm:flex-row xs:flex-col-reverse gap-2 xs:gap-4 ">
+        <div className="flex items-center sm:justify-between sm:flex-row xs:flex-col-reverse gap-2 xs:gap-4 ">
           <div>
-            <span className="text-sm    sm:text-center    ">
+            <span className="text-sm    xs:text-center    ">
               © {new Date().getFullYear()}
-              <a href="https://flowbite.com/" className="   underline  mx-1">
+              <a
+                href="https://flowbite.com/"
+                className="   hover:underline  mx-1"
+              >
                 Toolsmandu.com
               </a>
               | All Rights Reserved

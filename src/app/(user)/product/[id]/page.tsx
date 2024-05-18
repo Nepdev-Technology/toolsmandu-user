@@ -106,13 +106,13 @@ const page = async ({ params }: { params: { id: string } }) => {
             <div className="absolute inset-0 bg-gradient-to-t  from-primary from-2%" />
           </div>
           <div className="px-3 xs:px-[auto] sm:px-[2rem] md:px-[5rem] lg:px-[10rem]    ">
-            <div className="grid xs:grid-cols-1  md:grid-cols-3 sm:grid-rows-[repeat(3,auto)] md:gap-[1rem]  md:pt-[20vh] sm:pt-[10vh] xs:pt-[7vh] gap-y-4 ">
-              <div className="xs:col-span-full  sm:col-span-2  ">
+            <div className="grid xs:grid-cols-1 sm:grid-cols-5 md:grid-cols-3 sm:grid-rows-[repeat(3,auto)] md:gap-[1rem]  md:pt-[20vh] sm:pt-[10vh] xs:pt-[7vh] gap-y-4 ">
+              <div className="xs:col-span-full  md:col-span-2  sm:col-span-3">
                 <Grid align={'center'} justify="start">
                   <GridCol span={2.9}>
                     <AspectRatio
                       ratio={240 / 347}
-                      maw={{ md: 250, sm: 200, xs: 180 }}
+                      maw={{ md: 250, sm: 200, xs: 200 }}
                     >
                       <img
                         src={
@@ -128,11 +128,14 @@ const page = async ({ params }: { params: { id: string } }) => {
                         {' '}
                         {productData.name}
                       </h1>
-                      {/* <Divider my="lg" /> */}
-                      <Group>
+                      <Divider my="lg" />
+                      <div className="grid xs:grid-cols-2 lg:grid-cols-4 gap-2">
                         <Tooltip label="Category">
                           <span className="flex items-center gap-2">
-                            <IconCategory className="text-iconSecondary "></IconCategory>
+                            <IconCategory
+                              className="text-iconSecondary "
+                              size={30}
+                            ></IconCategory>
                             {productData?.categories?.map((item) => {
                               return (
                                 <Badge
@@ -154,7 +157,10 @@ const page = async ({ params }: { params: { id: string } }) => {
                         {/* <Divider orientation="vertical" /> */}
                         <Tooltip label="Type">
                           <span className="flex items-center  gap-2 ">
-                            <IconLock className="text-iconTertiary "></IconLock>
+                            <IconLock
+                              className="text-iconTertiary "
+                              size={30}
+                            ></IconLock>
                             <Badge
                               variant="gradient"
                               gradient={{
@@ -170,7 +176,10 @@ const page = async ({ params }: { params: { id: string } }) => {
                         {/* <Divider orientation="vertical" /> */}
                         <Tooltip label="Region">
                           <span className="flex items-center gap-2 ">
-                            <IconWorld className="text-iconTertiary "></IconWorld>
+                            <IconWorld
+                              className="text-iconTertiary "
+                              size={30}
+                            ></IconWorld>
                             <Badge
                               variant="gradient"
                               gradient={{
@@ -185,7 +194,10 @@ const page = async ({ params }: { params: { id: string } }) => {
                         </Tooltip>
                         <Tooltip label="Delivery time">
                           <span className="flex items-center gap-2 ">
-                            <IconClock className="text-iconTertiary "></IconClock>
+                            <IconClock
+                              className="text-iconTertiary "
+                              size={30}
+                            ></IconClock>
 
                             <Badge
                               variant="gradient"
@@ -199,19 +211,19 @@ const page = async ({ params }: { params: { id: string } }) => {
                             </Badge>
                           </span>
                         </Tooltip>
-                      </Group>
+                      </div>
                     </div>
                   </GridCol>
                 </Grid>
               </div>
-              <div className="xs:col-span-full sm:col-span-1 sm:row-span-2  h-full ">
+              <div className="xs:col-span-full md:col-span-1 sm:col-span-2  sm:row-span-2  h-full ">
                 <CheckoutForm
                   image={productData.image}
                   variations={productData.variations}
                   dynamicVariables={productData.dynamicVariables}
                 ></CheckoutForm>
               </div>
-              <div className="xs:col-span-full sm:row-span-3 sm:col-span-2">
+              <div className="xs:col-span-full sm:row-span-3 md:col-span-2 sm:col-span-3">
                 <div
                   dangerouslySetInnerHTML={{
                     __html: productData.summary,

@@ -57,7 +57,13 @@ export default async function Home() {
           featuredCategory.map((category) => {
             return (
               <div key={category.id}>
-                <ProductCategoryHeader id={category.id} title={category.name} />
+                <Link href={`/category?category=${category.name}`}>
+                  <ProductCategoryHeader
+                    id={category.id}
+                    title={category.name}
+                  />
+                </Link>
+
                 <ScrollArea scrollbars="x" type="never" key={category.id}>
                   <Box className="flex gap-3 overflow-hidden py-0 ">
                     {category.products.map((product) => {

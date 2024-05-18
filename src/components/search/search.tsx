@@ -12,7 +12,11 @@ export function SearchBar() {
       </div>
       <Popover position="bottom">
         <Popover.Target>
-          <Button hiddenFrom="sm" aria-label="SearchButton ">
+          <Button
+            hiddenFrom="sm"
+            aria-label="SearchButton "
+            className="xs:bg-quaternary"
+          >
             <IconSearch></IconSearch>
           </Button>
         </Popover.Target>

@@ -7,7 +7,8 @@ interface PaymentCardProps {
   src: string;
   alt: string;
   title: string;
-  amount: string | number;
+  amount: number;
+  discount: number | undefined;
 }
 
 const PaymentCard: React.FC<PaymentCardProps> = ({
@@ -16,6 +17,7 @@ const PaymentCard: React.FC<PaymentCardProps> = ({
   src,
   alt,
   title,
+  discount,
   amount,
 }) => {
   return (
@@ -36,9 +38,21 @@ const PaymentCard: React.FC<PaymentCardProps> = ({
             {title}
           </Text>
         </Flex>
-        <Text className="text-textSP font-display   text-lg font-bold ">
-          Rs&nbsp;{amount}
-        </Text>
+
+        <div>
+          {' '}
+          <Text className="text-textSP font-display   text-lg font-bold ">
+            Rs&nbsp;{discount ? amount - discount : amount}
+          </Text>
+          {discount && (
+            <Text
+              className="text-textMRP font-display  text-sm  "
+              td="line-through"
+            >
+              Rs&nbsp;{amount}
+            </Text>
+          )}
+        </div>
       </div>
     </div>
   );

@@ -1,6 +1,7 @@
 import { Button, Paper, Text, Title } from '@mantine/core';
 import Link from 'next/link';
 import classes from './Demo.module.css';
+import { COLOR } from '@/src/types/enums/colors.enums';
 
 export interface SlideData {
   image: string;
@@ -27,20 +28,14 @@ export default function CarouselCard({
       }}
       className={classes.card}
     >
-      <div className="pl-10">
-        <Title order={3} className={classes.title}>
-          {title}
-        </Title>
-        <Text className={classes.category} size="xs">
-          {description}
-        </Text>
+      <div className="flex flex-col items-center justify-center text-black">
+        <Title order={3}>{title}</Title>
+        <Text size="xs">{description}</Text>
       </div>
 
-      <Link href={link} className="pl-10">
+      <Link href={link}>
         {' '}
-        <Button variant="white" color="dark">
-          Order Now
-        </Button>
+        <Button className="bg-green-500">Order Now</Button>
       </Link>
     </Paper>
   );
