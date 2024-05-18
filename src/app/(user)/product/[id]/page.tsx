@@ -129,12 +129,12 @@ const page = async ({ params }: { params: { id: string } }) => {
                         {productData.name}
                       </h1>
                       <Divider my="lg" />
-                      <div className="grid xs:grid-cols-2 lg:grid-cols-4 gap-2">
+                      <div className="grid xs:grid-cols-2 lg:grid-cols-4 gap-x-2">
                         <Tooltip label="Category">
                           <span className="flex items-center gap-2">
                             <IconCategory
                               className="text-iconSecondary "
-                              size={30}
+                              size={25}
                             ></IconCategory>
                             {productData?.categories?.map((item) => {
                               return (
