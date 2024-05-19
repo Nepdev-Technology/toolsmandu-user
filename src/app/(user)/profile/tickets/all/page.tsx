@@ -20,11 +20,16 @@ const Page = () => {
     const http = new HttpService();
     const response: any = await http
       .service()
-      .get(`${apiRoutes.ticket.getAll}?page=${page ? +page : 1}&limit=10`, {
-        next: {
-          cache: 'no-store',
-        },
-      });
+      .get(
+        `${apiRoutes.ticket.getAll}?page=${
+          page ? +page : 1
+        }&limit=10&sortBy=createdAt&sortOrder=desc`,
+        {
+          next: {
+            cache: 'no-store',
+          },
+        }
+      );
 
     const transformedData = response?.data?.result?.map((item: any) => {
       return {

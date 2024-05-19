@@ -11,7 +11,7 @@ import Loading from '../loading';
 const Page = () => {
   const [tableData, setTableData] = useState([]);
   const searchParams = useSearchParams();
-  const page = searchParams.get('search');
+  const page = searchParams.get('page');
   const [total, setTotal] = useState(10);
   const [loading, setLoading] = useState(false);
 
@@ -60,7 +60,7 @@ const Page = () => {
 
   useEffect(() => {
     getTableData();
-  }, []);
+  }, [page]);
   return (
     <Card
       shadow="sm"

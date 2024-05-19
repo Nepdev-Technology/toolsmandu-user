@@ -7,6 +7,7 @@ import {
 import { checkLoggedIn } from '@/src/utils/checkLoggedIn';
 import {
   showErrorNotification,
+  showNotificationOnRes,
   showSuccessNotification,
 } from '@/src/utils/notificationUtils';
 import {
@@ -28,7 +29,7 @@ import {
 } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { usePathname, useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import PaymentCard from '../Cards/PaymentCard';
 
 interface ICustomFormProps {
@@ -66,6 +67,9 @@ const CustomForm = ({
   });
   const isLoggedIn = checkLoggedIn();
   const pathName = usePathname();
+  useEffect(() => {
+    setValidCoupon(undefined);
+  }, [selectedOption]);
   const handleFormSubmit = async (values: any) => {
     const http = new HttpService();
     const result = Object.keys(values).map((key) => {
@@ -88,6 +92,7 @@ const CustomForm = ({
       const response: any = await http
         .service()
         .push(`${apiRoutes.orders.base}`, orderPayload);
+      showNotificationOnRes(response);
 
       if (response.success) {
         const { orderId, totalAmount, user } = response.data;
@@ -124,7 +129,7 @@ const CustomForm = ({
       .service()
       .push(`${apiRoutes.coupon.discount}`, {
         code: coupon,
-        productVariationId: selectedOption.product,
+        productVariationId: selectedOption.id,
       });
     if (response.success) {
       setValidCoupon(response.data);
@@ -179,7 +184,8 @@ const CustomForm = ({
               label="Coupon code"
               placeholder="Enter Coupon Code"
               description={
-                validCoupon && `Rs ${validCoupon.discount} discount applied`
+                validCoupon &&
+                `Rs ${validCoupon.calculatedDiscountAmount} discount applied`
               }
               onChange={(e) => setCoupon(e.target.value)}
               rightSection={
@@ -206,7 +212,7 @@ const CustomForm = ({
 
           <div className="flex xs:flex-col  gap-4 ">
             <PaymentCard
-              discount={validCoupon?.discount}
+              discount={validCoupon?.calculatedDiscountAmount}
               title="Esewa"
               src={'/esewa_logo.png'}
               alt="Esewa logo"
@@ -218,7 +224,7 @@ const CustomForm = ({
             />
 
             <PaymentCard
-              discount={validCoupon?.discount}
+              discount={validCoupon?.calculatedDiscountAmount}
               title="Khalti"
               src={'/khalti.png'}
               alt="Khalti logo"

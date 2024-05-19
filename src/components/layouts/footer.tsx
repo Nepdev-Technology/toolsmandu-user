@@ -7,16 +7,16 @@ const Footer = () => {
     <footer className="bg-tertiary text-textFooter text-sm">
       <div className="mx-auto  w-full max-w-screen-xl  py-3 pb-2 px-3 xs:px-[1rem] sm:px-[2rem] md:px-[5rem] lg:px-[10rem]">
         <div className="md:grid grid-cols-2 mt-4 md:mt-6">
-          <div className="mb-6 relative bottom-4  flex gap-2 flex-col">
+          <div className="mb-6 relative md:bottom-4  flex gap-2 flex-col">
             <Link href={'/'}>
               <Image
                 height={500}
                 width={250}
-                src={'/toolsmandu_color.png'}
+                src={'/toolsmandu-light.png'}
                 alt="Toolsmandu Logo"
               />
             </Link>
-            <div className="xs:w-[22em] sm:w-full  md:w-[22em]  ">
+            <div className="xs:w-full sm:w-full  md:w-[22em]  ">
               Toolsmandu Provides Genuine Digital Subscriptions At Best Price.
               Serving Nepalese Market Since 2021 - Trusted By 25,000+ Customers
               Worldwide.
@@ -35,7 +35,7 @@ const Footer = () => {
                 {<IconMail></IconMail>} support@toolsmandu.com
               </div>
 
-              <div className="flex gap-1 mt-8 sm:justify sm:mt-0">
+              <div className="flex gap-1 xs:mt-2  sm:justify sm:mt-0">
                 <a
                   href="https://www.facebook.com/profile.php?id=100094975557066"
                   className="  "
@@ -179,7 +179,7 @@ const Footer = () => {
                 </ul>
               </div>
             </div>
-            <div className=" sm:pt-8 md:pt-4  ">
+            <div className=" sm:pt-8 md:pt-4 sm:col-span-2 ">
               <p className="mb-6 text-xs  font-semibold   uppercase text-textPrimary">
                 CHECK OUR REVIEWS
               </p>
@@ -203,7 +203,7 @@ const Footer = () => {
                     src={'/google-reviews.png'}
                     height={120}
                     width={300}
-                    className="mt-2 relative sm:bottom-2 md:bottom-0"
+                    className="mt-2 relative md:bottom-0"
                     alt={'Google reviews logo'}
                   />
                 </a>

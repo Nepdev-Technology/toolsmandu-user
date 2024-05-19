@@ -13,7 +13,9 @@ export function SearchBar() {
       <Popover position="bottom">
         <Popover.Target>
           <Button
+            px={10}
             hiddenFrom="sm"
+            size="md"
             aria-label="SearchButton "
             className="xs:bg-quaternary"
           >

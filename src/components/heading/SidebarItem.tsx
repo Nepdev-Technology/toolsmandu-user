@@ -11,10 +11,10 @@ export interface IDropDownMenuItemProps {
 const SidebarItem = ({ category, products }: IDropDownMenuItemProps) => {
   return (
     <NavLink
-      label={category}
+      label={category.toUpperCase()}
       childrenOffset={28}
       href={`/category?category=${category}`}
-      className="hover:bg-primary"
+      className="hover:bg-primary font-bold"
     ></NavLink>
   );
 };

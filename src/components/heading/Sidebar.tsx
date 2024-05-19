@@ -4,7 +4,7 @@ import SidebarItem from './SidebarItem';
 
 const Sidebar = ({ items }: { items: IDropDownMenuItemProps[] }) => {
   return (
-    <div className="flex flex-col items-start ml-2">
+    <div className="flex flex-col items-start ml-2 mt-4 z-[9999]">
       {items.map((item) => (
         <SidebarItem
           key={item.category}

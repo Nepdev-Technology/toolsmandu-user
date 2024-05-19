@@ -11,7 +11,7 @@ import Loading from '../loading';
 const Page = () => {
   const [tableData, setTableData] = useState([]);
   const searchParams = useSearchParams();
-  const page = searchParams.get('search');
+  const page = searchParams.get('page');
   const [total, setTotal] = useState(10);
   const [loading, setLoading] = useState(false);
 
@@ -20,15 +20,19 @@ const Page = () => {
     const http = new HttpService();
     const response: any = await http
       .service()
-      .get(`${apiRoutes.orders.user}?page=${page ? +page : 1}&limit=10`, {
-        next: {
-          cache: 'no-store',
-        },
-      });
-
+      .get(
+        `${apiRoutes.orders.user}?page=${
+          page ? +page : 1
+        }&limit=10&sortBy=createdAt&sortOrder=desc`,
+        {
+          next: {
+            cache: 'no-store',
+          },
+        }
+      );
     const transformedData = response?.data?.result?.map((item: any) => {
       return {
-        productName: item.product.name,
+        productName: `${item.product.name} - ${item.productVariation.name}`,
         id: item.id,
         key: item.id,
         date: normalizeDate(item.createdAt),
@@ -58,7 +62,7 @@ const Page = () => {
 
   useEffect(() => {
     getTableData();
-  }, []);
+  }, [page]);
   return (
     <Card
       shadow="sm"
@@ -73,7 +77,7 @@ const Page = () => {
         className="flex flex-col gap-3 justify-around"
       >
         <div className="flex gap-4 items-center">
-          <Title order={2}>Orders</Title>
+          <Title order={2}>Orders </Title>
         </div>
         <Suspense fallback={<Loading></Loading>}>
           <CustomTable columns={columns} elements={tableData}></CustomTable>

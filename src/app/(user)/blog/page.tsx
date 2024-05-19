@@ -2,7 +2,7 @@ import BlogCard from '@/src/components/Cards/BlogCard';
 import { CustomPagination } from '@/src/components/mantine';
 import apiRoutes from '@/src/config/api.config';
 import { HttpService } from '@/src/services';
-import { Box } from '@mantine/core';
+import { Box, Title } from '@mantine/core';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 export interface Blog {
@@ -48,6 +48,13 @@ const page = async ({ searchParams }: { searchParams: { page: string } }) => {
   const blogData: Blog[] = blogRawData?.result;
   return (
     <>
+      <div>
+        <div className="bg-primary px-2 py-1 rounded-md flex justify-center xs:mb-3 sm:my-5 lg:my-8">
+          <Title order={1} className="  text-textPrimary">
+            Blog
+          </Title>
+        </div>
+      </div>
       {blogData && blogData.length >= 1 ? (
         <section className="relative bottom-1 text-textPrimary">
           <Box className="flex gap-4 flex-wrap mt-2 justify-center">

@@ -33,7 +33,7 @@ const QAndACard = ({ fullName, content, replies, createdAt }: IReviewCard) => {
                   <span>{reply.externalUser.userName}</span>
                   <span>{normalizeDate(reply.createdAt)}</span>
                 </div>
-                <div>{reply.content}</div>
+                <div className="mt-3">{reply.content}</div>
               </div>
             );
           })}

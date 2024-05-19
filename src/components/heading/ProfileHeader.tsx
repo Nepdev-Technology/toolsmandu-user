@@ -12,10 +12,11 @@ import {
   IconUsersGroup,
 } from '@tabler/icons-react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 
 const ProfileHeader = () => {
   const logout = useLogout();
+  const pathName = usePathname();
   const router = useRouter();
   const handleLogout = () => {
     logout.logout();
@@ -25,10 +26,10 @@ const ProfileHeader = () => {
   };
   return (
     <Container className="bg-primary py-2" fluid>
-      <Flex justify={'center'} gap={{ sm: 10, md: 20, lg: 30 }} wrap={'wrap'}>
+      <Flex justify={'center'} wrap={'wrap'}>
         <Link href="/profile">
           <Button
-            variant="transparent"
+            variant={pathName === '/profile' ? 'outline' : 'transparent'}
             className="text-textPrimary"
             leftSection={<IconUser />}
           >
@@ -37,7 +38,9 @@ const ProfileHeader = () => {
         </Link>
         <Link href="/profile/security">
           <Button
-            variant="transparent"
+            variant={
+              pathName === '/profile/security' ? 'outline' : 'transparent'
+            }
             className="text-textPrimary"
             leftSection={<IconLockAccess />}
           >
@@ -46,7 +49,7 @@ const ProfileHeader = () => {
         </Link>
         <Link href="/profile/orders">
           <Button
-            variant="transparent"
+            variant={pathName === '/profile/orders' ? 'outline' : 'transparent'}
             className="text-textPrimary"
             leftSection={<IconList />}
           >
@@ -55,7 +58,9 @@ const ProfileHeader = () => {
         </Link>
         <Link href="/profile/familySharing">
           <Button
-            variant="transparent"
+            variant={
+              pathName === '/profile/familySharing' ? 'outline' : 'transparent'
+            }
             className="text-textPrimary"
             leftSection={<IconUsersGroup />}
           >
@@ -65,7 +70,9 @@ const ProfileHeader = () => {
         <Link href={'/profile/tickets'}>
           {' '}
           <Button
-            variant="transparent"
+            variant={
+              pathName === '/profile/tickets' ? 'outline' : 'transparent'
+            }
             className="text-textPrimary"
             leftSection={<IconTicket />}
           >

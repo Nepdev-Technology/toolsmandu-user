@@ -16,14 +16,7 @@ const DropDownMenu = ({ items }: { items: IDropDownMenuItemProps[] }) => {
             </div>
           ))
         ) : (
-          <>
-            {/* {[1, 2, 3, 4, 5].map((item) => {
-              return <Skeleton height={20} width={100} />;
-            })} */}
-            {[1, 2, 3, 4, 5, 6, 7, 8].map((item) => {
-              return <Loader key={item} color="blue" type="dots" />;
-            })}
-          </>
+          <></>
         )}
       </Flex>
     </Container>

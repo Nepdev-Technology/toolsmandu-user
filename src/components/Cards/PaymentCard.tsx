@@ -42,7 +42,7 @@ const PaymentCard: React.FC<PaymentCardProps> = ({
         <div>
           {' '}
           <Text className="text-textSP font-display   text-lg font-bold ">
-            Rs&nbsp;{discount ? amount - discount : amount}
+            Rs&nbsp;{discount ? (amount - discount).toFixed(2) : amount}
           </Text>
           {discount && (
             <Text
