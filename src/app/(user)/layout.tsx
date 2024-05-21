@@ -20,7 +20,6 @@ import {
   Burger,
   Button,
   Divider,
-  Group,
   Indicator,
   Menu,
   MenuDropdown,
@@ -28,7 +27,7 @@ import {
   VisuallyHidden,
 } from '@mantine/core';
 import { useDisclosure, useHeadroom } from '@mantine/hooks';
-import { IconBell, IconHelp, IconUser } from '@tabler/icons-react';
+import { IconBell, IconUser } from '@tabler/icons-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
@@ -41,7 +40,6 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   const [opened, { toggle }] = useDisclosure();
-  const pinned = useHeadroom({ fixedAt: 120 });
   const [data, setData] = React.useState<IDropDownMenuItemProps[]>([]);
   const [notifications, setNotifications] = React.useState<
     IHeaderNotification[]
@@ -110,7 +108,7 @@ export default function DashboardLayout({
       className="text-textPrimary bg-primary font-display "
       navbar={{
         width: 300,
-        breakpoint: 'sm',
+        breakpoint: 'md',
         collapsed: { desktop: true, mobile: !opened },
       }}
     >
@@ -122,7 +120,7 @@ export default function DashboardLayout({
             color="primary.0"
             opened={opened}
             onClick={toggle}
-            hiddenFrom="sm"
+            hiddenFrom="md"
             size="md"
             className="text-primary "
             aria-label="Toggle navigation"
@@ -202,7 +200,7 @@ export default function DashboardLayout({
           <Burger
             opened={opened}
             onClick={toggle}
-            hiddenFrom="sm"
+            hiddenFrom="md"
             size="md"
             color="white"
           />
@@ -223,14 +221,17 @@ export default function DashboardLayout({
         <NextNProgress height={4} />
         {children}
         <div className="hs-dropdown fixed bottom-10 right-10 z-50">
-          <Link href="https://api.whatsapp.com/send/?phone=9779864484274&text&type=phone_number&app_absent=0">
+          <a
+            target="_blank"
+            href="https://api.whatsapp.com/send/?phone=9779864484274&text&type=phone_number&app_absent=0"
+          >
             <Image
               src={'/whatsapp.svg'}
               alt="Toolsmandu Logo"
               width={50}
               height={50}
             ></Image>
-          </Link>
+          </a>
         </div>
       </AppShellMain>
       <div className="xs:mt-4  md:mt-[4rem]">

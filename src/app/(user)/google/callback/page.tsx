@@ -1,4 +1,5 @@
 'use client';
+import Loading from '@/src/app/loading';
 import SquareLoader from '@/src/components/Loading/SquareLoader';
 import { useGoogleLogin } from '@/src/hooks/auth/userLogin';
 import { Card, CardSection, Divider, Title } from '@mantine/core';
@@ -50,16 +51,18 @@ const Page = () => {
 
   return (
     <div className="flex justify-center items-center mt-10">
-      <Card shadow="lg" px={40} py={30} withBorder>
+      <Card shadow="lg" px={40} py={30} withBorder h={200}>
         <CardSection>
           <Title order={1} className="flex items-center gap-2">
             {<IconBrandGoogle></IconBrandGoogle>}Signing In Please Wait
           </Title>
         </CardSection>
         <Divider></Divider>
-        <div className="flex justify-center mt-10">
-          <SquareLoader></SquareLoader>
-        </div>
+        <CardSection>
+          <div className="flex justify-center mt-10">
+            <Loading></Loading>{' '}
+          </div>
+        </CardSection>
       </Card>
     </div>
   );

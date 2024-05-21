@@ -35,7 +35,12 @@ const HomePageCarousel = async () => {
 
   return (
     <Carousel
-      slideSize={{ base: '100%', sm: '50%', md: '33.33%' }}
+      slideSize={{
+        base: '100%',
+        sm: '50%',
+        md: '50%',
+        lg: '33.33%',
+      }}
       slideGap={{ base: 0, sm: 'md' }}
       align="start"
       slidesToScroll={2}

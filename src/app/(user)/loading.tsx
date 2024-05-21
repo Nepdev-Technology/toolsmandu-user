@@ -53,7 +53,7 @@ import { Divider } from '@mantine/core';
 // };
 const Loading = () => {
   return (
-    <div className="flex justify-center">
+    <div className="flex justify-center mt-[30vh]">
       <SquareLoader></SquareLoader>
     </div>
   );

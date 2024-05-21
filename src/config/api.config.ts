@@ -27,6 +27,7 @@ const apiRoutes = {
   orders: {
     base: '/order',
     user: '/order/finall-by-user',
+    cancel: '/order/cancel',
   },
   payement: {
     esewa: '/checkout/esewa/verify',

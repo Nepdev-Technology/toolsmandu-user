@@ -3,10 +3,10 @@ import { CustomPagination, CustomTable } from '@/src/components/mantine';
 import apiRoutes from '@/src/config/api.config';
 import { HttpService } from '@/src/services';
 import { normalizeDate } from '@/src/utils/normalizeDate';
-import { Card, CardSection, Title } from '@mantine/core';
+import { Card, CardSection, ScrollArea, Title } from '@mantine/core';
 import { useSearchParams } from 'next/navigation';
 import { Suspense, useEffect, useState } from 'react';
-import Loading from '../loading';
+import Loading from '../../loading';
 
 const Page = () => {
   const [tableData, setTableData] = useState([]);
@@ -69,7 +69,7 @@ const Page = () => {
       px={'lg'}
       py={'sm'}
       radius="md"
-      className="bg-tertiary text-textPrimary"
+      className="bg-tertiary text-textPrimary overflow-y"
     >
       <CardSection
         px={10}
@@ -80,7 +80,9 @@ const Page = () => {
           <Title order={2}>Orders </Title>
         </div>
         <Suspense fallback={<Loading></Loading>}>
-          <CustomTable columns={columns} elements={tableData}></CustomTable>
+          <ScrollArea className="w-auto">
+            <CustomTable columns={columns} elements={tableData}></CustomTable>
+          </ScrollArea>
         </Suspense>
         <CustomPagination totalPages={total} />
       </CardSection>

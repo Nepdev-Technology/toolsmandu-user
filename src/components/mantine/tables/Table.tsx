@@ -47,7 +47,7 @@ const CustomTable = ({ columns, elements, actions }: CustomTableProps) => {
   }
 
   return (
-    <Table>
+    <Table className=''>
       <TableThead>
         <TableTr>{tableHeads}</TableTr>
       </TableThead>

@@ -35,6 +35,17 @@ const verifyKhaltiPayment = async (id: string, pdix: string) => {
     console.log(error, 'this is error');
   }
 };
+const cancelOrder = async (id: string) => {
+  try {
+    const http = new HttpService();
+    const response: any = await http
+      .service()
+      .push(`${apiRoutes.orders.cancel}/${id}`, {});
+    return response;
+  } catch (error) {
+    console.log(error, 'this is error');
+  }
+};
 const Canceled = (props: { id: string }) => {
   return (
     <div className="flex justify-center items-center mt-10">
@@ -50,7 +61,7 @@ const Canceled = (props: { id: string }) => {
           </div>
         </CardSection>
         <p className="text-gray-600 my-2">
-          Thank you for completing your secure online payment.
+          Sorry, Your Payment Failed, Please Try Again.{' '}
         </p>
         <p> Have a great day! </p>
         <div className="flex justify-center gap-3 mt-4">
@@ -88,6 +99,7 @@ const page = async ({
     response = await verifyEsewaPayment(params.orderId, data);
   } else if (params.provider === PAYMENT_GATEWAYS.KHALTI) {
     if (!pidx) {
+      await cancelOrder(params.orderId);
       return <Canceled id={params.id}></Canceled>;
     }
     response = await verifyKhaltiPayment(params.orderId, pidx);
