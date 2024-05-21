@@ -14,6 +14,8 @@ import {
 } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { useState } from 'react';
+//@ts-ignore
+import ReCAPTCHA from 'react-google-recaptcha';
 
 const Page = () => {
   const [loading, setLoading] = useState(false);
@@ -25,6 +27,7 @@ const Page = () => {
       phone: '',
       subject: '',
       message: '',
+      captchaVerified: '',
     },
     validate: {
       name: (value) => (value.length < 2 ? 'Name can not be empty' : null),
@@ -34,6 +37,7 @@ const Page = () => {
         value.length < 2 ? 'Subject can not be empty' : null,
       message: (value) =>
         value.length < 2 ? 'Message can not be empty' : null,
+      captchaVerified: (value) => (!value ? 'Captcha is required' : null),
     },
   });
 
@@ -50,6 +54,9 @@ const Page = () => {
     showNotificationOnRes(response);
     setLoading(false);
   };
+  async function onChange(value: any) {
+    form.setFieldValue('captchaVerified', value);
+  }
   return (
     <div className=" text-textPrimary  xs:mx-4 sm:mx-16 md:mx-32">
       <Card
@@ -147,6 +154,17 @@ const Page = () => {
               required
               {...form.getInputProps('message')}
             />
+            <div></div>
+            <div className="mt-4 ">
+              <ReCAPTCHA
+                sitekey="6LdAFOQpAAAAACnEX65cEvsBTuyWprFw9Hcc1pqZ"
+                onChange={onChange}
+              />{' '}
+              <p className="text-red-500 text-end mt-2">
+                {' '}
+                {form.errors.captchaVerified}
+              </p>
+            </div>
             <Button loading={loading} type="submit" className="mt-4">
               Submit
             </Button>

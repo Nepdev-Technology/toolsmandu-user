@@ -17,6 +17,8 @@ import { IconLock } from '@tabler/icons-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+//@ts-ignore
+import ReCAPTCHA from 'react-google-recaptcha';
 
 const Page = () => {
   const [loading, setLoading] = useState(false);
@@ -31,6 +33,7 @@ const Page = () => {
       checkbox: false,
       password: '',
       confirmPassword: '',
+      captchaVerified: '',
     },
     validate: {
       firstName: (value) =>
@@ -47,16 +50,17 @@ const Page = () => {
         value.length < 2 ? "Password can't be empty" : null,
       confirmPassword: (value, values) =>
         value !== values.password ? 'Passwords did not match' : null,
+      captchaVerified: (value) => (!value ? 'Captcha is required' : null),
     },
   });
 
   const onSubmit = async (values: any) => {
     setLoading(true);
     const http = new HttpService();
-    const { checkbox, confirmPassword, ...others } = values;
+    const { checkbox, confirmPassword, captchaVerified, ...others } = values;
     const response: any = await http
       .service()
-      .push(`${apiRoutes.auth.register}`, others);
+      .push(`${apiRoutes.auth.register}/${captchaVerified}`, others);
 
     if (response.success) {
       router.push(`/verify?email=${form.values.email}`);
@@ -64,6 +68,10 @@ const Page = () => {
     showNotificationOnRes(response);
     setLoading(false);
   };
+
+  function onChange(value: any) {
+    form.setFieldValue('captchaVerified', value);
+  }
 
   return (
     <>
@@ -142,13 +150,25 @@ const Page = () => {
           {...form.getInputProps('checkbox', { type: 'checkbox' })}
           required
         />
+
+        <div className="flex justify-end">
+          <ReCAPTCHA
+            sitekey="6LdAFOQpAAAAACnEX65cEvsBTuyWprFw9Hcc1pqZ"
+            onChange={onChange}
+          />
+        </div>
+        <p className="text-red-500 text-end mt-2">
+          {' '}
+          {form.errors.captchaVerified}
+        </p>
+
         <Button type="submit" className=" w-full mt-4 " loading={loading}>
           Register
         </Button>
       </form>
 
       <div className="flex justify-end items-center">
-        <p> Already have an account?</p>{' '}
+        <p className="mt-1"> Already have an account?</p>{' '}
         <Link href="/login">
           {' '}
           <Button variant="transparent">Login</Button>
