@@ -1,8 +1,8 @@
 import apiRoutes from '@/src/config/api.config';
 import { HttpService } from '@/src/services';
 import { Carousel, CarouselSlide } from '@mantine/carousel';
-import CarouselCard, { SlideData } from '../Cards/CaroselCard/CaroselCard';
 import { Metadata } from 'next';
+import CarouselCard, { SlideData } from '../Cards/CaroselCard/CaroselCard';
 
 const getCarouselData = async () => {
   const http = new HttpService();
@@ -43,7 +43,7 @@ const HomePageCarousel = async () => {
       }}
       slideGap={{ base: 0, sm: 'md' }}
       align="start"
-      slidesToScroll={2}
+      slidesToScroll={'auto'}
       controlsOffset="md"
       controlSize={27}
       withIndicators

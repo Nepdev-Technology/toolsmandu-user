@@ -36,10 +36,7 @@ const Footer = () => {
               </div>
 
               <div className="flex gap-1 xs:mt-2  sm:justify sm:mt-0">
-                <a
-                  href="https://www.facebook.com/profile.php?id=100094975557066"
-                  className="  "
-                >
+                <a href="https://link.toolsmandu.com/fb" className="  ">
                   <svg
                     className="w-4 h-4"
                     aria-hidden="true"
@@ -56,7 +53,7 @@ const Footer = () => {
                   <span className="sr-only">Facebook page</span>
                 </a>
                 <a
-                  href="https://www.instagram.com/toolsmandu"
+                  href="https://link.toolsmandu.com/instagram"
                   className=" ms-5"
                 >
                   <svg
@@ -72,7 +69,7 @@ const Footer = () => {
                   <span className="sr-only">Instagram page</span>
                 </a>
                 <a
-                  href="https://api.whatsapp.com/send/?phone=9779864484274&text&type=phone_number&app_absent=0"
+                  href="https://link.toolsmandu.com/whatsapp"
                   className=" ms-5"
                 >
                   <svg
