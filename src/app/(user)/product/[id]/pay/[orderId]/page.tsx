@@ -83,7 +83,7 @@ const Page = () => {
             ></Image>
           </div>
           <div className=" text-red-600 text-center py-2">
-            After you pay, click on "Place Order" below.{' '}
+            After you pay, click on &quot;Place Order&quot; below.{' '}
           </div>
           <form
             onSubmit={form.onSubmit(onSubmit)}
