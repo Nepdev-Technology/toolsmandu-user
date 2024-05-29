@@ -153,7 +153,7 @@ const Page = () => {
 
         <div className="flex justify-end">
           <ReCAPTCHA
-            sitekey="6LdAFOQpAAAAACnEX65cEvsBTuyWprFw9Hcc1pqZ"
+            sitekey={`${process.env.NEXT_PUBLIC_GOOGLE_CAPTCHA}`}
             onChange={onChange}
           />
         </div>

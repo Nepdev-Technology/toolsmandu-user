@@ -11,7 +11,6 @@ import {
   showSuccessNotification,
 } from '@/src/utils/notificationUtils';
 import {
-  EsewaPaymentProcessor,
   KhaltiPaymentProcessor,
   Order,
   PAYMENT_GATEWAYS,
@@ -95,7 +94,7 @@ const CustomForm = ({
       showNotificationOnRes(response);
 
       if (response.success) {
-        const { orderId, totalAmount, user } = response.data;
+        const { orderId, id, totalAmount, user } = response.data;
 
         const order: Order = {
           orderId: orderId,
@@ -106,8 +105,11 @@ const CustomForm = ({
           customerPhone: '',
         };
         if (selectedPaymentOption == PAYMENT_GATEWAYS.ESEWA) {
-          const store = new Store(new EsewaPaymentProcessor());
-          store.purchaseItem(order);
+          // const store = new Store(new EsewaPaymentProcessor());
+          // store.purchaseItem(order);
+          router.push(
+            `/product/${selectedOption.product}/pay/${id}?orderId=${orderId}&totalAmount=${totalAmount}`
+          );
         } else if (selectedPaymentOption === PAYMENT_GATEWAYS.KHALTI) {
           try {
             const store = new Store(new KhaltiPaymentProcessor());

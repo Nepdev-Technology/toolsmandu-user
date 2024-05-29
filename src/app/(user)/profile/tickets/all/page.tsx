@@ -58,7 +58,7 @@ const Page = () => {
 
   useEffect(() => {
     getTableData();
-  }, []);
+  }, [page]);
   return (
     <Card
       shadow="sm"

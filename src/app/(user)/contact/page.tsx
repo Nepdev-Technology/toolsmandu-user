@@ -7,7 +7,6 @@ import {
   Card,
   CardSection,
   Modal,
-  Select,
   Textarea,
   TextInput,
   Title,
@@ -157,7 +156,7 @@ const Page = () => {
             <div></div>
             <div className="mt-4 ">
               <ReCAPTCHA
-                sitekey="6LdAFOQpAAAAACnEX65cEvsBTuyWprFw9Hcc1pqZ"
+                sitekey={`${process.env.NEXT_PUBLIC_GOOGLE_CAPTCHA}`}
                 onChange={onChange}
               />{' '}
               <p className="text-red-500 text-end mt-2">
