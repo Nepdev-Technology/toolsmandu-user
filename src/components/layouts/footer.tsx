@@ -182,7 +182,7 @@ const Footer = () => {
               </p>
               <div className="flex   gap-2">
                 <a
-                  href="https://www.trustpilot.com/review/toolsmandu.com"
+                  href="https://link.toolsmandu.com/trustpilot"
                   target="_blank"
                 >
                   <Image
@@ -193,7 +193,7 @@ const Footer = () => {
                   />
                 </a>{' '}
                 <a
-                  href="https://g.page/r/CUKd9KQPxJrfEBM/review"
+                  href="https://link.toolsmandu.com/googlereviews"
                   target="_blank"
                 >
                   <Image

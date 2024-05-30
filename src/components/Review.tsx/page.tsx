@@ -5,6 +5,7 @@ import { Divider, Group, Rating, ScrollArea, Stack, Text } from '@mantine/core';
 import { redirect } from 'next/navigation';
 import ReviewCard from '../Cards/ReviewCard';
 import ReviewForm from '../CheckoutForm/ReviewForm';
+import { giveFullName } from '@/src/utils/fullName';
 
 interface IReviewProps {
   name: string;
@@ -76,7 +77,7 @@ const Review = async ({ name, id }: IReviewProps) => {
                   <div key={item.id}>
                     <ReviewCard
                       createdAt={item.createdAt}
-                      fullName={item.externalUser.userName}
+                      fullName={giveFullName(item.externalUser)}
                       rating={item.rating}
                       content={item.content}
                       date={item.createdAt}

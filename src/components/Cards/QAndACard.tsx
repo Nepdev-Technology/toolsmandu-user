@@ -1,3 +1,4 @@
+import { giveFullName } from '@/src/utils/fullName';
 import { normalizeDate } from '@/src/utils/normalizeDate';
 interface IReviewCard {
   fullName: string;
@@ -30,7 +31,7 @@ const QAndACard = ({ fullName, content, replies, createdAt }: IReviewCard) => {
                   <div className="w-7 h-7 text-center rounded-full bg-gray-500">
                     {reply.externalUser.userName?.split('')[0]}
                   </div>
-                  <span>{reply.externalUser.userName}</span>
+                  <span>{giveFullName(reply?.externalUser)}</span>
                   <span>{normalizeDate(reply.createdAt)}</span>
                 </div>
                 <div className="mt-3">{reply.content}</div>

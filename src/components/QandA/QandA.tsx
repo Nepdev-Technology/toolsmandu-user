@@ -5,6 +5,7 @@ import { Divider, ScrollArea } from '@mantine/core';
 import { redirect } from 'next/navigation';
 import QAndACard from '../Cards/QAndACard';
 import QuestionAndAnswerForm from '../CheckoutForm/QuestionAndAnswerForm';
+import { giveFullName } from '@/src/utils/fullName';
 
 interface IReviewProps {
   name: string;
@@ -47,7 +48,7 @@ const QandA = async ({ name, id }: IReviewProps) => {
                 return (
                   <div key={item.id}>
                     <QAndACard
-                      fullName={item.externalUser.userName}
+                      fullName={giveFullName(item.externalUser)}
                       content={item.content}
                       createdAt={item.createdAt}
                       replies={item.replies}

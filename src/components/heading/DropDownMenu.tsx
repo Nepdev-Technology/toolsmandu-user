@@ -3,7 +3,7 @@ import DropDownMenuItem, { IDropDownMenuItemProps } from './DropDownMenuItem';
 
 const DropDownMenu = ({ items }: { items: IDropDownMenuItemProps[] }) => {
   return (
-    <Container className="bg-tertiary py-[0.6rem]" fluid visibleFrom="md">
+    <Container className="bg-tertiary py-[0.6rem]" fluid visibleFrom="lg">
       <Flex justify={'center'} gap={{ sm: 10, md: 20, lg: 30 }}>
         {items.length >= 1 ? (
           items.map((item) => (

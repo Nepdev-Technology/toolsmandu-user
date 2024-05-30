@@ -108,7 +108,7 @@ export default function DashboardLayout({
       className="text-textPrimary bg-primary font-display "
       navbar={{
         width: 300,
-        breakpoint: 'md',
+        breakpoint: 'lg',
         collapsed: { desktop: true, mobile: !opened },
       }}
     >
@@ -120,7 +120,7 @@ export default function DashboardLayout({
             color="primary.0"
             opened={opened}
             onClick={toggle}
-            hiddenFrom="md"
+            hiddenFrom="lg"
             size="md"
             className="text-primary "
             aria-label="Toggle navigation"
@@ -200,7 +200,7 @@ export default function DashboardLayout({
           <Burger
             opened={opened}
             onClick={toggle}
-            hiddenFrom="md"
+            hiddenFrom="lg"
             size="md"
             color="white"
           />
@@ -221,10 +221,7 @@ export default function DashboardLayout({
         <NextNProgress height={4} />
         {children}
         <div className="hs-dropdown fixed bottom-10 right-10 z-50">
-          <a
-            target="_blank"
-            href="https://api.whatsapp.com/send/?phone=9779864484274&text&type=phone_number&app_absent=0"
-          >
+          <a target="_blank" href="https://link.toolsmandu.com/whatsapp">
             <Image
               src={'/whatsapp.svg'}
               alt="Toolsmandu Logo"
