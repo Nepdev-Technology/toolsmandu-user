@@ -31,14 +31,14 @@ const Page = () => {
 
     const transformedData = response?.data?.result?.map((item: any) => {
       return {
-        productName: item?.familySharingId?.product?.name,
-        key: item?.order?.id,
-        id: item?.credentialUserIds?.[0]?.orderId?.id,
-        date: normalizeDate(item.createdAt),
-        username: item?.username,
-        password: item?.password,
-        expiresIn: normalizeDate(item?.credentialUserIds?.[0]?.expiresIn),
-        remainingDays: daysRemaining(item?.credentialUserIds?.[0]?.expiresIn),
+        productName: item?.credentialId?.familySharingId?.product?.name,
+        key: item?.orderId?.id,
+        id: item?.orderId?.id,
+        date: normalizeDate(item?.orderId?.createdAt),
+        username: item?.credentialId.username,
+        password: item?.credentialId.password,
+        expiresIn: normalizeDate(item?.expiresIn),
+        remainingDays: daysRemaining(item?.expiresIn),
       };
     });
 

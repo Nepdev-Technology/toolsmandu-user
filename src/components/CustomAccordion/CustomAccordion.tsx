@@ -21,7 +21,7 @@ export default function CustomAccordion({
           chevron: 'text-textPrimary',
         }}
       >
-        <h5 className="text-textPrimary">{item.title}</h5>
+        <h5 className="text-textPrimary  font-bold">{item.title}</h5>
       </AccordionControl>
       <AccordionPanel>{item.summary}</AccordionPanel>
     </AccordionItem>
@@ -29,17 +29,17 @@ export default function CustomAccordion({
 
   return (
     <>
-      <h1 className="sm:text-1xl xs:text-lg  md:text-1xl  font-bold">
+      <h1 className="sm:text-1xl xs:text-lg  md:text-1xl ">
         Frequently asked questions for {title}
-        <Accordion
-          classNames={{
-            content: 'bg-tertiary',
-            item: 'bg-primary',
-          }}
-        >
-          {items}
-        </Accordion>
       </h1>
+      <Accordion
+        classNames={{
+          content: 'bg-tertiary ',
+          item: 'bg-primary',
+        }}
+      >
+        {items}
+      </Accordion>
     </>
   );
 }

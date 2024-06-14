@@ -75,7 +75,7 @@ export default async function Home() {
                               name={product.name}
                               imageUrl={product.image}
                               offerTitle={product.offerTitle}
-                              imageAlt="PUBG"
+                              imageAlt={'Image for' + product.name}
                               maximumRetailPrice={product.maximumRetailPrice}
                               sellingPrice={product.sellingPrice}
                               label={product.name}

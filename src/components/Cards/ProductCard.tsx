@@ -1,6 +1,7 @@
 import { AspectRatio, Card, CardSection, Flex, Text } from '@mantine/core';
 import { Metadata } from 'next';
 import Head from 'next/head';
+import Image from 'next/image';
 
 interface ICardProps {
   id: string | number;
@@ -49,9 +50,11 @@ const ProductCard = ({
       </Head>
       <CardSection>
         <AspectRatio ratio={240 / 347} mx="auto">
-          <img
+          <Image
             src={process.env.NEXT_PUBLIC_IMAGE_URL + imageUrl}
             alt={imageAlt}
+            width={240}
+            height={347}
           />
           {/* //show banner incase of offer auto calculating */}
           {discount && discount >= 1 && !offerTitle ? (

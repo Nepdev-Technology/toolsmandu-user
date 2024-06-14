@@ -96,11 +96,11 @@ const page = async ({ params }: { params: { id: string } }) => {
         <section className="relative bottom-2 text-textPrimary ">
           <div className="absolute z-0 ">
             <Image
-              className="md:h-[25vh] xs:h-[10vh] sm:h-[15vh] w-[100vw] rounded-2xl relative "
+              className="md:h-[25vh] xs:h-[10vh] sm:h-[15vh] w-[100vw]  relative "
               src={
                 process.env.NEXT_PUBLIC_IMAGE_URL + productData.backgorundImage
               }
-              alt="Panda"
+              alt={'Image for' + productData.name}
             ></Image>
 
             <div className="absolute inset-0 bg-gradient-to-t  from-primary from-2%" />
@@ -119,6 +119,7 @@ const page = async ({ params }: { params: { id: string } }) => {
                           process.env.NEXT_PUBLIC_IMAGE_URL + productData.image
                         }
                         alt="Panda"
+                        className="rounded-md"
                       />
                     </AspectRatio>
                   </GridCol>
@@ -133,8 +134,8 @@ const page = async ({ params }: { params: { id: string } }) => {
                         <Tooltip label="Category">
                           <span className="flex items-center gap-2">
                             <IconCategory
-                              className="text-iconSecondary "
-                              size={25}
+                              className="text-iconTertiary "
+                              size={35}
                             ></IconCategory>
                             {productData?.categories?.map((item) => {
                               return (
@@ -159,7 +160,7 @@ const page = async ({ params }: { params: { id: string } }) => {
                           <span className="flex items-center  gap-2 ">
                             <IconLock
                               className="text-iconTertiary "
-                              size={30}
+                              size={35}
                             ></IconLock>
                             <Badge
                               variant="gradient"
@@ -178,7 +179,7 @@ const page = async ({ params }: { params: { id: string } }) => {
                           <span className="flex items-center gap-2 ">
                             <IconWorld
                               className="text-iconTertiary "
-                              size={30}
+                              size={23}
                             ></IconWorld>
                             <Badge
                               variant="gradient"
@@ -196,7 +197,7 @@ const page = async ({ params }: { params: { id: string } }) => {
                           <span className="flex items-center gap-2 ">
                             <IconClock
                               className="text-iconTertiary "
-                              size={30}
+                              size={25}
                             ></IconClock>
 
                             <Badge

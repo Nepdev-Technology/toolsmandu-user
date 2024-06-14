@@ -17,7 +17,7 @@ const nextConfig = {
             },
             {
                 protocol: 'https',
-                hostname: 'backend.toolsmandu.com',
+                hostname: 'www.backend.toolsmandu.com',
                 port: '',
                 pathname: '/static/**',
             },
