@@ -76,12 +76,14 @@ const ProductCardForSearch = ({
             <Text className="text-textSP font-display   text-lg font-bold ">
               Rs{sellingPrice}
             </Text>
-            <Text
-              className="text-textMRP font-display  text-xs  "
-              td="line-through"
-            >
-              {maximumRetailPrice}
-            </Text>
+            {discount >= 1 && (
+              <Text
+                className="text-textMRP font-display  text-sm  "
+                td="line-through"
+              >
+                Rs&nbsp;{maximumRetailPrice}
+              </Text>
+            )}
           </Flex>
         </Flex>
       </CardSection>

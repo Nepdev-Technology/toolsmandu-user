@@ -52,11 +52,12 @@ const Page = () => {
           className="flex flex-col gap-3 justify-around"
         >
           <div className="flex gap-4 items-center justify-center">
-            <Title order={2}>QR PAYMENT</Title>
+            <Title order={2}>eSewa / QR Payment</Title>
           </div>
           <p className="text-center">
             Pay via Esewa, Khalti, IMEPay, Mobile Banking etc.
           </p>
+          <p className="text-center">Our Esewa ID: 9864484274</p>
           <div className="flex justify-center items-center gap-6">
             <div>
               Total Amount
@@ -68,10 +69,12 @@ const Page = () => {
             <Divider orientation="vertical"></Divider>
             <div>
               Order Id
-              <div className=" text-xl font-bold">{params?.orderId}</div>
+              <div className=" text-xl font-bold text-center">
+                {params?.orderId}
+              </div>
             </div>
           </div>
-          <div className="bg-primary text-red-600 text-center py-2">
+          <div className="bg-red-600 text-textPrimary text-center py-2 font-bold">
             Important: Please write Your Order ID in Payment Remarks
           </div>
           <div className="flex justify-center">
@@ -82,7 +85,7 @@ const Page = () => {
               alt="Qr code for toolsmandu"
             ></Image>
           </div>
-          <div className=" text-red-600 text-center py-2">
+          <div className="  text-center py-2 font-bold">
             After you pay, click on &quot;Place Order&quot; below.{' '}
           </div>
           <form

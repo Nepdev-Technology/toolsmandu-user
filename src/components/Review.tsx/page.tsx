@@ -43,14 +43,14 @@ const Review = async ({ name, id }: IReviewProps) => {
         <div className="flex flex-col items-center">
           <Text>Overall</Text>
           <Rating
-            defaultValue={Math.floor(review.totalRating)}
+            defaultValue={Math.floor(review?.totalRating)}
             fractions={
-              (review.totalRating - Math.floor(review.totalRating)) * 100
+              (review?.totalRating - Math.floor(review?.totalRating)) * 100
             }
             size="xl"
             readOnly
           />
-          <Text>{review.totalRating}</Text>
+          <Text>{review?.totalRating}</Text>
         </div>
         <Stack>
           <>

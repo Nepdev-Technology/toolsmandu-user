@@ -29,9 +29,11 @@ const QAndACard = ({ fullName, content, replies, createdAt }: IReviewCard) => {
                 {' '}
                 <div className="flex gap-2 ">
                   <div className="w-7 h-7 text-center rounded-full bg-gray-500">
-                    {reply.externalUser.userName?.split('')[0]}
+                    {/* {reply.externalUser.userName?.split('')[0]} */}T
                   </div>
-                  <span>{giveFullName(reply?.externalUser)}</span>
+                  {/* <span>{giveFullName(reply?.externalUser)}</span>
+                  commented due to no data from backend */}
+                  <span>Toolsmandu Admin</span>
                   <span>{normalizeDate(reply.createdAt)}</span>
                 </div>
                 <div className="mt-3">{reply.content}</div>

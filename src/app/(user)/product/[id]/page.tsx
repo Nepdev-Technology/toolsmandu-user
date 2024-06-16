@@ -28,6 +28,7 @@ import {
 import { Metadata } from 'next';
 import { redirect } from 'next/navigation';
 import classes from './Demo.module.css';
+import { giveFirstWord } from '@/src/utils/Text/GiveFirstWord';
 
 const getTableData = async (id: string) => {
   const http = new HttpService();
@@ -100,7 +101,7 @@ const page = async ({ params }: { params: { id: string } }) => {
               src={
                 process.env.NEXT_PUBLIC_IMAGE_URL + productData.backgorundImage
               }
-              alt={'Image for' + productData.name}
+              alt={productData.name}
             ></Image>
 
             <div className="absolute inset-0 bg-gradient-to-t  from-primary from-2%" />
@@ -119,7 +120,7 @@ const page = async ({ params }: { params: { id: string } }) => {
                           process.env.NEXT_PUBLIC_IMAGE_URL + productData.image
                         }
                         alt="Panda"
-                        className="rounded-md"
+                        className="rounded-[10px]"
                       />
                     </AspectRatio>
                   </GridCol>
@@ -135,7 +136,7 @@ const page = async ({ params }: { params: { id: string } }) => {
                           <span className="flex items-center gap-2">
                             <IconCategory
                               className="text-iconTertiary "
-                              size={35}
+                              size={25}
                             ></IconCategory>
                             {productData?.categories?.map((item) => {
                               return (
@@ -149,18 +150,17 @@ const page = async ({ params }: { params: { id: string } }) => {
                                     deg: 90,
                                   }}
                                 >
-                                  {item.name}
+                                  {giveFirstWord(item.name)}
                                 </Badge>
                               );
                             })}
                           </span>
                         </Tooltip>
-                        {/* <Divider orientation="vertical" /> */}
                         <Tooltip label="Type">
                           <span className="flex items-center  gap-2 ">
                             <IconLock
                               className="text-iconTertiary "
-                              size={35}
+                              size={25}
                             ></IconLock>
                             <Badge
                               variant="gradient"
@@ -174,12 +174,11 @@ const page = async ({ params }: { params: { id: string } }) => {
                             </Badge>
                           </span>
                         </Tooltip>
-                        {/* <Divider orientation="vertical" /> */}
                         <Tooltip label="Region">
                           <span className="flex items-center gap-2 ">
                             <IconWorld
                               className="text-iconTertiary "
-                              size={23}
+                              size={25}
                             ></IconWorld>
                             <Badge
                               variant="gradient"
