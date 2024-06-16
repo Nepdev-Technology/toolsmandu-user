@@ -53,10 +53,6 @@ export default function DashboardLayout({
       const dropdownMenuItems: IDropDownMenuItemProps[] = response.data.map(
         (category: FeaturedCategory) => ({
           category: category.name,
-          products: category.products.map((product: Product) => ({
-            url: `/${product.id}`,
-            name: product.name,
-          })),
         })
       );
       setData(dropdownMenuItems);
