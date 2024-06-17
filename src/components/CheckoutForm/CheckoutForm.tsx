@@ -19,12 +19,14 @@ import CustomForm from '../CustomForm/CustomForm';
 
 interface ICheckoutFormProps {
   image: string;
+  slug: string;
   variations: ProductVariation[];
   dynamicVariables: DynamicVariable[];
 }
 
 const CheckoutForm = ({
   image,
+  slug,
   variations,
   dynamicVariables,
 }: ICheckoutFormProps) => {
@@ -115,6 +117,7 @@ const CheckoutForm = ({
       </Card>
       {selectedOption && (
         <CustomForm
+          slug={slug}
           selectedOption={selectedOption}
           fields={dynamicVariables}
         ></CustomForm>

@@ -9,9 +9,9 @@ import { giveFullName } from '@/src/utils/fullName';
 
 interface IReviewProps {
   name: string;
-  id: string;
+  id: number;
 }
-const getReviewData = async (id: string) => {
+const getReviewData = async (id: number) => {
   const http = new HttpService();
   try {
     const response: any = await http
@@ -55,14 +55,16 @@ const Review = async ({ name, id }: IReviewProps) => {
         <Stack>
           <>
             {' '}
-            {review.ratings.map((item: any) => {
-              return (
-                <Group key={item.id}>
-                  <div>{item.star} star</div>
-                  <Rating defaultValue={item.count} readOnly />
-                </Group>
-              );
-            })}
+            {review &&
+              review?.ratings &&
+              review?.ratings?.map((item: any) => {
+                return (
+                  <Group key={item.id}>
+                    <div>{item.star} star</div>
+                    <Rating defaultValue={item.count} readOnly />
+                  </Group>
+                );
+              })}
           </>
         </Stack>
       </div>
@@ -96,7 +98,7 @@ const Review = async ({ name, id }: IReviewProps) => {
 
       <div className="grid  md:grid-cols-2">
         <div>
-          <ReviewForm isLoggedIn={isLoggedIn}></ReviewForm>
+          <ReviewForm productId={id} isLoggedIn={isLoggedIn}></ReviewForm>
         </div>
       </div>
     </div>

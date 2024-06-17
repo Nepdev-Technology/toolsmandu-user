@@ -34,6 +34,7 @@ import PaymentCard from '../Cards/PaymentCard';
 interface ICustomFormProps {
   fields: DynamicVariable[];
   initialValues?: any;
+  slug: string;
   selectedOption: ProductVariation;
 }
 
@@ -47,6 +48,7 @@ interface DiscountInfo {
 
 const CustomForm = ({
   fields,
+  slug,
   initialValues,
   selectedOption,
 }: ICustomFormProps) => {
@@ -103,12 +105,14 @@ const CustomForm = ({
           customerName: `${user?.firstName} ${user?.lastName}`,
           customerEmail: user?.email,
           customerPhone: '',
+          slug,
         };
         if (selectedPaymentOption == PAYMENT_GATEWAYS.ESEWA) {
           // const store = new Store(new EsewaPaymentProcessor());
           // store.purchaseItem(order);
+          debugger;
           router.push(
-            `/product/${selectedOption.product}/pay/${id}?orderId=${orderId}&totalAmount=${totalAmount}`
+            `/product/${slug}/pay/${id}?orderId=${orderId}&totalAmount=${totalAmount}`
           );
         } else if (selectedPaymentOption === PAYMENT_GATEWAYS.KHALTI) {
           try {

@@ -11,8 +11,14 @@ import { useForm } from '@mantine/form';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 
-const ReviewForm = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
-  const params = useParams<{ id: string }>();
+const ReviewForm = ({
+  isLoggedIn,
+  productId,
+}: {
+  isLoggedIn: boolean;
+  productId: number;
+}) => {
+  // const params = useParams<{ id: string }>();
   const form = useForm({
     initialValues: {
       rating: 1,
@@ -27,7 +33,7 @@ const ReviewForm = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
   const handleFormSubmit = async (data: any) => {
     try {
       const http = new HttpService();
-      const payload = { ...data, product: +params.id };
+      const payload = { ...data, product: productId };
       console.log(payload);
       const response: any = await http
         .service()

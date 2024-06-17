@@ -9,9 +9,9 @@ import { giveFullName } from '@/src/utils/fullName';
 
 interface IReviewProps {
   name: string;
-  id: string;
+  id: number;
 }
-const getQandA = async (id: string) => {
+const getQandA = async (id: number) => {
   const http = new HttpService();
   try {
     const response: any = await http
@@ -67,6 +67,7 @@ const QandA = async ({ name, id }: IReviewProps) => {
       <div className="grid  md:grid-cols-2">
         <div>
           <QuestionAndAnswerForm
+            productId={id}
             isLoggedIn={isLoggedIn}
           ></QuestionAndAnswerForm>
         </div>

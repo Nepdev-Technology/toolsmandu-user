@@ -9,6 +9,7 @@ import { fetchKhaltiData } from './fetch';
 export interface Order {
   orderId: string;
   productId: number;
+  slug: string;
   price: number;
   customerName: string;
   customerEmail: string;
@@ -27,7 +28,8 @@ interface PaymentProcessor {
     productId: number,
     customerName: string,
     customerEmail: string,
-    customerPhone: string
+    customerPhone: string,
+    slug: string
   ): void;
 }
 
@@ -42,7 +44,8 @@ export class Store {
       order.productId,
       order.customerName,
       order.customerEmail,
-      order.customerPhone
+      order.customerPhone,
+      order.slug
     );
   }
 }
@@ -136,7 +139,8 @@ export class KhaltiPaymentProcessor implements PaymentProcessor {
     productId: number,
     customerName: string,
     customerEmail: string,
-    customerPhone: string
+    customerPhone: string,
+    slug: string
   ): Promise<void> {
     const payload = {
       method: 'POST',
@@ -146,7 +150,7 @@ export class KhaltiPaymentProcessor implements PaymentProcessor {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        return_url: `${process.env.NEXT_PUBLIC_SITE_URL}/product/${productId}/verify/${PAYMENT_GATEWAYS.KHALTI}/${orderId}`,
+        return_url: `${process.env.NEXT_PUBLIC_SITE_URL}/product/${slug}/verify/${PAYMENT_GATEWAYS.KHALTI}/${orderId}`,
         website_url: `${process.env.NEXT_PUBLIC_SITE_URL}`,
         amount: amount * 100,
         purchase_order_id: orderId,
@@ -158,6 +162,7 @@ export class KhaltiPaymentProcessor implements PaymentProcessor {
         },
       }),
     };
+    debugger;
     await fetchKhaltiData(payload.url, payload);
   }
   catch(error: any) {

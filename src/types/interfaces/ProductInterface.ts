@@ -10,6 +10,7 @@ interface Category {
 }
 export interface Product {
   id: number;
+  slug: string;
   region: string;
   type: string;
   deliveryTime: string;

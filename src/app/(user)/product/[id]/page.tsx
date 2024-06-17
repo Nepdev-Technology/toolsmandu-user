@@ -218,6 +218,7 @@ const page = async ({ params }: { params: { id: string } }) => {
               </div>
               <div className="xs:col-span-full md:col-span-1 sm:col-span-2  sm:row-span-2  h-full ">
                 <CheckoutForm
+                  slug={productData.slug}
                   image={productData.image}
                   variations={productData.variations}
                   dynamicVariables={productData.dynamicVariables}
@@ -267,13 +268,19 @@ const page = async ({ params }: { params: { id: string } }) => {
                   </TabsPanel>
                   <TabsPanel value="rating">
                     <div className="mt-8">
-                      <Review name={productData.name} id={params.id}></Review>
+                      <Review
+                        name={productData.name}
+                        id={productData.id}
+                      ></Review>
                     </div>{' '}
                   </TabsPanel>
 
                   <TabsPanel value="qAndA">
                     <div className="mt-8">
-                      <QandA name={productData.name} id={params.id}></QandA>{' '}
+                      <QandA
+                        name={productData.name}
+                        id={productData.id}
+                      ></QandA>{' '}
                     </div>{' '}
                   </TabsPanel>
                 </Tabs>
