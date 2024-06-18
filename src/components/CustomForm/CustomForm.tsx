@@ -219,7 +219,7 @@ const CustomForm = ({
           <div className="flex xs:flex-col  gap-4 ">
             <PaymentCard
               discount={validCoupon?.calculatedDiscountAmount}
-              title="Esewa"
+              title="Esewa/QR Payment"
               src={'/esewa_logo.png'}
               alt="Esewa logo"
               amount={selectedOption.sellingPrice}
