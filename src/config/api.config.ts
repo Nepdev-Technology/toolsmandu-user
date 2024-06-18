@@ -15,7 +15,7 @@ const apiRoutes = {
     base: '/notification',
   },
   products: {
-    base: '/product',
+    base: '/product/user',
     featured: '/category/featured/all',
     navbar: '/category/featured/navbar',
     search: '/product/user/search',
