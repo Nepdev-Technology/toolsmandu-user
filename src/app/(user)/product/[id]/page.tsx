@@ -119,7 +119,7 @@ const page = async ({ params }: { params: { id: string } }) => {
                         src={
                           process.env.NEXT_PUBLIC_IMAGE_URL + productData.image
                         }
-                        alt="Panda"
+                        alt={productData.name}
                         className="rounded-[10px]"
                       />
                     </AspectRatio>
