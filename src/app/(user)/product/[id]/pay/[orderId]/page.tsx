@@ -57,7 +57,6 @@ const Page = () => {
           <p className="text-center">
             Pay via Esewa, Khalti, IMEPay, Mobile Banking etc.
           </p>
-          <p className="text-center">Our Esewa ID: 9864484274</p>
           <div className="flex justify-center items-center gap-6">
             <div>
               Total Amount
@@ -77,6 +76,10 @@ const Page = () => {
           <div className="bg-red-600 text-textPrimary text-center py-2 font-bold">
             Important: Please write Your Order ID in Payment Remarks
           </div>
+          <p className="text-center font-bold text-lg">
+            Our Esewa ID: <span>9864484274</span>
+          </p>
+          <p className="text-center text-2xl font-bold">OR</p>
           <div className="flex justify-center">
             <Image
               src={'/qr-toolsmandu.jpg'}
