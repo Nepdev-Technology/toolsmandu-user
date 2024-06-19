@@ -110,7 +110,6 @@ const CustomForm = ({
         if (selectedPaymentOption == PAYMENT_GATEWAYS.ESEWA) {
           // const store = new Store(new EsewaPaymentProcessor());
           // store.purchaseItem(order);
-          debugger;
           router.push(
             `/product/${slug}/pay/${id}?orderId=${orderId}&totalAmount=${totalAmount}`
           );

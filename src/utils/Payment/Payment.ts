@@ -162,7 +162,6 @@ export class KhaltiPaymentProcessor implements PaymentProcessor {
         },
       }),
     };
-    debugger;
     await fetchKhaltiData(payload.url, payload);
   }
   catch(error: any) {
