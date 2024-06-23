@@ -9,6 +9,7 @@ const DropDownMenu = ({ items }: { items: IDropDownMenuItemProps[] }) => {
           items.map((item) => (
             <div key={item.category}>
               <DropDownMenuItem
+                slug={item.slug}
                 key={item.category}
                 category={item.category}
                 products={item.products}

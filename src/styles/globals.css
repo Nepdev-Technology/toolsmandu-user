@@ -18,6 +18,9 @@
   h3 {
     @apply text-lg;
   }
+  li {
+    @apply list-disc;
+  }
 }
 /* :root {
   --foreground-rgb: 0, 0, 0;

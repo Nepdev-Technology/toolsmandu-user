@@ -73,6 +73,7 @@ export interface DynamicVariable {
 
 export interface FeaturedCategory {
   id: number;
+  slug: string;
   metaTitle: string;
   metaKeywords: string;
   featured: boolean;

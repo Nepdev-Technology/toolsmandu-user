@@ -20,6 +20,7 @@ const apiRoutes = {
     navbar: '/category/featured/navbar',
     search: '/product/user/search',
     admin: '/product/products/search',
+    category: '/product/category',
   },
   crousel: {
     crousel: '/crousel',

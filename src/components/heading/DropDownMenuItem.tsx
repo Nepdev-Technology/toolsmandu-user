@@ -7,12 +7,17 @@ export interface ProductCategoryHeaderProps {
 }
 export interface IDropDownMenuItemProps {
   category: string;
+  slug: string;
   products: ProductCategoryHeaderProps[];
 }
-const DropDownMenuItem = ({ category, products }: IDropDownMenuItemProps) => {
+const DropDownMenuItem = ({
+  category,
+  slug,
+  products,
+}: IDropDownMenuItemProps) => {
   return (
     <Menu shadow="md" width={200} trigger="hover">
-      <Link href={`/category?category=${category}`}>
+      <Link href={`/category/${slug}?category=${category}`}>
         <MenuTarget>
           <Text className="flex justify-center items-center font-bold">
             {category.toUpperCase()}

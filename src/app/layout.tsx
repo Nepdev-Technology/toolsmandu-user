@@ -11,7 +11,7 @@ import { theme } from '../theme';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Toolsmandu',
+  title: 'Toolsmandu.com - Digital Doctor For Your Business',
   description: 'Digital Doctor For Your Business',
 };
 

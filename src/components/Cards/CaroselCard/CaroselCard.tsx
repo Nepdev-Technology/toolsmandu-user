@@ -28,8 +28,8 @@ export default function CarouselCard({
       }}
       className={classes.card}
     >
-      <div className="flex flex-col items-center justify-center text-black">
-        <Title order={3}>{title}</Title>
+      <div className="flex flex-col items-center justify-center text-black relative md:bottom-6">
+        <Title className="text-xl">{title}</Title>
         <Text size="xs">{description}</Text>
       </div>
 

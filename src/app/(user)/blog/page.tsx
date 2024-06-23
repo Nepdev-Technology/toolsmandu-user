@@ -7,6 +7,7 @@ import Link from 'next/link';
 import { redirect } from 'next/navigation';
 export interface Blog {
   id: number;
+  slug: string;
   createdAt: string;
   title: string;
   image: string;
@@ -61,7 +62,7 @@ const page = async ({ searchParams }: { searchParams: { page: string } }) => {
             {[...blogData].map((blog) => {
               return (
                 <div key={blog.id}>
-                  <Link href={`blog/${blog.id}`} className="py-0">
+                  <Link href={`blog/${blog.slug}`} className="py-0">
                     <BlogCard
                       id={blog.id}
                       title={blog.title}

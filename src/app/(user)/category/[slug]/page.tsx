@@ -11,23 +11,19 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 
-const getTableData = async (
-  query: string,
-  category: string,
-  page: string,
-  limit: string
-) => {
+const getTableData = async (slug: string, page: string, limit: string) => {
   const http = new HttpService();
 
   try {
     const payload = {
-      name: query,
-      category,
+      slug,
     };
     const response: any = await http
       .service()
       .push(
-        `${apiRoutes.products.search}?page=${page}&limit=${limit ? limit : 15}`,
+        `${apiRoutes.products.category}/${slug}?page=${page ? page : 1}&limit=${
+          limit ? limit : 15
+        }`,
         payload
       );
 
@@ -56,17 +52,17 @@ const getTableData = async (
 };
 export async function generateMetadata({
   searchParams,
+  params,
 }: {
   searchParams: {
-    query: string;
-    category: string;
     page: string;
     limit: string;
+    category: string;
   };
+  params: { id: string };
 }): Promise<Metadata> {
   const productData: Product[] = await getTableData(
-    searchParams.query,
-    searchParams.category,
+    params.id,
     searchParams.page,
     searchParams.limit
   );
@@ -99,18 +95,19 @@ export async function generateMetadata({
 }
 const page = async ({
   searchParams,
+  params,
 }: {
   searchParams: {
-    query: string;
-    categoryId: string;
     category: string;
     page: string;
     limit: string;
   };
+  params: {
+    slug: string;
+  };
 }) => {
   const productData: Product[] = await getTableData(
-    searchParams.query,
-    searchParams.category,
+    params.slug,
     searchParams.page,
     searchParams.limit
   );
