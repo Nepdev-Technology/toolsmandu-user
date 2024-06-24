@@ -6,14 +6,15 @@ export interface ProductCategoryHeaderProps {
 }
 export interface IDropDownMenuItemProps {
   category: string;
+  slug: string;
   products: ProductCategoryHeaderProps[];
 }
-const SidebarItem = ({ category, products }: IDropDownMenuItemProps) => {
+const SidebarItem = ({ category, products, slug }: IDropDownMenuItemProps) => {
   return (
     <NavLink
       label={category.toUpperCase()}
       childrenOffset={28}
-      href={`/category?category=${category}`}
+      href={`/category/${slug}`}
       className="hover:bg-primary font-bold"
     ></NavLink>
   );

@@ -43,6 +43,6 @@ const config: Config = {
       display: 'Roboto', // Adds a new `font-display` class
     },
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/typography')],
 };
 export default config;

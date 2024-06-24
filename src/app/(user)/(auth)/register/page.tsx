@@ -14,6 +14,7 @@ import {
 } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { IconLock } from '@tabler/icons-react';
+import { transform } from 'next/dist/build/swc';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
@@ -75,9 +76,11 @@ const Page = () => {
 
   return (
     <>
-      <Title order={2} className="text-textPrimary">
-        Register
-      </Title>
+      <div className="flex gap-4 items-center justify-center">
+        <Title order={2} className="text-textPrimary">
+          Register
+        </Title>
+      </div>
       <form onSubmit={form.onSubmit(onSubmit)}>
         <div className="grid grid-cols-2 gap-2">
           <TextInput
@@ -151,8 +154,9 @@ const Page = () => {
           required
         />
 
-        <div className="flex justify-end">
+        <div className="flex ">
           <ReCAPTCHA
+            style={{ transform: 'scale(1.16)', transformOrigin: '0 0' }}
             sitekey={`${process.env.NEXT_PUBLIC_GOOGLE_CAPTCHA}`}
             onChange={onChange}
           />

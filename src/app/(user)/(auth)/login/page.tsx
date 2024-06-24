@@ -68,9 +68,11 @@ export default function Login() {
 
   return (
     <>
-      <Title order={2} className="text-textPrimary">
-        Login
-      </Title>
+      <div className="flex gap-4 items-center justify-center">
+        <Title order={2} className="text-textPrimary">
+          Login
+        </Title>
+      </div>
       <form onSubmit={form.onSubmit(onSubmit)}>
         <TextInput
           label="Email"

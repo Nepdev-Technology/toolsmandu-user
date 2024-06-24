@@ -29,6 +29,7 @@ import { Metadata } from 'next';
 import { redirect } from 'next/navigation';
 import classes from './Demo.module.css';
 import { giveFirstWord } from '@/src/utils/Text/GiveFirstWord';
+import { AddToPageTitle } from '@/src/utils/Text/AddToPageTitle';
 
 const getTableData = async (id: string) => {
   const http = new HttpService();
@@ -75,7 +76,7 @@ export async function generateMetadata({
   } = product;
 
   return {
-    title: name,
+    title: AddToPageTitle(name),
     description: metaDescription,
     keywords: metaKeywords,
     openGraph: {
@@ -226,6 +227,7 @@ const page = async ({ params }: { params: { id: string } }) => {
               </div>
               <div className="xs:col-span-full sm:row-span-3 md:col-span-2 sm:col-span-3">
                 <div
+                  className="prose  "
                   dangerouslySetInnerHTML={{
                     __html: productData.summary,
                   }}

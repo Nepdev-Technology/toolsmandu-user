@@ -6,6 +6,7 @@ import { IconCalendar, IconUser } from '@tabler/icons-react';
 import { Metadata } from 'next';
 import { redirect } from 'next/navigation';
 import { Blog } from '../page';
+import { AddToPageTitle } from '@/src/utils/Text/AddToPageTitle';
 
 const getTableData = async (id: string) => {
   const http = new HttpService();
@@ -46,7 +47,7 @@ export async function generateMetadata({
     blogData;
 
   return {
-    title: title,
+    title: AddToPageTitle(title),
     description: metaDescription,
     keywords: metaKeywords,
     openGraph: {
@@ -92,6 +93,7 @@ const page = async ({ params }: { params: { id: string } }) => {
             </div>
             <div className="mt-2">
               <div
+                className="prose  "
                 dangerouslySetInnerHTML={{
                   __html: blogData.description,
                 }}

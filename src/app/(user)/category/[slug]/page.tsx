@@ -6,6 +6,7 @@ import {
   FeaturedCategory,
   Product,
 } from '@/src/types/interfaces/ProductInterface';
+import { AddToPageTitle } from '@/src/utils/Text/AddToPageTitle';
 import { Box, Divider, Title } from '@mantine/core';
 import { Metadata } from 'next';
 import Link from 'next/link';
@@ -20,7 +21,7 @@ const getTableData = async (slug: string, page: string, limit: string) => {
     };
     const response: any = await http
       .service()
-      .push(
+      .get(
         `${apiRoutes.products.category}/${slug}?page=${page ? page : 1}&limit=${
           limit ? limit : 15
         }`,
@@ -54,15 +55,16 @@ export async function generateMetadata({
   searchParams,
   params,
 }: {
+  params: {
+    slug: string;
+  };
   searchParams: {
     page: string;
     limit: string;
-    category: string;
   };
-  params: { id: string };
 }): Promise<Metadata> {
   const productData: Product[] = await getTableData(
-    params.id,
+    params.slug,
     searchParams.page,
     searchParams.limit
   );
@@ -71,9 +73,8 @@ export async function generateMetadata({
       title: '404- Not found',
     };
   }
-  const data = productData?.[0]?.categories?.filter(
-    (item) => item.name === searchParams.category
-  );
+  const data = productData;
+
   if (!data) {
     return {
       title: '404- Not found',
@@ -83,7 +84,7 @@ export async function generateMetadata({
   const { id, name, metaTitle, metaDescription, metaKeywords } = data[0];
 
   return {
-    title: name,
+    title: AddToPageTitle(name),
     description: metaDescription,
     keywords: metaKeywords,
     openGraph: {
@@ -97,13 +98,12 @@ const page = async ({
   searchParams,
   params,
 }: {
-  searchParams: {
-    category: string;
-    page: string;
-    limit: string;
-  };
   params: {
     slug: string;
+  };
+  searchParams: {
+    page: string;
+    limit: string;
   };
 }) => {
   const productData: Product[] = await getTableData(
@@ -118,7 +118,7 @@ const page = async ({
           <div>
             <div className="bg-primary px-2 py-1 rounded-md flex justify-center xs:mb-3 sm:my-5 lg:my-8">
               <Title order={1} className="  text-textPrimary">
-                {searchParams.category}
+                {productData?.[0]?.name}
               </Title>
             </div>
           </div>
