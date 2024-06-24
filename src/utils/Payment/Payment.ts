@@ -62,13 +62,13 @@ export class EsewaPaymentProcessor implements PaymentProcessor {
 
     const payload = {
       amount: amount.toString(), // Convert amount to string
-      failure_url: `${process.env.NEXT_PUBLIC_SITE_URL}/product/${productId}/verify/${PAYMENT_GATEWAYS.ESEWA}/${orderId}`,
+      failure_url: `${process.env.NEXT_PUBLIC_SITE_URL}/item/${productId}/verify/${PAYMENT_GATEWAYS.ESEWA}/${orderId}`,
       product_delivery_charge: '0',
       product_service_charge: '0',
       product_code: productCode,
       signature,
       signed_field_names: `total_amount,transaction_uuid,product_code`,
-      success_url: `${process.env.NEXT_PUBLIC_SITE_URL}/product/${productId}/verify/${PAYMENT_GATEWAYS.ESEWA}/${orderId}`,
+      success_url: `${process.env.NEXT_PUBLIC_SITE_URL}/item/${productId}/verify/${PAYMENT_GATEWAYS.ESEWA}/${orderId}`,
       tax_amount: '0',
       total_amount: amount.toString(),
       transaction_uuid: transactionUuid,
@@ -124,7 +124,7 @@ export class FonePayPaymentProcessor implements PaymentProcessor {
           payload.DT
         }&R1=${payload.R1}&R2=${
           payload.R2
-        }&DV=${signature}&RU=${`${process.env.NEXT_PUBLIC_SITE_URL}/product/${productId}/verify/${PAYMENT_GATEWAYS.ESEWA}/${orderId}`}`
+        }&DV=${signature}&RU=${`${process.env.NEXT_PUBLIC_SITE_URL}/item/${productId}/verify/${PAYMENT_GATEWAYS.ESEWA}/${orderId}`}`
       )
       .then((response) => console.log(response));
   }
@@ -150,7 +150,7 @@ export class KhaltiPaymentProcessor implements PaymentProcessor {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        return_url: `${process.env.NEXT_PUBLIC_SITE_URL}/product/${slug}/verify/${PAYMENT_GATEWAYS.KHALTI}/${orderId}`,
+        return_url: `${process.env.NEXT_PUBLIC_SITE_URL}/item/${slug}/verify/${PAYMENT_GATEWAYS.KHALTI}/${orderId}`,
         website_url: `${process.env.NEXT_PUBLIC_SITE_URL}`,
         amount: amount * 100,
         purchase_order_id: orderId,

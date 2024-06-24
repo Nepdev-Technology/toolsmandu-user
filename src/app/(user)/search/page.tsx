@@ -80,7 +80,7 @@ const page = async ({
             {[...productData].map((product) => {
               return (
                 <div key={product.id}>
-                  <Link href={`product/${product.slug}`} className="py-0">
+                  <Link href={`item/${product.slug}`} className="py-0">
                     <ProductCardForSearch
                       id={product.id}
                       name={product.name}

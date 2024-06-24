@@ -34,7 +34,7 @@ const Page = () => {
     setLoading(true);
 
     showSuccessNotification('Order placed successfully');
-    router.push(`/product/${params?.id}`);
+    router.push(`/item/${params?.id}`);
     setLoading(false);
   };
   return (

@@ -65,7 +65,7 @@ const Canceled = (props: { id: string }) => {
         </p>
         <p> Have a great day! </p>
         <div className="flex justify-center gap-3 mt-4">
-          <Link href={`/product/${props.id}`}>
+          <Link href={`/item/${props.id}`}>
             {' '}
             <Button>Go back</Button>
           </Link>
@@ -131,7 +131,7 @@ const page = async ({
         </p>
         <p> Have a great day! </p>
         <div className="flex justify-center gap-3 mt-4">
-          <Link href={`/product/${params.id}`}>
+          <Link href={`/item/${params.id}`}>
             {' '}
             <Button>Go back</Button>
           </Link>

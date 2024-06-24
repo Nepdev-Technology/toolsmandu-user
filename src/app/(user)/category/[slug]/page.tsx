@@ -80,6 +80,11 @@ export async function generateMetadata({
       title: '404- Not found',
     };
   }
+  if (!data[0]) {
+    return {
+      title: '404- Not found',
+    };
+  }
 
   const { id, name, metaTitle, metaDescription, metaKeywords } = data[0];
 
@@ -126,7 +131,7 @@ const page = async ({
             {[...productData].map((product) => {
               return (
                 <div key={product.id}>
-                  <Link href={`product/${product.slug}`} className="py-0">
+                  <Link href={`/item/${product.slug}`} className="py-0">
                     <ProductCardForSearch
                       id={product.id}
                       name={product.name}

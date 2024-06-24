@@ -111,7 +111,7 @@ const CustomForm = ({
           // const store = new Store(new EsewaPaymentProcessor());
           // store.purchaseItem(order);
           router.push(
-            `/product/${slug}/pay/${id}?orderId=${orderId}&totalAmount=${totalAmount}`
+            `/item/${slug}/pay/${id}?orderId=${orderId}&totalAmount=${totalAmount}`
           );
         } else if (selectedPaymentOption === PAYMENT_GATEWAYS.KHALTI) {
           try {
