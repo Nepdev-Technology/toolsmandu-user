@@ -19,14 +19,12 @@ const getTableData = async (slug: string, page: string, limit: string) => {
     const payload = {
       slug,
     };
-    const response: any = await http
-      .service()
-      .get(
-        `${apiRoutes.products.category}/${slug}?page=${page ? page : 1}&limit=${
-          limit ? limit : 15
-        }`,
-        payload
-      );
+    const reqLimit = limit ? limit : 15;
+    const reqPage = page ? page : 1;
+    const path = `/product/category/${slug}?page=${reqPage}&limit=${reqLimit}`;
+    console.log(reqLimit, reqPage);
+
+    const response: any = await http.service().get(path);
 
     const transformedData = response?.data?.map((product: Product) => {
       let lowestMRP = Infinity;
@@ -123,7 +121,7 @@ const page = async ({
           <div>
             <div className="bg-primary px-2 py-1 rounded-md flex justify-center xs:mb-3 sm:my-5 lg:my-8">
               <Title order={1} className="  text-textPrimary">
-                {productData?.[0]?.name}
+                {productData[0]?.categories[0]?.name}
               </Title>
             </div>
           </div>

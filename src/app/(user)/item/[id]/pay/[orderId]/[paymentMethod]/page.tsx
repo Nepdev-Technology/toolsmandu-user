@@ -1,5 +1,6 @@
 'use client';
 import { showSuccessNotification } from '@/src/utils/notificationUtils';
+import { PAYMENT_GATEWAYS } from '@/src/utils/Payment/Payment';
 import {
   Button,
   Card,
@@ -9,6 +10,14 @@ import {
   Title,
 } from '@mantine/core';
 import { useForm } from '@mantine/form';
+import { useClipboard } from '@mantine/hooks';
+import {
+  IconChecklist,
+  IconClipboard,
+  IconClipboardOff,
+  IconCopy,
+  IconCopyOff,
+} from '@tabler/icons-react';
 import Image from 'next/image';
 import { useParams, useRouter, useSearchParams } from 'next/navigation';
 import { useState } from 'react';
@@ -19,6 +28,8 @@ const Page = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const totalAmount = searchParams.get('totalAmount');
+  const clipboard = useClipboard({ timeout: 500 });
+
   const [loading, setLoading] = useState(false);
   const [token, setToken] = useState('');
   const form = useForm({
@@ -52,10 +63,16 @@ const Page = () => {
           className="flex flex-col gap-3 justify-around"
         >
           <div className="flex gap-4 items-center justify-center">
-            <Title order={2}>eSewa / QR Payment</Title>
+            <Title order={2}>
+              {params.paymentMethod === PAYMENT_GATEWAYS.ESEWA
+                ? 'eSewa Payment'
+                : 'QR Payment'}{' '}
+            </Title>
           </div>
           <p className="text-center">
-            Pay via Esewa, Khalti, IMEPay, Mobile Banking etc.
+            {params.paymentMethod === PAYMENT_GATEWAYS.ESEWA
+              ? 'You can pay via eSewa Fund Transfer.'
+              : 'Pay via Esewa, Khalti, IMEPay, Mobile Banking etc.'}{' '}
           </p>
           <div className="flex justify-center items-center gap-6">
             <div>
@@ -76,18 +93,39 @@ const Page = () => {
           <div className="bg-red-600 text-textPrimary text-center py-2 font-bold">
             Important: Please write Your Order ID in Payment Remarks
           </div>
-          <p className="text-center font-bold text-lg">
-            Our Esewa ID: <span>9864484274</span>
-          </p>
-          <p className="text-center text-2xl font-bold">OR</p>
-          <div className="flex justify-center">
-            <Image
-              src={'/qr-toolsmandu.jpg'}
-              width={300}
-              height={500}
-              alt="Qr code for toolsmandu"
-            ></Image>
-          </div>
+          {params.paymentMethod === PAYMENT_GATEWAYS.ESEWA ? (
+            <div className="grid grid-cols-1 grid-rows-2 text-center">
+              <p className=" font-bold text-lg relative left-8">
+                Our Esewa ID: <span>9864484274</span>{' '}
+                <Button
+                  // rightSection={<IconClipboard></IconClipboard>}
+                  color={clipboard.copied ? 'gray' : 'white'}
+                  onClick={() => clipboard.copy('9864484274')}
+                  variant="transparent"
+                >
+                  {/* {clipboard.copied ? 'Copied' : 'Copy'} */}
+                  {clipboard.copied ? (
+                    <IconCopyOff></IconCopyOff>
+                  ) : (
+                    <IconCopy></IconCopy>
+                  )}
+                </Button>
+              </p>
+              <p className=" font-bold text-lg">
+                Esewa Name: <span>Tools Mandu</span>
+              </p>
+            </div>
+          ) : (
+            <div className="flex justify-center">
+              <Image
+                src={'/qr-toolsmandu.jpg'}
+                width={300}
+                height={500}
+                alt="Qr code for toolsmandu"
+              ></Image>
+            </div>
+          )}
+
           <div className="  text-center py-2 font-bold">
             After you pay, click on &quot;Place Order&quot; below.{' '}
           </div>
@@ -98,7 +136,7 @@ const Page = () => {
             <Button
               loading={loading}
               type="submit"
-              className="mt-4 bg-green-500"
+              className="my-4 bg-green-500"
             >
               Place Order
             </Button>

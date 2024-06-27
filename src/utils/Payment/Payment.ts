@@ -19,6 +19,7 @@ export enum PAYMENT_GATEWAYS {
   ESEWA = 'ESEWA',
   KHALTI = 'KHALTI',
   IME_PAY = 'IMEPAY',
+  QR = 'QR',
 }
 
 interface PaymentProcessor {

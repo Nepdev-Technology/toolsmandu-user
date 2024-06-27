@@ -57,6 +57,7 @@ const CustomForm = ({
 
   const [coupon, setCoupon] = useState<string>('');
   const [validCoupon, setValidCoupon] = useState<DiscountInfo>();
+  const [isCouponFieldVisible, setIsCouponFieldVisible] = useState(false);
   const router = useRouter();
 
   const result: any = {};
@@ -111,7 +112,13 @@ const CustomForm = ({
           // const store = new Store(new EsewaPaymentProcessor());
           // store.purchaseItem(order);
           router.push(
-            `/item/${slug}/pay/${id}?orderId=${orderId}&totalAmount=${totalAmount}`
+            `/item/${slug}/pay/${id}/${PAYMENT_GATEWAYS.ESEWA}?orderId=${orderId}&totalAmount=${totalAmount}`
+          );
+        } else if (selectedPaymentOption == PAYMENT_GATEWAYS.QR) {
+          // const store = new Store(new EsewaPaymentProcessor());
+          // store.purchaseItem(order);
+          router.push(
+            `/item/${slug}/pay/${id}/${PAYMENT_GATEWAYS.QR}?orderId=${orderId}&totalAmount=${totalAmount}`
           );
         } else if (selectedPaymentOption === PAYMENT_GATEWAYS.KHALTI) {
           try {
@@ -183,23 +190,32 @@ const CustomForm = ({
               </div>
             );
           })}
-          <div>
-            <TextInput
-              className="mr-4"
-              label="Coupon code"
-              placeholder="Enter Coupon Code"
-              description={
-                validCoupon &&
-                `Rs ${validCoupon.calculatedDiscountAmount} discount applied`
-              }
-              onChange={(e) => setCoupon(e.target.value)}
-              rightSection={
-                <div>
-                  <Button onClick={checkCoupon}>Apply</Button>
-                </div>
-              }
-            ></TextInput>
-          </div>
+          {isCouponFieldVisible ? (
+            <div>
+              <TextInput
+                className="mr-4"
+                label="Coupon code"
+                placeholder="Enter Coupon Code"
+                description={
+                  validCoupon &&
+                  `Rs ${validCoupon.calculatedDiscountAmount} discount applied`
+                }
+                onChange={(e) => setCoupon(e.target.value)}
+                rightSection={
+                  <div>
+                    <Button onClick={checkCoupon}>Apply</Button>
+                  </div>
+                }
+              ></TextInput>
+            </div>
+          ) : (
+            <div
+              className="underline hover:cursor-pointer"
+              onClick={() => setIsCouponFieldVisible(true)}
+            >
+              Do you have a coupon?
+            </div>
+          )}
         </CardSection>
       </Card>
       <Card shadow="sm" radius="md" className="bg-tertiary">
@@ -218,7 +234,7 @@ const CustomForm = ({
           <div className="flex xs:flex-col  gap-4 ">
             <PaymentCard
               discount={validCoupon?.calculatedDiscountAmount}
-              title="Esewa/QR Payment"
+              title="Esewa"
               src={'/esewa_logo.png'}
               alt="Esewa logo"
               amount={selectedOption.sellingPrice}
@@ -226,6 +242,17 @@ const CustomForm = ({
                 selectedPaymentOption === PAYMENT_GATEWAYS.ESEWA
               }
               onClick={() => setSelectedPaymentOption(PAYMENT_GATEWAYS.ESEWA)}
+            />
+            <PaymentCard
+              discount={validCoupon?.calculatedDiscountAmount}
+              title="QR Payment"
+              src={'/qr pay.png'}
+              alt="QR logo"
+              amount={selectedOption.sellingPrice}
+              selectedPaymentOption={
+                selectedPaymentOption === PAYMENT_GATEWAYS.QR
+              }
+              onClick={() => setSelectedPaymentOption(PAYMENT_GATEWAYS.QR)}
             />
 
             <PaymentCard

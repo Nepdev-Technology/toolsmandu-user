@@ -14,7 +14,7 @@ const SidebarItem = ({ category, products, slug }: IDropDownMenuItemProps) => {
     <NavLink
       label={category.toUpperCase()}
       childrenOffset={28}
-      href={`/category/${slug}`}
+      href={`/item-category/${slug}`}
       className="hover:bg-primary font-bold"
     ></NavLink>
   );

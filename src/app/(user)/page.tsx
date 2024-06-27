@@ -57,7 +57,7 @@ export default async function Home() {
           featuredCategory.map((category) => {
             return (
               <div key={category.id}>
-                <Link href={`/category?category=${category.name}`}>
+                <Link href={`/item-category/${category.slug}`}>
                   <ProductCategoryHeader
                     id={category.id}
                     title={category.name}

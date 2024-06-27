@@ -62,7 +62,7 @@ const page = async ({ searchParams }: { searchParams: { page: string } }) => {
             {[...blogData].map((blog) => {
               return (
                 <div key={blog.id}>
-                  <Link href={`blog/${blog.slug}`} className="py-0">
+                  <Link href={`/updates/${blog.slug}`} className="py-0">
                     <BlogCard
                       id={blog.id}
                       title={blog.title}

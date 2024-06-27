@@ -17,7 +17,7 @@ const DropDownMenuItem = ({
 }: IDropDownMenuItemProps) => {
   return (
     <Menu shadow="md" width={200} trigger="hover">
-      <Link href={`/category/${slug}`}>
+      <Link href={`/item-category/${slug}`}>
         <MenuTarget>
           <Text className="flex justify-center items-center font-bold">
             {category.toUpperCase()}
