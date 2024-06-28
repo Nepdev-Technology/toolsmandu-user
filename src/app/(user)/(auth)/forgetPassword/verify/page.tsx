@@ -122,6 +122,7 @@ export default function Login() {
           withAsterisk
           required
           type="text"
+          size="md"
           {...form.getInputProps('otp')}
         />
         <PasswordInput
@@ -130,6 +131,7 @@ export default function Login() {
           placeholder="new password"
           withAsterisk
           required
+          size="md"
           {...form.getInputProps('password')}
         />
         <PasswordInput
@@ -138,6 +140,7 @@ export default function Login() {
           placeholder="confirm password"
           withAsterisk
           required
+          size="md"
           {...form.getInputProps('confirmPassword')}
         />
         <div className="flex justify-end items-center">

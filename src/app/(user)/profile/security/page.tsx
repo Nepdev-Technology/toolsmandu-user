@@ -73,6 +73,7 @@ const Page = () => {
               placeholder="Enter your Current Password"
               withAsterisk
               required
+              size="md"
               {...form.getInputProps('oldPassword')}
             />
             <PasswordInput
@@ -88,6 +89,7 @@ const Page = () => {
               placeholder="Enter New Password"
               withAsterisk
               required
+              size="md"
               {...form.getInputProps('password')}
             />
             <PasswordInput
@@ -103,6 +105,7 @@ const Page = () => {
               placeholder="Re-type New Password"
               withAsterisk
               required
+              size="md"
               {...form.getInputProps('confirmPassword')}
             />
             <Button type="submit" className="mt-4" loading={loading}>

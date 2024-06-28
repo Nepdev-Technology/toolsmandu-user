@@ -90,6 +90,7 @@ const Page = () => {
               placeholder="Enter Your Ticket ID:"
               withAsterisk
               required
+              size="md"
               {...form.getInputProps('ticketId')}
             />
             <Button loading={loading} type="submit" className="mt-4">

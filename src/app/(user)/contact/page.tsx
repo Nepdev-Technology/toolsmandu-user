@@ -90,6 +90,7 @@ const Page = () => {
               placeholder="Enter your name"
               withAsterisk
               required
+              size="md"
               {...form.getInputProps('name')}
             />
             <TextInput
@@ -105,6 +106,7 @@ const Page = () => {
               placeholder="Enter your email"
               withAsterisk
               required
+              size="md"
               {...form.getInputProps('email')}
             />
             <TextInput
@@ -120,6 +122,7 @@ const Page = () => {
               placeholder="Enter your phone"
               withAsterisk
               required
+              size="md"
               {...form.getInputProps('phone')}
             />
             <TextInput
@@ -135,6 +138,7 @@ const Page = () => {
               placeholder="Enter your subject"
               withAsterisk
               required
+              size="md"
               {...form.getInputProps('subject')}
             />
             <Textarea
@@ -151,6 +155,7 @@ const Page = () => {
               placeholder="Enter your message"
               withAsterisk
               required
+              size="md"
               {...form.getInputProps('message')}
             />
             <div></div>

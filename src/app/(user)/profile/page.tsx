@@ -99,6 +99,7 @@ const Page = () => {
               placeholder="John"
               withAsterisk
               required
+              size="md"
               {...form.getInputProps('firstName')}
             />
             <TextInput
@@ -113,6 +114,7 @@ const Page = () => {
               placeholder="Doe"
               withAsterisk
               required
+              size="md"
               {...form.getInputProps('lastName')}
             />
             <TextInput
@@ -127,6 +129,7 @@ const Page = () => {
               placeholder="johndoe"
               withAsterisk
               required
+              size="md"
               {...form.getInputProps('userName')}
             />
             <TextInput
@@ -142,6 +145,7 @@ const Page = () => {
               placeholder="johndoe@gmail.com"
               withAsterisk
               required
+              size="md"
               {...form.getInputProps('email')}
             />
             <NumberInput
@@ -156,6 +160,7 @@ const Page = () => {
               placeholder="987654321"
               withAsterisk
               required
+              size="md"
               {...form.getInputProps('phone_no')}
             />
             <Button loading={loading} type="submit" className="mt-4">

@@ -81,6 +81,7 @@ const Page = () => {
               placeholder="Choose a category.."
               withAsterisk
               required
+              size="md"
               {...form.getInputProps('type')}
             />
             <TextInput
@@ -95,6 +96,7 @@ const Page = () => {
               placeholder="Enter the title"
               withAsterisk
               required
+              size="md"
               {...form.getInputProps('subject')}
             />
             <TextInput
@@ -125,6 +127,7 @@ const Page = () => {
               placeholder="Describe your issue"
               withAsterisk
               required
+              size="md"
               {...form.getInputProps('description')}
             />
             <Button loading={loading} type="submit" className="mt-4">

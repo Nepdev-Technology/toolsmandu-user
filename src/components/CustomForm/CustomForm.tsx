@@ -184,6 +184,7 @@ const CustomForm = ({
                     required={field.required}
                     withAsterisk={field.required}
                     type={field.type}
+                    size="md"
                     {...form.getInputProps(`${field.id}`)}
                   />
                 )}

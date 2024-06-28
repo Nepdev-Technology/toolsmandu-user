@@ -21,7 +21,7 @@ const getTableData = async (slug: string, page: string, limit: string) => {
     };
     const reqLimit = limit ? limit : 15;
     const reqPage = page ? page : 1;
-    const path = `/product/category/${slug}?page=${reqPage}&limit=${reqLimit}`;
+    const path = `/product/category/${slug}?page=${reqPage}`;
     console.log(reqLimit, reqPage);
 
     const response: any = await http.service().get(path);
@@ -148,11 +148,11 @@ const page = async ({
               );
             })}
           </Box>
-          {productData.length >= 15 && (
+          {/* {productData.length >= 15 && (
             <div className="mt-4 ml-10">
               <CustomPagination totalPages={productData.length} />
             </div>
-          )}
+          )} */}
         </section>
       ) : (
         <section className="relative bottom-1 text-textPrimary">

@@ -51,6 +51,7 @@ export default function Login() {
           type="email"
           withAsterisk
           required
+          size="md"
           {...form.getInputProps('email')}
         />
 

@@ -79,6 +79,7 @@ export default function Login() {
           placeholder="Email/Username"
           withAsterisk
           required
+          size="md"
           {...form.getInputProps('name')}
         />
         <PasswordInput
@@ -86,6 +87,7 @@ export default function Login() {
           placeholder="Password"
           withAsterisk
           required
+          size="md"
           {...form.getInputProps('password')}
         />
         <div className="flex justify-end">
