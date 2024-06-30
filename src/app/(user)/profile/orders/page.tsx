@@ -37,11 +37,7 @@ const Page = () => {
         key: item.id,
         date: normalizeDate(item.createdAt),
         amount: `Rs ${item.amount}`,
-        paymentMethod: item?.payment?.method
-          ? item?.payment?.method
-          : item.paymentMethod === 'ADMIN'
-            ? 'ADMIN'
-            : 'No payment method',
+        paymentMethod: item?.paymentMethod,
         status: item?.status?.charAt(0)?.toUpperCase() + item?.status?.slice(1),
       };
     });

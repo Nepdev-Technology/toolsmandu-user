@@ -13,8 +13,9 @@ import { GoogleAnalytics } from '@next/third-parties/google';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Toolsmandu.com - Digital Doctor For Your Business',
-  description: 'Digital Doctor For Your Business',
+  title:
+    'Toolsmandu.com - Genuine Digital Subscriptions At Best Price in Nepal',
+  description: 'Genuine Digital Subscriptions At Best Price in Nepal',
 };
 
 export default function RootLayout({

@@ -94,12 +94,18 @@ const Footer = () => {
               </p>
               <ul className=" font-medium ">
                 <li className="mb-4">
-                  <Link href="#" className="   hover:underline text-xs py-1">
+                  <Link
+                    href="updates/about-us"
+                    className="   hover:underline text-xs py-1"
+                  >
                     About us
                   </Link>
                 </li>
                 <li className="mb-4">
-                  <Link href="#" className="   hover:underline text-xs">
+                  <Link
+                    href="updates/about-delivery"
+                    className="   hover:underline text-xs"
+                  >
                     About Delivery
                   </Link>
                 </li>
@@ -116,17 +122,26 @@ const Footer = () => {
               </p>
               <ul className="font-medium">
                 <li className="mb-4">
-                  <Link href="#" className="   hover:underline text-xs">
+                  <Link
+                    href="updates/privacy-policy"
+                    className="   hover:underline text-xs"
+                  >
                     Privacy Policy
                   </Link>
                 </li>
                 <li className="mb-4">
-                  <Link href="#" className="   hover:underline text-xs">
+                  <Link
+                    href="updates/refund-policy"
+                    className="   hover:underline text-xs"
+                  >
                     Refund Policy
                   </Link>
                 </li>
                 <li className="mb-4">
-                  <Link href="#" className="   hover:underline text-xs">
+                  <Link
+                    href="updates/terms-of-use"
+                    className="   hover:underline text-xs"
+                  >
                     Terms of Use
                   </Link>
                 </li>
@@ -140,7 +155,7 @@ const Footer = () => {
                 <ul className="       font-medium">
                   <li className="mb-4">
                     <Link
-                      href="/profile/tickets"
+                      href="updates/payment-issues"
                       className="   hover:underline text-xs"
                     >
                       Payment Issues{' '}
@@ -164,12 +179,18 @@ const Footer = () => {
                 </p>
                 <ul className="       font-medium">
                   <li className="mb-4">
-                    <Link href="#" className="   hover:underline text-xs">
+                    <Link
+                      href="updates/coupons"
+                      className="   hover:underline text-xs"
+                    >
                       Coupons
                     </Link>
                   </li>
                   <li className="mb-4">
-                    <Link href="#" className="   hover:underline text-xs">
+                    <Link
+                      href="updates/partnership"
+                      className="   hover:underline text-xs"
+                    >
                       Partnership
                     </Link>
                   </li>

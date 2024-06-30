@@ -87,7 +87,7 @@ const CustomForm = ({
       productId: selectedOption.product,
       productVariationId: selectedOption.id,
       couponCode: validCoupon?.code,
-      paymentMethod: PAYMENT_GATEWAYS.ESEWA,
+      paymentMethod: selectedPaymentOption,
       variables: result,
     };
     try {
