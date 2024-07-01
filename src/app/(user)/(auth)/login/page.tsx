@@ -43,6 +43,8 @@ export default function Login() {
     setLoading(true);
     login(values.name, values.password)
       .then((user) => {
+        setLoading(false);
+
         if (user.status === 401) {
           showErrorNotification(
             `${MESSAGE.LOGIN_FAILED}${'Verify email first'}`
@@ -62,8 +64,8 @@ export default function Login() {
             e.message || ' An unexpected error occurred.'
           }`
         );
+        setLoading(false);
       });
-    setLoading(false);
   };
 
   return (
