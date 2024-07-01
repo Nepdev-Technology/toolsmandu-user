@@ -152,7 +152,7 @@ const Page = () => {
           label={
             <>
               I accept&nbsp;
-              <Anchor size="sm" href="/" target="_blank">
+              <Anchor size="sm" href="updates/terms-of-use" target="_blank">
                 terms and conditions
               </Anchor>
             </>

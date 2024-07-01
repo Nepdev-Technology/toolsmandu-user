@@ -30,6 +30,8 @@ import { useForm } from '@mantine/form';
 import { usePathname, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import PaymentCard from '../Cards/PaymentCard';
+import { IconInfoCircle } from '@tabler/icons-react';
+import Link from 'next/link';
 
 interface ICustomFormProps {
   fields: DynamicVariable[];
@@ -155,6 +157,13 @@ const CustomForm = ({
       onSubmit={form.onSubmit(handleFormSubmit)}
       className="flex flex-col gap-4"
     >
+      {!isLoggedIn && (
+        <p className="flex gap-2 justify-center text-gray-300">
+          <IconInfoCircle></IconInfoCircle>
+          <Link href={'/login'}> Login/Signup Required Before Ordering </Link>
+        </p>
+      )}
+
       <Card shadow="sm" px={10} py={10} radius="md" className="bg-tertiary">
         <CardSection
           px={20}

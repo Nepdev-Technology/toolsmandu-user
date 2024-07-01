@@ -13,7 +13,7 @@ import {
   rem,
   Text,
 } from '@mantine/core';
-import { IconShoppingCart } from '@tabler/icons-react';
+import { IconInfoCircle, IconShoppingCart } from '@tabler/icons-react';
 import { useEffect, useState } from 'react';
 import CustomForm from '../CustomForm/CustomForm';
 
@@ -115,6 +115,7 @@ const CheckoutForm = ({
           </Flex>
         </CardSection>
       </Card>
+
       {selectedOption && (
         <CustomForm
           slug={slug}

@@ -76,7 +76,7 @@ const page = async ({ params }: { params: { id: string } }) => {
           </div>
           <article className="mt-2 flex flex-col  md:block gap-1">
             <div>
-              <div className="flex justify-start gap-10 ">
+              {/* <div className="flex justify-start gap-10 ">
                 <Text className="text-textPrimary font-display flex gap-1">
                   <IconCalendar></IconCalendar>
                   {normalizeDate(blogData.createdAt)}
@@ -85,7 +85,7 @@ const page = async ({ params }: { params: { id: string } }) => {
                   {' '}
                   <IconUser></IconUser> Admin
                 </Text>
-              </div>
+              </div> */}
               <h1 className="sm:text-2xl xs:text-xl xs:mt-[1rem]  md:text-3xl  font-bold ">
                 {' '}
                 {blogData.title}

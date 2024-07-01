@@ -71,7 +71,7 @@ const Page = () => {
           className="flex flex-col gap-3 justify-around"
         >
           <div className="flex gap-4 items-center justify-center">
-            <Title order={2}>Contact Us / Request a service</Title>
+            <Title order={2}>Contact Us</Title>
           </div>
           <p className="text-center">
             Please fill below form to get in touch with us. We will reply in few
